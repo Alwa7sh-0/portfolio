@@ -3,15 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sayed Alawi – Alwa7sh</title>
+  <title>About – Sayed Alawi</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono&family=VT323&display=swap" rel="stylesheet" />
 
   <style>
-    /* ============================================
-       COLOUR PALETTE
-       ============================================ */
     :root {
       --green:       #1a3a2a;
       --green-mid:   #2d6a4f;
@@ -26,7 +23,6 @@
       --radius:      14px;
     }
 
-    /* ── RESET ── */
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'DM Sans', sans-serif;
@@ -36,478 +32,352 @@
       overflow-x: hidden;
     }
 
-    /* ── SKIP LINK ── */
     .skip-link {
-      position: absolute;
-      top: -60px;
-      left: 1rem;
-      background: var(--green);
-      color: var(--white);
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      text-decoration: none;
-      font-size: 13px;
-      z-index: 9999;
-      transition: top 0.2s;
+      position: absolute; top: -60px; left: 1rem;
+      background: var(--green); color: var(--white);
+      padding: 0.5rem 1rem; border-radius: 6px;
+      text-decoration: none; font-size: 13px;
+      z-index: 9999; transition: top 0.2s;
     }
     .skip-link:focus { top: 1rem; }
 
-    /* ── NAVIGATION ── */
+    /* ── NAV ── */
     nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      position: sticky; top: 0; z-index: 100;
       background: rgba(250,250,247,0.92);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 3rem;
+      display: flex; justify-content: space-between;
+      align-items: center; padding: 1rem 3rem;
     }
     .nav-logo {
-      font-family: 'Amiri', serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--green);
-      text-decoration: none;
+      font-family: 'Amiri', serif; font-size: 1.5rem;
+      font-weight: 700; color: var(--green); text-decoration: none;
     }
     .nav-logo span { color: var(--gold); }
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a {
-      text-decoration: none;
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      transition: color 0.2s;
+      text-decoration: none; color: var(--muted);
+      font-size: 13px; font-weight: 500;
+      letter-spacing: 0.04em; transition: color 0.2s;
       position: relative;
     }
     .nav-links a::after {
-      content: '';
-      position: absolute;
-      left: 0; bottom: -3px;
-      width: 0; height: 1.5px;
-      background: var(--green-light);
-      transition: width 0.25s;
+      content: ''; position: absolute;
+      left: 0; bottom: -3px; width: 0; height: 1.5px;
+      background: var(--green-light); transition: width 0.25s;
     }
     .nav-links a:hover { color: var(--green); }
     .nav-links a:hover::after { width: 100%; }
+    .nav-links a.active { color: var(--green); }
+    .nav-links a.active::after { width: 100%; }
 
     /* ── FLOATING THEME SWITCHER ── */
     .theme-float {
-      position: fixed;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 200;
-      display: flex;
-      flex-direction: column;
-      border-radius: 12px 0 0 12px;
-      overflow: hidden;
+      position: fixed; right: 0; top: 50%;
+      transform: translateY(-50%); z-index: 200;
+      display: flex; flex-direction: column;
+      border-radius: 12px 0 0 12px; overflow: hidden;
       box-shadow: -4px 0 20px rgba(0,0,0,0.1);
     }
     .theme-float-label {
-      background: var(--green);
-      color: var(--white);
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 8px 10px;
-      text-align: center;
-      writing-mode: vertical-rl;
-      text-orientation: mixed;
-      transform: rotate(180deg);
-      height: 80px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background: var(--green); color: var(--white);
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 8px 10px; writing-mode: vertical-rl;
+      text-orientation: mixed; transform: rotate(180deg);
+      height: 80px; display: flex;
+      align-items: center; justify-content: center;
     }
     .theme-btn {
-      background: var(--white);
-      border: none;
+      background: var(--white); border: none;
       border-top: 1px solid var(--border);
-      padding: 10px 12px;
-      font-size: 11px;
-      font-weight: 500;
-      color: var(--ink);
-      cursor: pointer;
+      padding: 10px 12px; font-size: 11px; font-weight: 500;
+      color: var(--ink); cursor: pointer;
       transition: background 0.2s, color 0.2s;
-      text-align: center;
-      font-family: 'DM Sans', sans-serif;
-      min-width: 52px;
-      line-height: 1.4;
+      text-align: center; font-family: 'DM Sans', sans-serif;
+      min-width: 52px; line-height: 1.4;
     }
     .theme-btn:hover { background: var(--green); color: var(--white); }
     .theme-btn.active { background: var(--green); color: var(--white); }
 
-    /* ── HERO ── */
-    #hero {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      padding: 6rem 3rem;
-      gap: 4rem;
+    /* ── PAGE HERO ── */
+    .page-hero {
+      padding: 6rem 3rem 4rem;
+      border-bottom: 1px solid var(--border);
       position: relative;
       overflow: hidden;
-      border-top: none;
     }
-    #hero::before {
+    .page-hero::before {
       content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 50% 60% at 80% 50%, rgba(82,183,136,0.08) 0%, transparent 70%),
-        radial-gradient(ellipse 30% 40% at 10% 80%, rgba(201,162,39,0.06) 0%, transparent 60%);
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 100% 50%, rgba(82,183,136,0.07) 0%, transparent 70%);
       pointer-events: none;
     }
-    .hero-left { position: relative; z-index: 1; }
-
-    .hero-greeting {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--green);
-      color: var(--white);
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      padding: 6px 14px;
-      border-radius: 20px;
-      margin-bottom: 1.5rem;
-    }
-
-    /* Name — English only now */
-    .hero-name {
-      font-family: 'Amiri', serif;
-      font-size: clamp(3rem, 7vw, 5.5rem);
-      font-weight: 700;
-      line-height: 1;
-      color: var(--green);
-      letter-spacing: -0.01em;
+    .page-hero-inner { position: relative; z-index: 1; }
+    .page-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--green-light);
       margin-bottom: 0.5rem;
     }
-    .hero-name span { color: var(--gold); }
-
-    .hero-nickname {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.95rem;
-      color: var(--green-light);
-      margin-bottom: 1.5rem;
-      letter-spacing: 0.06em;
-    }
-    .hero-tagline {
+    .page-title {
       font-family: 'Amiri', serif;
-      font-size: 1.15rem;
-      color: var(--muted);
-      max-width: 44ch;
-      margin-bottom: 2rem;
-      font-style: italic;
-      line-height: 1.8;
-      border-left: 2px solid var(--gold);
-      padding-left: 1rem;
+      font-size: clamp(3rem, 7vw, 5rem);
+      font-weight: 700; color: var(--green);
+      line-height: 1; margin-bottom: 1rem;
     }
-    .tag-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
-    .tag {
-      background: transparent;
-      border: 1.5px solid var(--green-mid);
-      color: var(--green-mid);
-      font-size: 12px;
-      font-weight: 500;
-      padding: 5px 14px;
-      border-radius: 20px;
-      letter-spacing: 0.03em;
-      transition: background 0.2s, color 0.2s;
-    }
-    .tag:hover { background: var(--green-mid); color: var(--white); }
-
-    .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .btn-primary {
-      background: var(--green);
-      color: var(--white);
-      border: none;
-      padding: 0.75rem 1.75rem;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 14px;
-      font-weight: 500;
-      border-radius: 8px;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-      transition: background 0.2s, transform 0.15s;
-    }
-    .btn-primary:hover { background: var(--green-mid); transform: translateY(-2px); }
-    .btn-gold {
-      background: var(--gold);
-      color: var(--white);
-      border: none;
-      padding: 0.75rem 1.75rem;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 14px;
-      font-weight: 500;
-      border-radius: 8px;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-      transition: background 0.2s, transform 0.15s;
-    }
-    .btn-gold:hover { background: #b8911f; transform: translateY(-2px); }
-    .btn-ghost {
-      background: transparent;
-      color: var(--green);
-      border: 1.5px solid var(--green);
-      padding: 0.75rem 1.75rem;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 14px;
-      font-weight: 500;
-      border-radius: 8px;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-      transition: background 0.2s, color 0.2s;
-    }
-    .btn-ghost:hover { background: var(--green); color: var(--white); }
-
-    .hero-quote {
-      margin-top: 2.5rem;
-      padding: 1.25rem 1.5rem;
-      background: rgba(26,58,42,0.04);
-      border-left: 3px solid var(--gold);
-      border-radius: 0 8px 8px 0;
-      max-width: 46ch;
-    }
-    .hero-quote p {
+    .page-title span { color: var(--gold); }
+    .page-subtitle {
       font-family: 'Amiri', serif;
-      font-style: italic;
-      font-size: 1.1rem;
-      color: var(--ink);
-      margin-bottom: 0.4rem;
+      font-size: 1.15rem; font-style: italic;
+      color: var(--muted); max-width: 50ch;
     }
-    .hero-quote cite {
-      font-size: 12px;
-      color: var(--gold);
-      letter-spacing: 0.08em;
-      font-style: normal;
-      font-weight: 500;
+    .page-meta {
+      display: flex; gap: 1.5rem; margin-top: 1.5rem;
+      flex-wrap: wrap;
     }
-
-    /* ── PROFILE IMAGE ── */
-    .hero-right {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
+    .meta-pill {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 20px; padding: 6px 14px;
+      font-size: 13px; color: var(--ink);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     }
-    .profile-frame {
-      width: 340px;
-      height: 340px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 4px solid var(--green-light);
-      box-shadow: 0 0 0 8px rgba(82,183,136,0.1), 0 20px 60px rgba(26,58,42,0.15);
-      position: relative;
-    }
-    .profile-frame img { width: 100%; height: 100%; object-fit: cover; }
-    .profile-frame::after {
-      content: '';
-      position: absolute;
-      inset: -12px;
-      border-radius: 50%;
-      border: 1px dashed rgba(201,162,39,0.4);
-      pointer-events: none;
-    }
-    .time-badge {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 6px 16px;
-      font-size: 12px;
-      color: var(--green);
-      font-weight: 500;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    }
+    .meta-pill span { color: var(--green-light); font-weight: 600; }
 
     /* ── SECTIONS ── */
     section { padding: 5rem 3rem; border-top: 1px solid var(--border); }
     .section-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--green-light);
-      margin-bottom: 0.4rem;
+      font-family: 'DM Mono', monospace; font-size: 11px;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--green-light); margin-bottom: 0.4rem;
     }
     .section-title {
       font-family: 'Amiri', serif;
       font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-      font-weight: 700;
-      color: var(--green);
-      line-height: 1.1;
-    }
-    .section-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-      gap: 1rem;
+      font-weight: 700; color: var(--green); line-height: 1.1;
     }
     .divider { width: 40px; height: 2px; background: var(--gold); margin: 0.75rem 0 2rem; }
 
-    /* ── NOW PAGE ── */
-    .now-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 1rem;
+    /* ── HOBBIES ── */
+    .hobbies-grid {
+      display: flex; flex-wrap: wrap; gap: 0.75rem;
     }
-    .now-card {
+    .hobby-pill {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--white); border: 1.5px solid var(--border);
+      border-radius: 10px; padding: 0.75rem 1.25rem;
+      font-size: 14px; font-weight: 500;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+      cursor: default;
+    }
+    .hobby-pill:hover {
+      border-color: var(--green-light);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(26,58,42,0.08);
+    }
+    .hobby-emoji { font-size: 1.2rem; }
+
+    /* ── PEOPLE CARDS ── */
+    .people-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+    }
+    .person-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      transition: box-shadow 0.2s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .person-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 3px; background: var(--gold);
+    }
+    .person-card:hover {
+      box-shadow: 0 8px 24px rgba(26,58,42,0.08);
+      transform: translateY(-3px);
+    }
+    .person-name {
+      font-family: 'Amiri', serif;
+      font-size: 1.2rem; font-weight: 700;
+      color: var(--green); margin-bottom: 0.4rem;
+    }
+    .person-role {
+      font-size: 12px; color: var(--gold);
+      letter-spacing: 0.06em; text-transform: uppercase;
+      margin-bottom: 0.75rem;
+      font-family: 'DM Mono', monospace;
+    }
+    .person-why { font-size: 14px; color: var(--muted); line-height: 1.6; }
+    .coming-soon {
+      display: inline-block;
+      background: rgba(201,162,39,0.1);
+      border: 1px dashed var(--gold);
+      color: var(--gold);
+      font-size: 11px; padding: 3px 10px;
+      border-radius: 10px; margin-top: 0.5rem;
+    }
+
+    /* ── QUOTES ── */
+    .quotes-list { display: flex; flex-direction: column; gap: 1.5rem; }
+    .quote-card {
+      border-left: 3px solid var(--gold);
+      padding: 1rem 1.5rem;
+      background: rgba(201,162,39,0.04);
+      border-radius: 0 8px 8px 0;
+    }
+    .quote-text {
+      font-family: 'Amiri', serif; font-style: italic;
+      font-size: 1.1rem; color: var(--ink); margin-bottom: 0.4rem;
+    }
+    .quote-attr {
+      font-size: 12px; color: var(--gold);
+      letter-spacing: 0.08em; font-weight: 500;
+    }
+
+    /* ── THEORIES ── */
+    .theories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+    .theory-card {
       background: var(--white);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 1.5rem;
       transition: box-shadow 0.2s, transform 0.2s;
     }
-    .now-card:hover {
+    .theory-card:hover {
       box-shadow: 0 8px 24px rgba(26,58,42,0.08);
       transform: translateY(-3px);
     }
-    .now-card h4 {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--green-light);
-      margin-bottom: 0.5rem;
+    .theory-num {
+      font-family: 'Amiri', serif;
+      font-size: 2rem; font-weight: 700;
+      color: rgba(201,162,39,0.3);
+      line-height: 1; margin-bottom: 0.5rem;
     }
-    .now-card p { font-size: 14px; color: var(--ink); line-height: 1.6; }
-    .now-emoji { font-size: 1.5rem; margin-bottom: 0.75rem; display: block; }
+    .theory-title {
+      font-weight: 600; font-size: 15px;
+      color: var(--green); margin-bottom: 0.4rem;
+    }
+    .theory-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
 
-    /* ── COLOUR PALETTE ── */
-    .palette-row {
-      display: flex;
-      border-radius: 12px;
-      overflow: hidden;
-      height: 90px;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    /* ── GLOSSARY ── */
+    .glossary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
     }
-    .swatch {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end;
-      padding-bottom: 10px;
-      font-size: 10px;
+    .gloss-item {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px; padding: 1rem;
+    }
+    .gloss-term {
+      font-weight: 600; color: var(--green);
+      font-size: 15px; margin-bottom: 4px;
+    }
+    .gloss-def { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+    /* ── MANUAL OF ME ── */
+    .manual-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+    .manual-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.5rem;
+      position: relative; overflow: hidden;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .manual-card::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 3px; background: var(--green-light);
+    }
+    .manual-card:hover {
+      box-shadow: 0 8px 24px rgba(26,58,42,0.08);
+      transform: translateY(-3px);
+    }
+    .manual-card h4 {
+      font-size: 11px; font-weight: 600;
+      color: var(--green); letter-spacing: 0.1em;
+      text-transform: uppercase; margin-bottom: 0.5rem;
       font-family: 'DM Mono', monospace;
-      font-weight: 600;
-      transition: flex 0.3s;
-      letter-spacing: 0.04em;
     }
-    .swatch:hover { flex: 2.5; }
-    .swatch-hex { font-size: 9px; opacity: 0.8; margin-top: 2px; }
+    .manual-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
 
     /* ── FOOTER ── */
     footer {
       border-top: 1px solid var(--border);
       padding: 2.5rem 3rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 1rem;
     }
     .footer-logo { font-family: 'Amiri', serif; font-size: 1.2rem; font-weight: 700; color: var(--green); }
     .footer-note { font-size: 12px; color: var(--muted); }
-    .footer-links a { font-size: 12px; color: var(--muted); text-decoration: none; margin-left: 1rem; transition: color 0.2s; }
+    .footer-links a { font-size: 12px; color: var(--muted); text-decoration: none; margin-left: 1rem; }
     .footer-links a:hover { color: var(--green); }
 
     /* ── SCROLL TO TOP ── */
     .scroll-top {
-      position: fixed;
-      bottom: 2rem;
-      right: 4rem;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: var(--green);
-      color: var(--white);
-      border: none;
-      font-size: 1.1rem;
-      cursor: pointer;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 200;
-      box-shadow: 0 4px 16px rgba(26,58,42,0.3);
+      position: fixed; bottom: 2rem; right: 4rem;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--green); color: var(--white);
+      border: none; font-size: 1.1rem; cursor: pointer;
+      display: none; align-items: center; justify-content: center;
+      z-index: 200; box-shadow: 0 4px 16px rgba(26,58,42,0.3);
       transition: transform 0.2s;
     }
     .scroll-top:hover { transform: scale(1.1); }
     .scroll-top.visible { display: flex; }
 
-    /* ============================================
-       RETRO THEME — green on black terminal style
-       ============================================ */
+    /* ── RETRO THEME ── */
     body.theme-retro {
-      --green:       #00ff41;
-      --green-mid:   #00cc33;
-      --green-light: #00ff41;
-      --gold:        #00ff41;
-      --cream:       #0d0d0d;
-      --white:       #111111;
-      --ink:         #00ff41;
-      --muted:       #00aa22;
-      --border:      rgba(0,255,65,0.2);
+      --green: #00ff41; --green-mid: #00cc33;
+      --green-light: #00ff41; --gold: #00ff41;
+      --cream: #0d0d0d; --white: #111111;
+      --ink: #00ff41; --muted: #00aa22;
+      --border: rgba(0,255,65,0.2);
       font-family: 'VT323', monospace;
     }
     body.theme-retro nav { background: rgba(13,13,13,0.95); }
-    body.theme-retro .nav-logo { font-family: 'VT323', monospace; font-size: 1.8rem; }
-    body.theme-retro .hero-name { font-family: 'VT323', monospace; font-size: clamp(4rem, 9vw, 7rem); }
-    body.theme-retro .section-title { font-family: 'VT323', monospace; font-size: 3rem; }
-    body.theme-retro .hero-tagline { font-family: 'VT323', monospace; font-style: normal; font-size: 1.3rem; }
-    body.theme-retro .hero-quote p { font-family: 'VT323', monospace; font-size: 1.3rem; }
-    body.theme-retro .now-card { background: #111; }
-    body.theme-retro .profile-frame { border-color: #00ff41; box-shadow: 0 0 30px rgba(0,255,65,0.3); }
-    body.theme-retro .tag { border-color: #00ff41; color: #00ff41; }
-    body.theme-retro .btn-primary { background: #00ff41; color: #0d0d0d; }
-    body.theme-retro .btn-gold { background: #00cc33; color: #0d0d0d; }
-    body.theme-retro .btn-ghost { border-color: #00ff41; color: #00ff41; }
-    body.theme-retro .theme-float-label { background: #00ff41; color: #0d0d0d; }
-    body.theme-retro .theme-btn { background: #111; color: #00ff41; border-color: rgba(0,255,65,0.2); }
+    body.theme-retro .nav-logo,
+    body.theme-retro .section-title,
+    body.theme-retro .page-title { font-family: 'VT323', monospace; }
+    body.theme-retro .person-card,
+    body.theme-retro .manual-card,
+    body.theme-retro .theory-card,
+    body.theme-retro .gloss-item,
+    body.theme-retro .hobby-pill { background: #111; }
+    body.theme-retro .theme-btn { background: #111; color: #00ff41; }
     body.theme-retro .theme-btn.active { background: #00ff41; color: #0d0d0d; }
-    body.theme-retro #hero::before { background: radial-gradient(ellipse 50% 60% at 80% 50%, rgba(0,255,65,0.05) 0%, transparent 70%); }
 
     /* ── GOLD THEME ── */
     body.theme-gold {
-      --green:       #78350f;
-      --green-mid:   #92400e;
-      --green-light: #d97706;
-      --gold:        #1a3a2a;
-      --cream:       #fffbeb;
+      --green: #78350f; --green-mid: #92400e;
+      --green-light: #d97706; --gold: #1a3a2a;
+      --cream: #fffbeb;
     }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
-      #hero { grid-template-columns: 1fr; padding: 3rem 1.5rem; text-align: center; }
-      .hero-right { order: -1; }
-      .profile-frame { width: 220px; height: 220px; }
-      .tag-row { justify-content: center; }
-      .hero-buttons { justify-content: center; }
-      .hero-tagline { border-left: none; padding-left: 0; }
+      .page-hero { padding: 4rem 1.5rem 3rem; }
       section { padding: 3rem 1.5rem; }
       nav { padding: 0.75rem 1.25rem; }
       .nav-links { gap: 1rem; font-size: 12px; }
       footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
       .theme-float { display: none; }
-      .section-header { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
@@ -518,140 +388,262 @@
   <!-- ── FLOATING THEME SWITCHER ── -->
   <div class="theme-float">
     <div class="theme-float-label">Theme</div>
-    <button class="theme-btn active" id="theme-default" title="Default">🌿<br>Default</button>
-    <button class="theme-btn" id="theme-retro" title="Retro">💻<br>Retro</button>
-    <button class="theme-btn" id="theme-gold" title="Gold">🏆<br>Gold</button>
+    <button class="theme-btn active" id="theme-default">🌿<br>Default</button>
+    <button class="theme-btn" id="theme-retro">💻<br>Retro</button>
+    <button class="theme-btn" id="theme-gold">🏆<br>Gold</button>
   </div>
 
   <!-- ── NAVIGATION ── -->
   <nav>
-    <a class="nav-logo" href="#">Sayed <span>Alawi</span></a>
+    <a class="nav-logo" href="index.html">Sayed <span>Alawi</span></a>
     <ul class="nav-links">
-      <li><a href="#now">Now</a></li>
-      <li><a href="#palette">Palette</a></li>
-      <li><a href="#resume">Résumé</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="index.html#now">Now</a></li>
+      <li><a href="index.html#resume">Résumé</a></li>
     </ul>
   </nav>
 
   <main id="main">
 
-    <!-- ── HERO ── -->
-    <section id="hero" style="border-top:none;">
-      <div class="hero-left">
-
-        <div class="hero-greeting" id="greeting">🌅 Good morning</div>
-
-        <h1 class="hero-name">Sayed <span>Alawi</span></h1>
-
-        <p class="hero-nickname">// alwa7sh</p>
-
-        <p class="hero-tagline">
-          A leader driven by pressure, family, and the relentless pursuit of greatness.
+    <!-- ── PAGE HERO ── -->
+    <div class="page-hero">
+      <div class="page-hero-inner">
+        <p class="page-eyebrow">Get to know me</p>
+        <h1 class="page-title">About <span>Me</span></h1>
+        <p class="page-subtitle">
+          A 21-year-old from Tubli, Bahrain — driven by faith, family, and the relentless pursuit of becoming better every single day.
         </p>
-
-        <div class="tag-row">
-          <span class="tag">#Family-driven</span>
-          <span class="tag">#BlackMamba</span>
-          <span class="tag">#Pressure-driven</span>
-          <span class="tag">#LeadershipMindset</span>
-          <span class="tag">#TheChosenOne</span>
+        <div class="page-meta">
+          <div class="meta-pill">📍 <span>Tubli, Bahrain</span></div>
+          <div class="meta-pill">🎂 <span>21 years old</span></div>
+          <div class="meta-pill">🎓 <span>Cyber Security with Forensics</span></div>
+          <div class="meta-pill">// <span>alwa7sh</span></div>
         </div>
-
-        <div class="hero-buttons">
-          <a href="#now" class="btn-primary">What I'm doing now</a>
-          <a href="#resume" class="btn-gold">📄 View Résumé</a>
-          <button class="btn-ghost" id="random-btn">🎲 Random page</button>
-        </div>
-
-        <!-- Add your favourite quote here when ready -->
-        <blockquote class="hero-quote">
-          <p>"Your favourite quote will go here."</p>
-          <cite>— Who said it</cite>
-        </blockquote>
-
       </div>
+    </div>
 
-      <div class="hero-right">
-        <div class="profile-frame">
-          <img id="profile-img" src="images/morning.jpg" alt="Photo of Sayed Alawi" />
-        </div>
-        <div class="time-badge" id="time-badge">🌅 Morning</div>
+
+    <!-- ── HOBBIES ── -->
+    <section id="hobbies">
+      <p class="section-label">What I love doing</p>
+      <h2 class="section-title">Hobbies</h2>
+      <div class="divider"></div>
+      <div class="hobbies-grid">
+        <div class="hobby-pill"><span class="hobby-emoji">⚽</span> Football</div>
+        <div class="hobby-pill"><span class="hobby-emoji">🤾</span> Handball</div>
+        <div class="hobby-pill"><span class="hobby-emoji">🏀</span> Basketball</div>
+        <div class="hobby-pill"><span class="hobby-emoji">🏐</span> Dodgeball</div>
+        <div class="hobby-pill"><span class="hobby-emoji">🐴</span> Horse Riding</div>
+        <div class="hobby-pill"><span class="hobby-emoji">🏊</span> Swimming</div>
+        <div class="hobby-pill"><span class="hobby-emoji">🎣</span> Fishing</div>
+        <div class="hobby-pill"><span class="hobby-emoji">📖</span> Reading</div>
+        <!-- Add more hobbies here when you're ready -->
       </div>
     </section>
 
 
-    <!-- ── NOW PAGE ── -->
-    <section id="now">
-      <div class="section-header">
-        <div>
-          <p class="section-label">Right now</p>
-          <h2 class="section-title">What I'm doing now</h2>
-        </div>
-        <a href="#resume" class="btn-gold">📄 View Résumé</a>
-      </div>
+    <!-- ── PEOPLE I WISH I HAD MET ── -->
+    <section id="wish-met">
+      <p class="section-label">Inspirations</p>
+      <h2 class="section-title">People I Wish I Had Met</h2>
+      <div class="divider"></div>
+      <div class="people-grid">
 
-      <div class="now-grid">
-        <div class="now-card">
-          <span class="now-emoji">🎓</span>
-          <h4>Studying</h4>
-          <p>Cyber Security with Forensics</p>
+        <div class="person-card">
+          <div class="person-name">Ahl Al Bayt</div>
+          <div class="person-role">The Prophet's Household</div>
+          <p class="person-why">
+            The family of the Prophet — their sacrifice, patience, and devotion are a guiding light. Meeting them would have been the greatest honour of any lifetime.
+          </p>
         </div>
-        <div class="now-card">
-          <span class="now-emoji">📖</span>
-          <h4>Reading</h4>
-          <p>Surrounded by Idiots — Thomas Erikson</p>
+
+        <div class="person-card">
+          <div class="person-name">Al Abbas ibn Ali</div>
+          <div class="person-role">Son of Imam Ali</div>
+          <p class="person-why">
+            A symbol of loyalty, courage and sacrifice. His story is one of the most powerful examples of standing by what you believe in no matter the cost.
+          </p>
         </div>
-        <div class="now-card">
-          <span class="now-emoji">📺</span>
-          <h4>Watching</h4>
-          <p>Al Hayba — directed by Samer Al Barkawi</p>
+
+        <div class="person-card">
+          <div class="person-name">Om Al Banin</div>
+          <div class="person-role">Mother of Al Abbas</div>
+          <p class="person-why">
+            A woman of extraordinary strength, patience and faith. Her love for Ahl Al Bayt and her sacrifice is something that moves me deeply.
+          </p>
         </div>
-        <div class="now-card">
-          <span class="now-emoji">🎧</span>
-          <h4>Listening to</h4>
-          <p>Saleh Al Durazi</p>
+
+        <!-- Placeholder for more — fill in later -->
+        <div class="person-card" style="border-style: dashed; opacity: 0.6;">
+          <div class="person-name">More coming soon</div>
+          <div class="person-role">To be added</div>
+          <p class="person-why">You mentioned you have more people to add here — fill them in when you're ready.</p>
+          <span class="coming-soon">✏️ Coming soon</span>
         </div>
-        <div class="now-card">
-          <span class="now-emoji">💻</span>
-          <h4>Working on</h4>
-          <p>A trading project</p>
-        </div>
-        <div class="now-card">
-          <span class="now-emoji">🎯</span>
-          <h4>Focused on</h4>
-          <p>Constant self-improvement through discipline, learning, and awareness — aiming to positively influence myself and my environment.</p>
-        </div>
+
       </div>
     </section>
 
 
-    <!-- ── COLOUR PALETTE ── -->
-    <section id="palette">
-      <p class="section-label">Design</p>
-      <h2 class="section-title">Colour Palette</h2>
+    <!-- ── PEOPLE I WANT TO MEET ── -->
+    <section id="want-to-meet">
+      <p class="section-label">On my list</p>
+      <h2 class="section-title">People I Want to Meet</h2>
+      <div class="divider"></div>
+      <div class="people-grid">
+
+        <div class="person-card">
+          <div class="person-name">Ali Al Sistani</div>
+          <div class="person-role">Grand Ayatollah</div>
+          <p class="person-why">
+            One of the most respected religious scholars in the world. His wisdom, humility and impact on millions of people makes him someone I deeply want to learn from in person.
+          </p>
+        </div>
+
+        <!-- Placeholder for more — fill in later -->
+        <div class="person-card" style="border-style: dashed; opacity: 0.6;">
+          <div class="person-name">More coming soon</div>
+          <div class="person-role">To be added</div>
+          <p class="person-why">Add more people you want to meet here when you're ready.</p>
+          <span class="coming-soon">✏️ Coming soon</span>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ── MY THEORIES ── -->
+    <section id="theories">
+      <p class="section-label">How I see the world</p>
+      <h2 class="section-title">My View on Worldwide Theories</h2>
+      <div class="divider"></div>
+      <div class="theories-grid">
+
+        <!-- Placeholder theories — replace with your real ones -->
+        <div class="theory-card">
+          <div class="theory-num">01</div>
+          <div class="theory-title">Your theory title here</div>
+          <p class="theory-desc">Replace this with one of your real views or theories about the world — something you believe that others might not.</p>
+          <span class="coming-soon">✏️ Coming soon</span>
+        </div>
+
+        <div class="theory-card">
+          <div class="theory-num">02</div>
+          <div class="theory-title">Your theory title here</div>
+          <p class="theory-desc">Replace this with another one of your views. Could be about society, success, human nature — anything you feel strongly about.</p>
+          <span class="coming-soon">✏️ Coming soon</span>
+        </div>
+
+        <div class="theory-card">
+          <div class="theory-num">03</div>
+          <div class="theory-title">Your theory title here</div>
+          <p class="theory-desc">Add as many as you like. This is your space to share how you see the world.</p>
+          <span class="coming-soon">✏️ Coming soon</span>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ── FAVOURITE QUOTES ── -->
+    <section id="quotes">
+      <p class="section-label">Words that move me</p>
+      <h2 class="section-title">Favourite Quotes</h2>
+      <div class="divider"></div>
+      <div class="quotes-list">
+
+        <!-- Placeholder quotes — replace with your real ones -->
+        <div class="quote-card">
+          <p class="quote-text">"Your favourite quote will go here."</p>
+          <span class="quote-attr">— Who said it</span>
+        </div>
+        <div class="quote-card">
+          <p class="quote-text">"Your second favourite quote will go here."</p>
+          <span class="quote-attr">— Who said it</span>
+        </div>
+        <div class="quote-card">
+          <p class="quote-text">"Your third favourite quote will go here."</p>
+          <span class="quote-attr">— Who said it</span>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ── FREQUENTLY USED WORDS ── -->
+    <section id="glossary">
+      <p class="section-label">My language</p>
+      <h2 class="section-title">Words I Use a Lot</h2>
       <div class="divider"></div>
       <p style="font-size:13px; color:var(--muted); margin-bottom:1.5rem;">
-        The colours that make up this site. Hover a swatch to expand it.
+        Words and phrases you'll hear me say all the time — fill these in when you're ready.
       </p>
-      <div class="palette-row">
-        <div class="swatch" style="background:#1a3a2a; color:#fff;">--green<span class="swatch-hex">#1A3A2A</span></div>
-        <div class="swatch" style="background:#2d6a4f; color:#fff;">--green-mid<span class="swatch-hex">#2D6A4F</span></div>
-        <div class="swatch" style="background:#52b788; color:#fff;">--green-light<span class="swatch-hex">#52B788</span></div>
-        <div class="swatch" style="background:#c9a227; color:#fff;">--gold<span class="swatch-hex">#C9A227</span></div>
-        <div class="swatch" style="background:#f0c84a; color:#1a1a1a;">--gold-light<span class="swatch-hex">#F0C84A</span></div>
-        <div class="swatch" style="background:#fafaf7; color:#1a1a1a; border:1px solid #eee;">--cream<span class="swatch-hex">#FAFAF7</span></div>
+      <div class="glossary-grid">
+
+        <!-- Placeholders — replace with your real words -->
+        <div class="gloss-item">
+          <div class="gloss-term">Word / Phrase</div>
+          <div class="gloss-def">What it means or how you use it.</div>
+        </div>
+        <div class="gloss-item">
+          <div class="gloss-term">Word / Phrase</div>
+          <div class="gloss-def">What it means or how you use it.</div>
+        </div>
+        <div class="gloss-item">
+          <div class="gloss-term">Word / Phrase</div>
+          <div class="gloss-def">What it means or how you use it.</div>
+        </div>
+        <div class="gloss-item">
+          <div class="gloss-term">Word / Phrase</div>
+          <div class="gloss-def">What it means or how you use it.</div>
+        </div>
+
       </div>
     </section>
 
 
-    <!-- ── RESUME PLACEHOLDER ── -->
-    <section id="resume">
-      <p class="section-label">Career</p>
-      <h2 class="section-title">Résumé</h2>
+    <!-- ── MANUAL OF ME ── -->
+    <section id="manual">
+      <p class="section-label">Working with me</p>
+      <h2 class="section-title">Manual of Me</h2>
       <div class="divider"></div>
-      <p style="font-size:14px; color:var(--muted);">
-        This section is coming soon — we will build it together.
+      <p style="font-size:13px; color:var(--muted); margin-bottom:2rem;">
+        How to work with me effectively — six things you should know.
       </p>
+      <div class="manual-grid">
+
+        <div class="manual-card">
+          <h4>How to reach me</h4>
+          <p>Call or text — I respond best to direct communication. No need to overthink it, just reach out.</p>
+        </div>
+
+        <div class="manual-card">
+          <h4>Best time to reach me</h4>
+          <p>Anytime — I don't have a strict schedule for communication. If I'm busy I'll get back to you.</p>
+        </div>
+
+        <div class="manual-card">
+          <h4>How I give feedback</h4>
+          <p>Variable — depends on the situation. I adapt my approach based on what's needed.</p>
+        </div>
+
+        <div class="manual-card">
+          <h4>What drains me</h4>
+          <p>Unclear goals. When there's no direction or purpose, it's hard for me to stay motivated and focused.</p>
+        </div>
+
+        <div class="manual-card">
+          <h4>What energises me</h4>
+          <p>Stress and pressure. I perform best when the stakes are high — pressure brings out the best in me.</p>
+        </div>
+
+        <div class="manual-card">
+          <h4>My core value</h4>
+          <p>Calm under pressure. Whatever happens, staying composed and clear-headed is how I lead and how I live.</p>
+        </div>
+
+      </div>
     </section>
 
   </main>
@@ -669,38 +661,6 @@
   <button class="scroll-top" id="scroll-top" aria-label="Scroll to top">↑</button>
 
   <script>
-
-    // ── TIME OF DAY ──
-    var hour = new Date().getHours();
-    var greetingEl = document.getElementById('greeting');
-    var timeBadge  = document.getElementById('time-badge');
-    var profileImg = document.getElementById('profile-img');
-
-    if (hour >= 5 && hour < 12) {
-      greetingEl.textContent = '🌅 Good morning';
-      timeBadge.textContent  = '🌅 Morning';
-      profileImg.src = 'images/morning.jpg';
-    } else if (hour >= 12 && hour < 17) {
-      greetingEl.textContent = '☀️ Good afternoon';
-      timeBadge.textContent  = '☀️ Afternoon';
-      profileImg.src = 'images/afternoon.jpg';
-    } else if (hour >= 17 && hour < 21) {
-      greetingEl.textContent = '🌆 Good evening';
-      timeBadge.textContent  = '🌆 Evening';
-      profileImg.src = 'images/evening.jpg';
-    } else {
-      greetingEl.textContent = '🌙 Good night';
-      timeBadge.textContent  = '🌙 Night';
-      profileImg.src = 'images/night.jpg';
-    }
-
-    // ── RANDOM PAGE ──
-    var pages = ['#now', '#palette', '#resume'];
-    document.getElementById('random-btn').addEventListener('click', function () {
-      var pick = pages[Math.floor(Math.random() * pages.length)];
-      window.location.hash = pick;
-    });
-
     // ── THEME SWITCHER ──
     var themeBtns = document.querySelectorAll('.theme-btn');
     function setTheme(themeClass) {
@@ -726,7 +686,7 @@
     scrollBtn.addEventListener('click', function () {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-
   </script>
+
 </body>
 </html>
