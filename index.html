@@ -1,60 +1,856 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sayed Alawi – Alwa7sh</title>
 
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sayed Alawi – Personal Site</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono&display=swap" rel="stylesheet" />
 
-  </head>
+  <style>
+    /* ============================================
+       COLOUR PALETTE — edit these variables
+       to change the whole site's colours
+       ============================================ */
+    :root {
+      --green:       #1a3a2a;   /* dark green — primary */
+      --green-mid:   #2d6a4f;   /* mid green — accents  */
+      --green-light: #52b788;   /* light green — highlights */
+      --gold:        #c9a227;   /* gold — special accent */
+      --gold-light:  #f0c84a;   /* light gold */
+      --cream:       #fafaf7;   /* background */
+      --white:       #ffffff;
+      --ink:         #1a1a1a;   /* dark text */
+      --muted:       #6b7280;   /* grey text */
+      --border:      rgba(26,58,42,0.12);
+      --radius:      14px;
+    }
 
+    /* ── RESET ── */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.7;
+      overflow-x: hidden;
+      cursor: default;
+    }
+
+    /* ── SKIP LINK (accessibility) ── */
+    .skip-link {
+      position: absolute;
+      top: -60px;
+      left: 1rem;
+      background: var(--green);
+      color: var(--white);
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 13px;
+      z-index: 9999;
+      transition: top 0.2s;
+    }
+    .skip-link:focus { top: 1rem; }
+
+    /* ── NAVIGATION ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250,250,247,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 3rem;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--green);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .nav-logo span {
+      color: var(--gold);
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: -3px;
+      width: 0; height: 1.5px;
+      background: var(--green-light);
+      transition: width 0.25s;
+    }
+    .nav-links a:hover { color: var(--green); }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* ── HERO SECTION ── */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 6rem 3rem;
+      gap: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* subtle background pattern */
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 50% 60% at 80% 50%, rgba(82,183,136,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 30% 40% at 10% 80%, rgba(201,162,39,0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-left { position: relative; z-index: 1; }
+
+    /* greeting + time badge */
+    .hero-greeting {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--green);
+      color: var(--white);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 1.5rem;
+    }
+
+    /* main name heading */
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.5rem, 7vw, 6rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.25rem;
+      color: var(--green);
+    }
+    .hero-name .gold { color: var(--gold); }
+
+    /* nickname */
+    .hero-nickname {
+      font-family: 'DM Mono', monospace;
+      font-size: 1rem;
+      color: var(--green-light);
+      margin-bottom: 1.25rem;
+      letter-spacing: 0.06em;
+    }
+
+    /* arabic name */
+    .hero-arabic {
+      font-size: 1.4rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      font-weight: 300;
+      direction: rtl;
+      text-align: left;
+    }
+
+    /* tagline */
+    .hero-tagline {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 44ch;
+      margin-bottom: 2rem;
+      font-weight: 300;
+      line-height: 1.8;
+      border-left: 2px solid var(--gold);
+      padding-left: 1rem;
+    }
+
+    /* hashtag tags */
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+    .tag {
+      background: transparent;
+      border: 1.5px solid var(--green-mid);
+      color: var(--green-mid);
+      font-size: 12px;
+      font-weight: 500;
+      padding: 5px 14px;
+      border-radius: 20px;
+      letter-spacing: 0.03em;
+      transition: background 0.2s, color 0.2s;
+      cursor: default;
+    }
+    .tag:hover {
+      background: var(--green-mid);
+      color: var(--white);
+    }
+
+    /* buttons row */
+    .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn-primary {
+      background: var(--green);
+      color: var(--white);
+      border: none;
+      padding: 0.75rem 1.75rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s, transform 0.15s;
+      letter-spacing: 0.03em;
+    }
+    .btn-primary:hover {
+      background: var(--green-mid);
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--green);
+      border: 1.5px solid var(--green);
+      padding: 0.75rem 1.75rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-ghost:hover {
+      background: var(--green);
+      color: var(--white);
+    }
+
+    /* quote */
+    .hero-quote {
+      margin-top: 2.5rem;
+      padding: 1.25rem 1.5rem;
+      background: rgba(26,58,42,0.04);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+      max-width: 46ch;
+    }
+    .hero-quote p {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+    .hero-quote cite {
+      font-size: 12px;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      font-style: normal;
+      font-weight: 500;
+    }
+
+    /* ── PROFILE IMAGE (right side) ── */
+    .hero-right {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+    .profile-frame {
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid var(--green-light);
+      box-shadow:
+        0 0 0 8px rgba(82,183,136,0.1),
+        0 20px 60px rgba(26,58,42,0.15);
+      position: relative;
+    }
+    .profile-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    /* decorative ring */
+    .profile-frame::after {
+      content: '';
+      position: absolute;
+      inset: -12px;
+      border-radius: 50%;
+      border: 1px dashed rgba(201,162,39,0.4);
+      pointer-events: none;
+    }
+    .time-badge {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-size: 12px;
+      color: var(--green);
+      font-weight: 500;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    /* ── SECTIONS (general) ── */
+    section {
+      padding: 5rem 3rem;
+      border-top: 1px solid var(--border);
+    }
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--green-light);
+      margin-bottom: 0.4rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: 2.5rem;
+      line-height: 1.1;
+    }
+    .divider {
+      width: 40px;
+      height: 2px;
+      background: var(--gold);
+      margin: 0.75rem 0 2rem;
+    }
+
+    /* ── NOW PAGE ── */
+    .now-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1rem;
+    }
+    .now-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .now-card:hover {
+      box-shadow: 0 8px 24px rgba(26,58,42,0.08);
+      transform: translateY(-3px);
+    }
+    .now-card h4 {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--green-light);
+      margin-bottom: 0.5rem;
+    }
+    .now-card p {
+      font-size: 14px;
+      color: var(--ink);
+      line-height: 1.6;
+    }
+    .now-card .now-emoji {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    /* ── COLOUR PALETTE ── */
+    .palette-row {
+      display: flex;
+      border-radius: 12px;
+      overflow: hidden;
+      height: 90px;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    }
+    .swatch {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding-bottom: 10px;
+      font-size: 10px;
+      font-family: 'DM Mono', monospace;
+      font-weight: 600;
+      transition: flex 0.3s;
+      cursor: default;
+      letter-spacing: 0.04em;
+    }
+    .swatch:hover { flex: 2.5; }
+    .swatch-hex { font-size: 9px; opacity: 0.8; margin-top: 2px; }
+
+    /* ── THEME SWITCHER ── */
+    .theme-buttons { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .theme-btn {
+      padding: 0.6rem 1.25rem;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      background: var(--white);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .theme-btn:hover {
+      border-color: var(--green-mid);
+      background: rgba(26,58,42,0.04);
+    }
+    .theme-btn.active {
+      background: var(--green);
+      color: var(--white);
+      border-color: var(--green);
+    }
+
+    /* ── DARK THEME ── */
+    body.theme-dark {
+      --cream: #0d1117;
+      --white: #161b22;
+      --ink: #e6edf3;
+      --muted: #8b949e;
+      --border: rgba(255,255,255,0.08);
+    }
+    body.theme-dark nav {
+      background: rgba(13,17,23,0.92);
+    }
+
+    /* ── GOLD THEME ── */
+    body.theme-gold {
+      --green: #92400e;
+      --green-mid: #b45309;
+      --green-light: #d97706;
+      --gold: #1a3a2a;
+      --gold-light: #2d6a4f;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--green);
+    }
+    .footer-note {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .footer-links a {
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 1rem;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--green); }
+
+    /* ── SCROLL TO TOP ── */
+    .scroll-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--green);
+      color: var(--white);
+      border: none;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+      box-shadow: 0 4px 16px rgba(26,58,42,0.3);
+      transition: transform 0.2s;
+    }
+    .scroll-top:hover { transform: scale(1.1); }
+    .scroll-top.visible { display: flex; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      #hero {
+        grid-template-columns: 1fr;
+        padding: 3rem 1.5rem;
+        text-align: center;
+      }
+      .hero-right { order: -1; }
+      .profile-frame { width: 220px; height: 220px; }
+      .tag-row { justify-content: center; }
+      .hero-buttons { justify-content: center; }
+      .hero-tagline { border-left: none; padding-left: 0; }
+      section { padding: 3rem 1.5rem; }
+      nav { padding: 0.75rem 1.25rem; }
+      .nav-links { gap: 1rem; font-size: 12px; }
+      footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
 <body>
 
+  <!-- ============================================
+       SKIP LINK — accessibility, do not remove
+       ============================================ -->
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+
+  <!-- ============================================
+       NAVIGATION BAR
+       Add links to new pages as you build them
+       ============================================ -->
   <nav>
-
-    <a href="#">Sayed</a>
-
-    <ul>
-      <li><a href="#">Now</a></li>
-      <li><a href="#">Projects</a></li>
-      <li><a href="#">Blog</a></li>
-      <li><a href="#">Contact</a></li>
+    <a class="nav-logo" href="#">Sayed <span>Alawi</span></a>
+    <ul class="nav-links">
+      <li><a href="#now">Now</a></li>
+      <li><a href="#palette">Palette</a></li>
+      <li><a href="#themes">Themes</a></li>
+      <!-- Add more links here as you build more pages -->
+      <!-- Example: <li><a href="about.html">About</a></li> -->
     </ul>
-
   </nav>
 
-  <main> 
 
-    <section id="hero">
+  <main id="main">
 
-      <img id="profile-img" src="" alt="Photo of Sayed Alawi" />
+    <!-- ============================================
+         SECTION 1 — HERO
+         ============================================ -->
+    <section id="hero" style="border-top: none;">
 
-      <p id="greeting"></p>
+      <!-- LEFT SIDE — text content -->
+      <div class="hero-left">
 
-      <h1>Sayed <span>Alawi</span></h1>
-
-      <p id="tagline">Student. Creator. Explorer.</p>
-
-      <div id="tags">
-          <span>#tag1</span>
-          <span>#tag2</span>
-          <span>#tag3</span>
-          <span>#tag4</span>
-          <span>#tag5</span>
+        <!-- Time of day greeting — filled by JavaScript below -->
+        <div class="hero-greeting" id="greeting">
+          🌅 Good morning
         </div>
 
-      <button id="random-btn">🎲 Take me somewhere random</button>
+        <!-- Your name -->
+        <h1 class="hero-name">
+          Sayed<br>
+          <span class="gold">Alawi</span>
+        </h1>
 
-      <blockquote id="hero-qoute">
-        "write your favorite quote here"
-        <cite>— Author Name</cite>
-      </blockquote>
+        <!-- Nickname -->
+        <p class="hero-nickname">// alwa7sh</p>
+
+        <!-- Arabic name -->
+        <p class="hero-arabic">سيد علوي</p>
+
+        <!-- Tagline -->
+        <p class="hero-tagline">
+          A leader driven by pressure, family, and the relentless pursuit of greatness.
+        </p>
+
+        <!-- Hashtag tags -->
+        <div class="tag-row">
+          <span class="tag">#Family-driven</span>
+          <span class="tag">#BlackMamba</span>
+          <span class="tag">#Pressure-driven</span>
+          <span class="tag">#LeadershipMindset</span>
+          <span class="tag">#TheChosenOne</span>
+        </div>
+
+        <!-- Buttons -->
+        <div class="hero-buttons">
+          <a href="#now" class="btn-primary">See what I'm doing now</a>
+          <button class="btn-ghost" id="random-btn">🎲 Random page</button>
+        </div>
+
+        <!-- Favourite quote — add yours here when ready -->
+        <blockquote class="hero-quote">
+          <p>"Your quote will go here."</p>
+          <!-- Replace the line above with your favourite quote -->
+          <!-- Replace the line below with who said it -->
+          <cite>— Who said it</cite>
+        </blockquote>
+
+      </div>
+
+      <!-- RIGHT SIDE — profile image -->
+      <div class="hero-right">
+        <div class="profile-frame">
+          <!--
+            Profile image — changes by time of day via JavaScript.
+            Make sure your images folder has:
+            morning.jpg / afternoon.jpg / evening.jpg / night.jpg
+          -->
+          <img
+            id="profile-img"
+            src="images/morning.jpg"
+            alt="Photo of Sayed Alawi"
+          />
+        </div>
+        <div class="time-badge" id="time-badge">🌅 Morning</div>
+      </div>
 
     </section>
 
+
+    <!-- ============================================
+         SECTION 2 — NOW PAGE
+         Edit each card with what you are doing now
+         ============================================ -->
+    <section id="now">
+      <p class="section-label">Right now</p>
+      <h2 class="section-title">What I'm doing now</h2>
+      <div class="divider"></div>
+
+      <div class="now-grid">
+
+        <div class="now-card">
+          <span class="now-emoji">🎓</span>
+          <h4>Studying</h4>
+          <p>Cyber Security with Forensics</p>
+        </div>
+
+        <div class="now-card">
+          <span class="now-emoji">📖</span>
+          <h4>Reading</h4>
+          <p>Surrounded by Idiots — Thomas Erikson</p>
+        </div>
+
+        <div class="now-card">
+          <span class="now-emoji">📺</span>
+          <h4>Watching</h4>
+          <p>Al Hayba — directed by Samer Al Barkawi</p>
+        </div>
+
+        <div class="now-card">
+          <span class="now-emoji">🎧</span>
+          <h4>Listening to</h4>
+          <p>Saleh Al Durazi</p>
+        </div>
+
+        <div class="now-card">
+          <span class="now-emoji">💻</span>
+          <h4>Working on</h4>
+          <p>A trading project</p>
+        </div>
+
+        <div class="now-card">
+          <span class="now-emoji">🎯</span>
+          <h4>Focused on</h4>
+          <p>Constant self-improvement through discipline, learning, and awareness — aiming to positively influence myself and my environment.</p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ============================================
+         SECTION 3 — COLOUR PALETTE
+         Edit colours to match your chosen scheme
+         ============================================ -->
+    <section id="palette">
+      <p class="section-label">Design</p>
+      <h2 class="section-title">Colour Palette</h2>
+      <div class="divider"></div>
+      <p style="font-size:13px; color:var(--muted); margin-bottom:1.5rem;">
+        The colours that make up this site — tracked using CSS variables.
+        Hover a swatch to expand it.
+      </p>
+
+      <div class="palette-row">
+        <div class="swatch" style="background:#1a3a2a; color:#fff;">
+          --green
+          <span class="swatch-hex">#1A3A2A</span>
+        </div>
+        <div class="swatch" style="background:#2d6a4f; color:#fff;">
+          --green-mid
+          <span class="swatch-hex">#2D6A4F</span>
+        </div>
+        <div class="swatch" style="background:#52b788; color:#fff;">
+          --green-light
+          <span class="swatch-hex">#52B788</span>
+        </div>
+        <div class="swatch" style="background:#c9a227; color:#fff;">
+          --gold
+          <span class="swatch-hex">#C9A227</span>
+        </div>
+        <div class="swatch" style="background:#f0c84a; color:#1a1a1a;">
+          --gold-light
+          <span class="swatch-hex">#F0C84A</span>
+        </div>
+        <div class="swatch" style="background:#fafaf7; color:#1a1a1a; border: 1px solid #eee;">
+          --cream
+          <span class="swatch-hex">#FAFAF7</span>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================
+         SECTION 4 — THEME SWITCHER
+         ============================================ -->
+    <section id="themes">
+      <p class="section-label">Customise</p>
+      <h2 class="section-title">Themes</h2>
+      <div class="divider"></div>
+      <p style="font-size:13px; color:var(--muted); margin-bottom:1.5rem;">
+        Switch the look of the site.
+      </p>
+
+      <div class="theme-buttons">
+        <button class="theme-btn active" id="theme-default">🌿 Default (Green & Gold)</button>
+        <button class="theme-btn" id="theme-dark">🌑 Dark Mode</button>
+        <button class="theme-btn" id="theme-gold">🏆 Gold & Amber</button>
+      </div>
+    </section>
+
+
   </main>
 
-</body>
 
+  <!-- ============================================
+       FOOTER
+       ============================================ -->
+  <footer>
+    <div class="footer-logo">Sayed Alawi</div>
+    <p class="footer-note">© 2025 Sayed Alawi · Built with HTML, CSS & JavaScript</p>
+    <div class="footer-links">
+      <a href="#">Privacy</a>
+      <a href="#">Accessibility</a>
+    </div>
+  </footer>
+
+
+  <!-- Scroll to top button -->
+  <button class="scroll-top" id="scroll-top" aria-label="Scroll to top">↑</button>
+
+
+  <!-- ============================================
+       JAVASCRIPT
+       — Time of day greeting & image swap
+       — Random page button
+       — Theme switcher
+       — Scroll to top
+       ============================================ -->
+  <script>
+
+    // ── TIME OF DAY ──
+    // Changes the greeting, badge and profile image based on the hour
+    var hour = new Date().getHours();
+    var greetingEl = document.getElementById('greeting');
+    var timeBadge  = document.getElementById('time-badge');
+    var profileImg = document.getElementById('profile-img');
+
+    if (hour >= 5 && hour < 12) {
+      // Morning
+      greetingEl.textContent = '🌅 Good morning';
+      timeBadge.textContent  = '🌅 Morning';
+      profileImg.src = 'images/morning.jpg';
+    } else if (hour >= 12 && hour < 17) {
+      // Afternoon
+      greetingEl.textContent = '☀️ Good afternoon';
+      timeBadge.textContent  = '☀️ Afternoon';
+      profileImg.src = 'images/afternoon.jpg';
+    } else if (hour >= 17 && hour < 21) {
+      // Evening
+      greetingEl.textContent = '🌆 Good evening';
+      timeBadge.textContent  = '🌆 Evening';
+      profileImg.src = 'images/evening.jpg';
+    } else {
+      // Night
+      greetingEl.textContent = '🌙 Good night';
+      timeBadge.textContent  = '🌙 Night';
+      profileImg.src = 'images/night.jpg';
+    }
+
+
+    // ── RANDOM PAGE BUTTON ──
+    // Add more section IDs or page URLs as you build them
+    var pages = [
+      '#now',
+      '#palette',
+      '#themes',
+      // add more as you build: e.g. 'about.html', 'blog.html'
+    ];
+    document.getElementById('random-btn').addEventListener('click', function () {
+      var pick = pages[Math.floor(Math.random() * pages.length)];
+      window.location.hash = pick;
+    });
+
+
+    // ── THEME SWITCHER ──
+    var themeBtns = document.querySelectorAll('.theme-btn');
+
+    function setTheme(themeClass) {
+      // remove all theme classes
+      document.body.classList.remove('theme-dark', 'theme-gold');
+      // add the chosen one (if not default)
+      if (themeClass) document.body.classList.add(themeClass);
+      // update active button
+      themeBtns.forEach(function(btn) { btn.classList.remove('active'); });
+    }
+
+    document.getElementById('theme-default').addEventListener('click', function () {
+      setTheme(null);
+      this.classList.add('active');
+    });
+    document.getElementById('theme-dark').addEventListener('click', function () {
+      setTheme('theme-dark');
+      this.classList.add('active');
+    });
+    document.getElementById('theme-gold').addEventListener('click', function () {
+      setTheme('theme-gold');
+      this.classList.add('active');
+    });
+
+
+    // ── SCROLL TO TOP ──
+    var scrollBtn = document.getElementById('scroll-top');
+    window.addEventListener('scroll', function () {
+      scrollBtn.classList.toggle('visible', window.scrollY > 400);
+    });
+    scrollBtn.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+  </script>
+
+</body>
 </html>
