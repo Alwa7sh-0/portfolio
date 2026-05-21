@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog – Sayed Alawi</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono&family=VT323&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --green:       #1a3a2a;
+      --green-mid:   #2d6a4f;
+      --green-light: #52b788;
+      --gold:        #c9a227;
+      --gold-light:  #f0c84a;
+      --cream:       #fafaf7;
+      --white:       #ffffff;
+      --ink:         #1a1a1a;
+      --muted:       #6b7280;
+      --border:      rgba(26,58,42,0.12);
+      --radius:      14px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    .skip-link {
+      position: absolute; top: -60px; left: 1rem;
+      background: var(--green); color: var(--white);
+      padding: 0.5rem 1rem; border-radius: 6px;
+      text-decoration: none; font-size: 13px;
+      z-index: 9999; transition: top 0.2s;
+    }
+    .skip-link:focus { top: 1rem; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(250,250,247,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      display: flex; justify-content: space-between;
+      align-items: center; padding: 1rem 3rem;
+    }
+    .nav-logo {
+      font-family: 'Amiri', serif; font-size: 1.5rem;
+      font-weight: 700; color: var(--green); text-decoration: none;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--muted);
+      font-size: 13px; font-weight: 500;
+      letter-spacing: 0.04em; transition: color 0.2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute;
+      left: 0; bottom: -3px; width: 0; height: 1.5px;
+      background: var(--green-light); transition: width 0.25s;
+    }
+    .nav-links a:hover { color: var(--green); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a.active { color: var(--green); }
+    .nav-links a.active::after { width: 100%; }
+
+    /* ── FLOATING THEME SWITCHER ── */
+    .theme-float {
+      position: fixed; right: 0; top: 50%;
+      transform: translateY(-50%); z-index: 200;
+      display: flex; flex-direction: column;
+      border-radius: 12px 0 0 12px; overflow: hidden;
+      box-shadow: -4px 0 20px rgba(0,0,0,0.1);
+    }
+    .theme-float-label {
+      background: var(--green); color: var(--white);
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 8px 10px; writing-mode: vertical-rl;
+      text-orientation: mixed; transform: rotate(180deg);
+      height: 80px; display: flex;
+      align-items: center; justify-content: center;
+    }
+    .theme-btn {
+      background: var(--white); border: none;
+      border-top: 1px solid var(--border);
+      padding: 10px 12px; font-size: 11px; font-weight: 500;
+      color: var(--ink); cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      text-align: center; font-family: 'DM Sans', sans-serif;
+      min-width: 52px; line-height: 1.4;
+    }
+    .theme-btn:hover { background: var(--green); color: var(--white); }
+    .theme-btn.active { background: var(--green); color: var(--white); }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      padding: 6rem 3rem 4rem;
+      border-bottom: 1px solid var(--border);
+      position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 100% 50%, rgba(82,183,136,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .page-hero-inner { position: relative; z-index: 1; }
+    .page-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--green-light);
+      margin-bottom: 0.5rem;
+    }
+    .page-title {
+      font-family: 'Amiri', serif;
+      font-size: clamp(3rem, 7vw, 5rem);
+      font-weight: 700; color: var(--green);
+      line-height: 1; margin-bottom: 1rem;
+    }
+    .page-title span { color: var(--gold); }
+    .page-subtitle {
+      font-family: 'Amiri', serif;
+      font-size: 1.15rem; font-style: italic;
+      color: var(--muted); max-width: 50ch;
+    }
+
+    /* ── BLOG POST CARD (list view) ── */
+    .posts-list { display: flex; flex-direction: column; gap: 0; }
+    .post-card {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 2rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .post-card:hover { background: rgba(26,58,42,0.02); }
+    .post-date-col {
+      text-align: right;
+      padding-top: 4px;
+    }
+    .post-month {
+      font-family: 'Amiri', serif;
+      font-size: 1.4rem; font-weight: 700;
+      color: var(--gold); line-height: 1;
+      display: block;
+    }
+    .post-year {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px; color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+    .post-content {}
+    .post-category {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--green-light);
+      margin-bottom: 0.3rem;
+    }
+    .post-title {
+      font-family: 'Amiri', serif;
+      font-size: 1.3rem; font-weight: 700;
+      color: var(--green); margin-bottom: 0.5rem;
+      line-height: 1.3;
+      transition: color 0.2s;
+    }
+    .post-card:hover .post-title { color: var(--gold); }
+    .post-excerpt {
+      font-size: 14px; color: var(--muted);
+      line-height: 1.7; margin-bottom: 0.75rem;
+      max-width: 60ch;
+    }
+    .post-meta-row { display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; }
+    .post-read-time {
+      background: rgba(201,162,39,0.1);
+      color: var(--gold);
+      font-size: 11px; padding: 3px 10px;
+      border-radius: 10px; font-family: 'DM Mono', monospace;
+    }
+    .post-audience {
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 11px; padding: 3px 10px;
+      border-radius: 10px;
+    }
+    .post-coming-soon {
+      border: 1px dashed var(--border);
+      color: var(--muted);
+      font-size: 11px; padding: 3px 10px;
+      border-radius: 10px;
+    }
+
+    /* ── FULL BLOG POST (when open) ── */
+    .blog-post {
+      display: none;
+      padding: 5rem 3rem;
+      border-top: 1px solid var(--border);
+      max-width: 720px;
+    }
+    .blog-post.open { display: block; }
+    .post-back {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 13px; color: var(--muted);
+      cursor: pointer; margin-bottom: 2rem;
+      background: none; border: none;
+      font-family: 'DM Sans', sans-serif;
+      transition: color 0.2s;
+    }
+    .post-back:hover { color: var(--green); }
+    .blog-post h1 {
+      font-family: 'Amiri', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700; color: var(--green);
+      line-height: 1.2; margin-bottom: 1rem;
+    }
+    .blog-post .post-intro {
+      font-family: 'Amiri', serif;
+      font-size: 1.15rem; font-style: italic;
+      color: var(--muted); border-left: 2px solid var(--gold);
+      padding-left: 1rem; margin-bottom: 2rem;
+      line-height: 1.8;
+    }
+    .blog-post p {
+      font-size: 15px; color: var(--ink);
+      line-height: 1.85; margin-bottom: 1.25rem;
+    }
+    .blog-post h2 {
+      font-family: 'Amiri', serif;
+      font-size: 1.5rem; font-weight: 700;
+      color: var(--green); margin: 2rem 0 0.75rem;
+    }
+    .blog-post h3 {
+      font-family: 'Amiri', serif;
+      font-size: 1.2rem; font-weight: 700;
+      color: var(--gold); margin: 1.5rem 0 0.5rem;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 5rem 3rem; border-top: 1px solid var(--border); }
+    .section-label {
+      font-family: 'DM Mono', monospace; font-size: 11px;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--green-light); margin-bottom: 0.4rem;
+    }
+    .section-title {
+      font-family: 'Amiri', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 700; color: var(--green); line-height: 1.1;
+    }
+    .divider { width: 40px; height: 2px; background: var(--gold); margin: 0.75rem 0 2rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 3rem;
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo { font-family: 'Amiri', serif; font-size: 1.2rem; font-weight: 700; color: var(--green); }
+    .footer-note { font-size: 12px; color: var(--muted); }
+    .footer-links a { font-size: 12px; color: var(--muted); text-decoration: none; margin-left: 1rem; }
+    .footer-links a:hover { color: var(--green); }
+
+    /* ── SCROLL TO TOP ── */
+    .scroll-top {
+      position: fixed; bottom: 2rem; right: 4rem;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--green); color: var(--white);
+      border: none; font-size: 1.1rem; cursor: pointer;
+      display: none; align-items: center; justify-content: center;
+      z-index: 200; box-shadow: 0 4px 16px rgba(26,58,42,0.3);
+      transition: transform 0.2s;
+    }
+    .scroll-top:hover { transform: scale(1.1); }
+    .scroll-top.visible { display: flex; }
+
+    /* ── RETRO THEME ── */
+    body.theme-retro {
+      --green: #00ff41; --green-mid: #00cc33;
+      --green-light: #00ff41; --gold: #00ff41;
+      --cream: #0d0d0d; --white: #111111;
+      --ink: #00ff41; --muted: #00aa22;
+      --border: rgba(0,255,65,0.2);
+      font-family: 'VT323', monospace;
+    }
+    body.theme-retro nav { background: rgba(13,13,13,0.95); }
+    body.theme-retro .nav-logo,
+    body.theme-retro .page-title,
+    body.theme-retro .section-title,
+    body.theme-retro .post-title,
+    body.theme-retro .blog-post h1 { font-family: 'VT323', monospace; }
+    body.theme-retro .theme-btn { background: #111; color: #00ff41; }
+    body.theme-retro .theme-btn.active { background: #00ff41; color: #0d0d0d; }
+
+    /* ── GOLD THEME ── */
+    body.theme-gold {
+      --green: #78350f; --green-mid: #92400e;
+      --green-light: #d97706; --gold: #1a3a2a;
+      --cream: #fffbeb;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .page-hero { padding: 4rem 1.5rem 3rem; }
+      section { padding: 3rem 1.5rem; }
+      nav { padding: 0.75rem 1.25rem; }
+      .nav-links { gap: 1rem; font-size: 12px; }
+      .post-card { grid-template-columns: 1fr; gap: 0.5rem; }
+      .post-date-col { text-align: left; display: flex; gap: 0.5rem; align-items: baseline; }
+      footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
+      .theme-float { display: none; }
+      .blog-post { padding: 3rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ── FLOATING THEME SWITCHER ── -->
+  <div class="theme-float">
+    <div class="theme-float-label">Theme</div>
+    <button class="theme-btn active" id="theme-default">🌿<br>Default</button>
+    <button class="theme-btn" id="theme-retro">💻<br>Retro</button>
+    <button class="theme-btn" id="theme-gold">🏆<br>Gold</button>
+  </div>
+
+  <!-- ── NAVIGATION ── -->
+  <nav>
+    <a class="nav-logo" href="index.html">Sayed <span>Alawi</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
+      <li><a href="index.html#resume">Résumé</a></li>
+    </ul>
+  </nav>
+
+  <main id="main">
+
+    <!-- ── PAGE HERO ── -->
+    <div class="page-hero">
+      <div class="page-hero-inner">
+        <p class="page-eyebrow">My writing</p>
+        <h1 class="page-title">The <span>Blog</span></h1>
+        <p class="page-subtitle">
+          Thoughts, reflections and stories — written when the world is quiet and the mind is loud.
+        </p>
+      </div>
+    </div>
+
+    <!-- ── BLOG POST LIST ── -->
+    <section id="posts" style="padding-top: 3rem;">
+      <div class="posts-list">
+
+        <!-- POST 1 — Favourite time of day -->
+        <div class="post-card" onclick="openPost('post-time')">
+          <div class="post-date-col">
+            <span class="post-month">May</span>
+            <span class="post-year">2025</span>
+          </div>
+          <div class="post-content">
+            <div class="post-category">Personal · Lifestyle</div>
+            <div class="post-title">Before the world wakes up — my favourite times of day</div>
+            <p class="post-excerpt">
+              There are two moments in every day that belong only to me — before Fajr, when the world is completely silent, and midnight, when everyone else has given up. These are the hours I live for.
+            </p>
+            <div class="post-meta-row">
+              <span class="post-read-time">5 min read</span>
+              <span class="post-audience">For: early risers & night owls</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- POST 2 — Morning routine -->
+        <div class="post-card" onclick="openPost('post-morning')">
+          <div class="post-date-col">
+            <span class="post-month">May</span>
+            <span class="post-year">2025</span>
+          </div>
+          <div class="post-content">
+            <div class="post-category">Personal · Routine</div>
+            <div class="post-title">My morning routine — how I build the day before the day builds me</div>
+            <p class="post-excerpt">
+              Cardio. Food. Coffee and a book. Then work with Saleh Al Durazi playing in the background. It sounds simple — but the discipline behind it took years to build.
+            </p>
+            <div class="post-meta-row">
+              <span class="post-read-time">4 min read</span>
+              <span class="post-audience">For: anyone building discipline</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- POST 3 — Favourite season -->
+        <div class="post-card" onclick="openPost('post-season')">
+          <div class="post-date-col">
+            <span class="post-month">Jun</span>
+            <span class="post-year">2025</span>
+          </div>
+          <div class="post-content">
+            <div class="post-category">Personal · Reflection</div>
+            <div class="post-title">Why I love summer — and what it does to me</div>
+            <p class="post-excerpt">
+              Some people hide from the heat. I thrive in it. Summer in Bahrain is intense, relentless, and alive — and that energy matches something inside me that no other season reaches.
+            </p>
+            <div class="post-meta-row">
+              <span class="post-read-time">4 min read</span>
+              <span class="post-audience">For: everyone</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- POST 4 — Movie review (placeholder) -->
+        <div class="post-card" style="opacity:0.5; cursor:default;">
+          <div class="post-date-col">
+            <span class="post-month">Coming</span>
+            <span class="post-year">Soon</span>
+          </div>
+          <div class="post-content">
+            <div class="post-category">Movie Review</div>
+            <div class="post-title">Movie review — coming soon</div>
+            <p class="post-excerpt">You'll fill this in when you're ready. Tell me the movie and I'll write it with you.</p>
+            <div class="post-meta-row">
+              <span class="post-coming-soon">✏️ Coming soon</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- POST 5 — Interview series (placeholder) -->
+        <div class="post-card" style="opacity:0.5; cursor:default;">
+          <div class="post-date-col">
+            <span class="post-month">Coming</span>
+            <span class="post-year">Soon</span>
+          </div>
+          <div class="post-content">
+            <div class="post-category">Interview Series</div>
+            <div class="post-title">Interview series — coming soon</div>
+            <p class="post-excerpt">Tell me the topic you want your interview series to be about and we'll build it together.</p>
+            <div class="post-meta-row">
+              <span class="post-coming-soon">✏️ Coming soon</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- POST 6 — Teacher lesson (placeholder) -->
+        <div class="post-card" style="opacity:0.5; cursor:default;">
+          <div class="post-date-col">
+            <span class="post-month">Coming</span>
+            <span class="post-year">Soon</span>
+          </div>
+          <div class="post-content">
+            <div class="post-category">Personal · Lesson</div>
+            <div class="post-title">A lesson a teacher taught me that I never forgot</div>
+            <p class="post-excerpt">Tell me the lesson and the teacher and I'll write it with you.</p>
+            <div class="post-meta-row">
+              <span class="post-coming-soon">✏️ Coming soon</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- POST 7 — Jokes -->
+        <div class="post-card" style="opacity:0.5; cursor:default;">
+          <div class="post-date-col">
+            <span class="post-month">Coming</span>
+            <span class="post-year">Soon</span>
+          </div>
+          <div class="post-content">
+            <div class="post-category">Fun</div>
+            <div class="post-title">Jokes I actually find funny</div>
+            <p class="post-excerpt">Send me your favourite jokes when you're ready and I'll add them here.</p>
+            <div class="post-meta-row">
+              <span class="post-coming-soon">✏️ Coming soon</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ============================================
+         FULL BLOG POSTS — hidden until clicked
+         ============================================ -->
+
+    <!-- POST 1 FULL — Favourite time of day -->
+    <div class="blog-post" id="post-time">
+      <button class="post-back" onclick="closePost('post-time')">← Back to all posts</button>
+      <div class="post-category" style="margin-bottom:0.5rem;">Personal · Lifestyle</div>
+      <h1>Before the world wakes up — my favourite times of day</h1>
+      <p class="post-intro">
+        There are two moments in every day that belong only to me. Before Fajr, and at midnight. Everything else is shared — these hours are mine.
+      </p>
+
+      <h2>Before Fajr — the sacred silence</h2>
+      <p>
+        There is something about the hour before the sun rises that no other part of the day can replicate. The world is completely still. No notifications, no noise, no expectations from anyone. Just you, your intentions, and whatever work you decide to do with that quiet.
+      </p>
+      <p>
+        I pray Fajr and then I sit down and work. And I mean really work — with a level of focus that simply isn't available to me at any other point in the day. The mind is fresh, the soul is settled after prayer, and the absence of distraction makes everything sharper.
+      </p>
+      <p>
+        There is also something deeply motivating about knowing that most people are still asleep. Not in a competitive way — but in the sense that you are building something in the quiet that others will only see later. The results of a pre-dawn hour compound over time in a way that is hard to explain until you experience it.
+      </p>
+
+      <h2>Midnight — when the world gives up</h2>
+      <p>
+        My second favourite time is midnight. By that point most people have stopped. They've watched their shows, scrolled their phones, and gone to bed. The world has essentially decided that the day is done.
+      </p>
+      <p>
+        But I haven't. And there is a particular energy that comes from working while everyone else is asleep — a feeling of ownership over your own hours that is deeply satisfying.
+      </p>
+      <p>
+        Midnight work is different from morning work. In the morning you are building for the day ahead. At midnight you are finishing what you started — or starting something that nobody knows about yet. Both are powerful in their own way.
+      </p>
+
+      <h2>What these hours have in common</h2>
+      <p>
+        Silence. Ownership. A sense that the time belongs entirely to you. These are the hours I protect most fiercely in my week — because they are the ones where I feel most like myself and most capable of doing the things that actually matter to me.
+      </p>
+      <p>
+        If you haven't tried working in either of these windows — try it once. Just once. You might never go back.
+      </p>
+
+      <button class="post-back" onclick="closePost('post-time')" style="margin-top:2rem;">← Back to all posts</button>
+    </div>
+
+
+    <!-- POST 2 FULL — Morning routine -->
+    <div class="blog-post" id="post-morning">
+      <button class="post-back" onclick="closePost('post-morning')">← Back to all posts</button>
+      <div class="post-category" style="margin-bottom:0.5rem;">Personal · Routine</div>
+      <h1>My morning routine — how I build the day before the day builds me</h1>
+      <p class="post-intro">
+        A routine isn't a restriction — it's a foundation. Mine took years to shape. Here is what it looks like now.
+      </p>
+
+      <h2>Step 1 — Cardio</h2>
+      <p>
+        Before anything else, I move. Some form of cardio — whether that's a run, a session on the bike, or something else depending on how the body feels. The purpose isn't just physical. Moving first thing resets the nervous system, clears whatever mental fog came with waking up, and creates a baseline of energy that carries through the rest of the morning.
+      </p>
+      <p>
+        I don't check my phone before this. I don't read the news. I don't open any apps. The first act of my day is deliberate physical movement — not consumption.
+      </p>
+
+      <h2>Step 2 — Eat</h2>
+      <p>
+        After cardio comes food. Not coffee first — food first. The body has been fasting through the night and through the workout. Fuelling it properly before anything else is non-negotiable.
+      </p>
+
+      <h2>Step 3 — Coffee and reading</h2>
+      <p>
+        This is the part of the morning I look forward to most. Coffee in hand, book open. No screens, no social media — just a book and a hot drink.
+      </p>
+      <p>
+        Reading in the morning does something specific to the way I think for the rest of the day. It puts language and ideas in my head early — and those ideas tend to resurface throughout the day in useful ways. It is one of the best investments I make in myself every morning.
+      </p>
+
+      <h2>Step 4 — Work with Saleh Al Durazi</h2>
+      <p>
+        Then I work. And almost always, I work while listening to Saleh Al Durazi. There is something about his recitations that creates the right internal environment for deep, focused work. It isn't background noise — it is a presence that keeps the mind grounded while the hands are busy.
+      </p>
+      <p>
+        By the time most people are starting their day, I've already prayed, moved, eaten, read and worked. That isn't productivity — it's identity. This is who I am before the world asks anything of me.
+      </p>
+
+      <button class="post-back" onclick="closePost('post-morning')" style="margin-top:2rem;">← Back to all posts</button>
+    </div>
+
+
+    <!-- POST 3 FULL — Favourite season -->
+    <div class="blog-post" id="post-season">
+      <button class="post-back" onclick="closePost('post-season')">← Back to all posts</button>
+      <div class="post-category" style="margin-bottom:0.5rem;">Personal · Reflection</div>
+      <h1>Why I love summer — and what it does to me</h1>
+      <p class="post-intro">
+        Summer in Bahrain is not gentle. It is heavy, relentless, and completely alive. And I love it for every one of those reasons.
+      </p>
+
+      <h2>The heat is honest</h2>
+      <p>
+        There is nothing soft about a Bahraini summer. The sun doesn't ease you in — it hits you the moment you step outside and reminds you immediately of where you are. I find that honesty refreshing. The season makes no apologies and demands nothing from you except that you show up and deal with it.
+      </p>
+      <p>
+        That directness resonates with me. I've always respected things that don't pretend to be something they aren't — and summer never pretends.
+      </p>
+
+      <h2>The energy is different</h2>
+      <p>
+        Something about the intensity of summer shifts the energy around it. People who love comfort avoid it — which means the spaces, the early mornings by the water, the late nights on rooftops — feel different. More alive in a way that is hard to explain to someone who sees heat as only an obstacle.
+      </p>
+
+      <h2>It matches something inside me</h2>
+      <p>
+        I am not a slow-burn kind of person. I prefer intensity. I prefer pressure. I prefer the feeling of being fully in something rather than half in it. Summer is the only season that operates at the same frequency.
+      </p>
+      <p>
+        Spring is beautiful but too transitional. Autumn feels like retreat. Winter in Bahrain is mild — pleasant but forgettable. Summer is the only season that demands your full attention. And I respect demands.
+      </p>
+
+      <button class="post-back" onclick="closePost('post-season')" style="margin-top:2rem;">← Back to all posts</button>
+    </div>
+
+  </main>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-logo">Sayed Alawi</div>
+    <p class="footer-note">© 2025 Sayed Alawi · Built with HTML, CSS & JavaScript</p>
+    <div class="footer-links">
+      <a href="#">Privacy</a>
+      <a href="#">Accessibility</a>
+    </div>
+  </footer>
+
+  <button class="scroll-top" id="scroll-top" aria-label="Scroll to top">↑</button>
+
+  <script>
+
+    // ── OPEN A BLOG POST ──
+    function openPost(id) {
+      document.getElementById('posts').style.display = 'none';
+      document.getElementById(id).classList.add('open');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ── CLOSE A BLOG POST ──
+    function closePost(id) {
+      document.getElementById(id).classList.remove('open');
+      document.getElementById('posts').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ── THEME SWITCHER ──
+    var themeBtns = document.querySelectorAll('.theme-btn');
+    function setTheme(themeClass) {
+      document.body.classList.remove('theme-retro', 'theme-gold');
+      if (themeClass) document.body.classList.add(themeClass);
+      themeBtns.forEach(function(btn) { btn.classList.remove('active'); });
+    }
+    document.getElementById('theme-default').addEventListener('click', function () {
+      setTheme(null); this.classList.add('active');
+    });
+    document.getElementById('theme-retro').addEventListener('click', function () {
+      setTheme('theme-retro'); this.classList.add('active');
+    });
+    document.getElementById('theme-gold').addEventListener('click', function () {
+      setTheme('theme-gold'); this.classList.add('active');
+    });
+
+    // ── SCROLL TO TOP ──
+    var scrollBtn = document.getElementById('scroll-top');
+    window.addEventListener('scroll', function () {
+      scrollBtn.classList.toggle('visible', window.scrollY > 400);
+    });
+    scrollBtn.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+  </script>
+
+</body>
+</html>
