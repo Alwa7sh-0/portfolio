@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Site Info – Sayed Alawi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono&family=VT323&display=swap" rel="stylesheet" />
+  <style>
+    :root{--green:#1a3a2a;--green-mid:#2d6a4f;--green-light:#52b788;--gold:#c9a227;--cream:#fafaf7;--white:#ffffff;--ink:#1a1a1a;--muted:#6b7280;--border:rgba(26,58,42,0.12);--radius:14px;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);line-height:1.7;overflow-x:hidden;}
+    .skip-link{position:absolute;top:-60px;left:1rem;background:var(--green);color:var(--white);padding:.5rem 1rem;border-radius:6px;text-decoration:none;font-size:13px;z-index:9999;transition:top .2s;}
+    .skip-link:focus{top:1rem;}
+    nav{position:sticky;top:0;z-index:100;background:rgba(250,250,247,0.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;padding:1rem 3rem;}
+    .nav-logo{font-family:'Amiri',serif;font-size:1.5rem;font-weight:700;color:var(--green);text-decoration:none;}
+    .nav-logo span{color:var(--gold);}
+    .nav-links{display:flex;gap:1.5rem;list-style:none;}
+    .nav-links a{text-decoration:none;color:var(--muted);font-size:13px;font-weight:500;transition:color .2s;position:relative;}
+    .nav-links a::after{content:'';position:absolute;left:0;bottom:-3px;width:0;height:1.5px;background:var(--green-light);transition:width .25s;}
+    .nav-links a:hover{color:var(--green);}
+    .nav-links a:hover::after,.nav-links a.active::after{width:100%;}
+    .nav-links a.active{color:var(--green);}
+    .theme-float{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:200;display:flex;flex-direction:column;border-radius:12px 0 0 12px;overflow:hidden;box-shadow:-4px 0 20px rgba(0,0,0,.1);}
+    .theme-float-label{background:var(--green);color:var(--white);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:8px 10px;writing-mode:vertical-rl;transform:rotate(180deg);height:80px;display:flex;align-items:center;justify-content:center;}
+    .theme-btn{background:var(--white);border:none;border-top:1px solid var(--border);padding:10px 12px;font-size:11px;font-weight:500;color:var(--ink);cursor:pointer;transition:background .2s,color .2s;text-align:center;font-family:'DM Sans',sans-serif;min-width:52px;line-height:1.4;}
+    .theme-btn:hover,.theme-btn.active{background:var(--green);color:var(--white);}
+    .page-hero{padding:6rem 3rem 4rem;border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
+    .page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(82,183,136,.07) 0%,transparent 70%);pointer-events:none;}
+    .page-hero-inner{position:relative;z-index:1;}
+    .page-eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--green-light);margin-bottom:.5rem;}
+    .page-title{font-family:'Amiri',serif;font-size:clamp(3rem,7vw,5rem);font-weight:700;color:var(--green);line-height:1;margin-bottom:1rem;}
+    .page-title span{color:var(--gold);}
+    .page-subtitle{font-family:'Amiri',serif;font-size:1.15rem;font-style:italic;color:var(--muted);max-width:50ch;}
+    section{padding:5rem 3rem;border-top:1px solid var(--border);}
+    .section-label{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--green-light);margin-bottom:.4rem;}
+    .section-title{font-family:'Amiri',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;color:var(--green);line-height:1.1;}
+    .divider{width:40px;height:2px;background:var(--gold);margin:.75rem 0 2rem;}
+    /* STATEMENT BLOCKS */
+    .statement{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem;margin-bottom:1.25rem;max-width:680px;}
+    .statement-title{font-weight:600;font-size:15px;color:var(--green);margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem;}
+    .statement p{font-size:14px;color:var(--muted);line-height:1.8;}
+    .statement a{color:var(--green-light);}
+    /* COLOUR PALETTE */
+    .palette-row{display:flex;border-radius:12px;overflow:hidden;height:90px;box-shadow:0 4px 16px rgba(0,0,0,.08);}
+    .swatch{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:10px;font-size:10px;font-family:'DM Mono',monospace;font-weight:600;transition:flex .3s;letter-spacing:.04em;}
+    .swatch:hover{flex:2.5;}
+    .swatch-hex{font-size:9px;opacity:.8;margin-top:2px;}
+    /* 404 */
+    .error-box{text-align:center;padding:4rem 2rem;background:var(--white);border-radius:var(--radius);border:1px dashed var(--border);max-width:500px;}
+    .error-num{font-family:'Amiri',serif;font-size:6rem;font-weight:700;color:var(--green);opacity:.15;line-height:1;}
+    .error-msg{font-size:1rem;color:var(--muted);margin-bottom:1.5rem;}
+    .btn-primary{background:var(--green);color:var(--white);border:none;padding:.75rem 1.75rem;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;border-radius:8px;cursor:pointer;text-decoration:none;display:inline-block;transition:background .2s,transform .15s;}
+    .btn-primary:hover{background:var(--green-mid);transform:translateY(-2px);}
+    /* PAGES LIST */
+    .pages-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;}
+    .page-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;text-decoration:none;color:inherit;transition:box-shadow .2s,transform .2s;display:block;}
+    .page-card:hover{box-shadow:0 8px 24px rgba(26,58,42,.08);transform:translateY(-3px);}
+    .page-card-emoji{font-size:1.5rem;margin-bottom:.5rem;display:block;}
+    .page-card-title{font-weight:600;font-size:14px;color:var(--green);margin-bottom:3px;}
+    .page-card-sub{font-size:12px;color:var(--muted);}
+    footer{border-top:1px solid var(--border);padding:2.5rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+    .footer-logo{font-family:'Amiri',serif;font-size:1.2rem;font-weight:700;color:var(--green);}
+    .footer-note{font-size:12px;color:var(--muted);}
+    .footer-links a{font-size:12px;color:var(--muted);text-decoration:none;margin-left:1rem;}
+    .footer-links a:hover{color:var(--green);}
+    .scroll-top{position:fixed;bottom:2rem;right:4rem;width:44px;height:44px;border-radius:50%;background:var(--green);color:var(--white);border:none;font-size:1.1rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:200;box-shadow:0 4px 16px rgba(26,58,42,.3);transition:transform .2s;}
+    .scroll-top:hover{transform:scale(1.1);}
+    .scroll-top.visible{display:flex;}
+    body.theme-retro{--green:#00ff41;--green-mid:#00cc33;--green-light:#00ff41;--gold:#00ff41;--cream:#0d0d0d;--white:#111111;--ink:#00ff41;--muted:#00aa22;--border:rgba(0,255,65,.2);font-family:'VT323',monospace;}
+    body.theme-retro nav{background:rgba(13,13,13,.95);}
+    body.theme-retro .nav-logo,body.theme-retro .page-title,body.theme-retro .section-title{font-family:'VT323',monospace;}
+    body.theme-retro .theme-btn{background:#111;color:#00ff41;}
+    body.theme-retro .theme-btn.active{background:#00ff41;color:#0d0d0d;}
+    body.theme-gold{--green:#78350f;--green-mid:#92400e;--green-light:#d97706;--gold:#1a3a2a;--cream:#fffbeb;}
+    @media(max-width:768px){.page-hero{padding:4rem 1.5rem 3rem;}section{padding:3rem 1.5rem;}nav{padding:.75rem 1.25rem;}.nav-links{gap:.75rem;font-size:11px;}footer{padding:2rem 1.5rem;flex-direction:column;text-align:center;}.theme-float{display:none;}}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div class="theme-float">
+    <div class="theme-float-label">Theme</div>
+    <button class="theme-btn active" id="theme-default">🌿<br>Default</button>
+    <button class="theme-btn" id="theme-retro">💻<br>Retro</button>
+    <button class="theme-btn" id="theme-gold">🏆<br>Gold</button>
+  </div>
+  <nav>
+    <a class="nav-logo" href="index.html">Sayed <span>Alawi</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="interests.html">Interests</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="travel.html">Travel</a></li>
+      <li><a href="links.html">Links</a></li>
+    </ul>
+  </nav>
+  <main id="main">
+    <div class="page-hero">
+      <div class="page-hero-inner">
+        <p class="page-eyebrow">Behind the scenes</p>
+        <h1 class="page-title">Site <span>Info</span></h1>
+        <p class="page-subtitle">Accessibility, privacy, colour palette, and a guide to every page on this site.</p>
+      </div>
+    </div>
+
+    <!-- ALL PAGES -->
+    <section id="sitemap">
+      <p class="section-label">Navigation</p>
+      <h2 class="section-title">All Pages</h2>
+      <div class="divider"></div>
+      <div class="pages-grid">
+        <a class="page-card" href="index.html"><span class="page-card-emoji">🏠</span><div class="page-card-title">Home</div><div class="page-card-sub">Profile, Now page, themes</div></a>
+        <a class="page-card" href="about.html"><span class="page-card-emoji">👤</span><div class="page-card-title">About Me</div><div class="page-card-sub">Hobbies, people, manual of me</div></a>
+        <a class="page-card" href="blog.html"><span class="page-card-emoji">📝</span><div class="page-card-title">Blog</div><div class="page-card-sub">Writing, reflections, stories</div></a>
+        <a class="page-card" href="projects.html"><span class="page-card-emoji">🛠️</span><div class="page-card-title">Projects & Skills</div><div class="page-card-sub">Work, certifications, résumé</div></a>
+        <a class="page-card" href="interests.html"><span class="page-card-emoji">❤️</span><div class="page-card-title">Interests</div><div class="page-card-sub">Food, music, cars, style</div></a>
+        <a class="page-card" href="gallery.html"><span class="page-card-emoji">🖼️</span><div class="page-card-title">Gallery</div><div class="page-card-sub">Photos and timeline</div></a>
+        <a class="page-card" href="travel.html"><span class="page-card-emoji">✈️</span><div class="page-card-title">Travel</div><div class="page-card-sub">Map, landmarks, coffee shops</div></a>
+        <a class="page-card" href="links.html"><span class="page-card-emoji">🔗</span><div class="page-card-title">Links & Contact</div><div class="page-card-sub">Social media, contact form</div></a>
+      </div>
+    </section>
+
+    <!-- COLOUR PALETTE -->
+    <section id="palette">
+      <p class="section-label">Design</p>
+      <h2 class="section-title">Colour Palette</h2>
+      <div class="divider"></div>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:1.5rem;">All colours tracked with CSS variables. Hover to expand.</p>
+      <div class="palette-row">
+        <div class="swatch" style="background:#1a3a2a;color:#fff;">--green<span class="swatch-hex">#1A3A2A</span></div>
+        <div class="swatch" style="background:#2d6a4f;color:#fff;">--green-mid<span class="swatch-hex">#2D6A4F</span></div>
+        <div class="swatch" style="background:#52b788;color:#fff;">--green-light<span class="swatch-hex">#52B788</span></div>
+        <div class="swatch" style="background:#c9a227;color:#fff;">--gold<span class="swatch-hex">#C9A227</span></div>
+        <div class="swatch" style="background:#f0c84a;color:#1a1a1a;">--gold-light<span class="swatch-hex">#F0C84A</span></div>
+        <div class="swatch" style="background:#fafaf7;color:#1a1a1a;border:1px solid #eee;">--cream<span class="swatch-hex">#FAFAF7</span></div>
+      </div>
+    </section>
+
+    <!-- ACCESSIBILITY -->
+    <section id="accessibility">
+      <p class="section-label">Transparency</p>
+      <h2 class="section-title">Accessibility & Privacy</h2>
+      <div class="divider"></div>
+      <div class="statement">
+        <div class="statement-title">♿ Accessibility Statement</div>
+        <p>This website aims to be accessible to everyone. It includes a skip link, semantic HTML, keyboard navigation support, readable font sizes, and colour contrast that meets WCAG 2.1 AA standards. If you find anything that could be improved, please get in touch via the <a href="links.html#contact">contact page</a>.</p>
+      </div>
+      <div class="statement">
+        <div class="statement-title">🔒 Privacy Statement</div>
+        <p>This website does not use cookies, trackers, or any third-party analytics. No personal data is collected from visitors. The contact form is a visual placeholder — no data is sent or stored without your explicit action.</p>
+      </div>
+      <div class="statement">
+        <div class="statement-title">🛠️ Built With</div>
+        <p>This site was built from scratch using pure HTML, CSS and JavaScript — no frameworks, no libraries (except Leaflet.js for the map). Designed and written together with Claude AI, committed to GitHub at every step. Fonts by Google Fonts (Amiri, DM Sans, DM Mono).</p>
+      </div>
+    </section>
+
+    <!-- 404 PAGE PREVIEW -->
+    <section id="404">
+      <p class="section-label">Error page</p>
+      <h2 class="section-title">404 — Page Not Found</h2>
+      <div class="divider"></div>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:1.5rem;">This is what visitors see if they land on a page that doesn't exist.</p>
+      <div class="error-box">
+        <div class="error-num">404</div>
+        <p class="error-msg">Looks like this page doesn't exist — even I can't find it.</p>
+        <a href="index.html" class="btn-primary">← Back to Home</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-logo">Sayed Alawi</div>
+    <p class="footer-note">© 2025 Sayed Alawi · Built with HTML, CSS & JavaScript</p>
+    <div class="footer-links"><a href="meta.html">Privacy</a><a href="meta.html#accessibility">Accessibility</a></div>
+  </footer>
+  <button class="scroll-top" id="scroll-top" aria-label="Scroll to top">↑</button>
+  <script>
+    var themeBtns=document.querySelectorAll('.theme-btn');
+    function setTheme(t){document.body.classList.remove('theme-retro','theme-gold');if(t)document.body.classList.add(t);themeBtns.forEach(function(b){b.classList.remove('active');});}
+    document.getElementById('theme-default').addEventListener('click',function(){setTheme(null);this.classList.add('active');});
+    document.getElementById('theme-retro').addEventListener('click',function(){setTheme('theme-retro');this.classList.add('active');});
+    document.getElementById('theme-gold').addEventListener('click',function(){setTheme('theme-gold');this.classList.add('active');});
+    var scrollBtn=document.getElementById('scroll-top');
+    window.addEventListener('scroll',function(){scrollBtn.classList.toggle('visible',window.scrollY>400);});
+    scrollBtn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+  </script>
+</body>
+</html>

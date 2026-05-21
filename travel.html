@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Travel – Sayed Alawi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono&family=VT323&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    :root{--green:#1a3a2a;--green-mid:#2d6a4f;--green-light:#52b788;--gold:#c9a227;--cream:#fafaf7;--white:#ffffff;--ink:#1a1a1a;--muted:#6b7280;--border:rgba(26,58,42,0.12);--radius:14px;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);line-height:1.7;overflow-x:hidden;}
+    .skip-link{position:absolute;top:-60px;left:1rem;background:var(--green);color:var(--white);padding:.5rem 1rem;border-radius:6px;text-decoration:none;font-size:13px;z-index:9999;transition:top .2s;}
+    .skip-link:focus{top:1rem;}
+    nav{position:sticky;top:0;z-index:100;background:rgba(250,250,247,0.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;padding:1rem 3rem;}
+    .nav-logo{font-family:'Amiri',serif;font-size:1.5rem;font-weight:700;color:var(--green);text-decoration:none;}
+    .nav-logo span{color:var(--gold);}
+    .nav-links{display:flex;gap:1.5rem;list-style:none;}
+    .nav-links a{text-decoration:none;color:var(--muted);font-size:13px;font-weight:500;transition:color .2s;position:relative;}
+    .nav-links a::after{content:'';position:absolute;left:0;bottom:-3px;width:0;height:1.5px;background:var(--green-light);transition:width .25s;}
+    .nav-links a:hover{color:var(--green);}
+    .nav-links a:hover::after,.nav-links a.active::after{width:100%;}
+    .nav-links a.active{color:var(--green);}
+    .theme-float{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:200;display:flex;flex-direction:column;border-radius:12px 0 0 12px;overflow:hidden;box-shadow:-4px 0 20px rgba(0,0,0,.1);}
+    .theme-float-label{background:var(--green);color:var(--white);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:8px 10px;writing-mode:vertical-rl;transform:rotate(180deg);height:80px;display:flex;align-items:center;justify-content:center;}
+    .theme-btn{background:var(--white);border:none;border-top:1px solid var(--border);padding:10px 12px;font-size:11px;font-weight:500;color:var(--ink);cursor:pointer;transition:background .2s,color .2s;text-align:center;font-family:'DM Sans',sans-serif;min-width:52px;line-height:1.4;}
+    .theme-btn:hover,.theme-btn.active{background:var(--green);color:var(--white);}
+    .page-hero{padding:6rem 3rem 4rem;border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
+    .page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(82,183,136,.07) 0%,transparent 70%);pointer-events:none;}
+    .page-hero-inner{position:relative;z-index:1;}
+    .page-eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--green-light);margin-bottom:.5rem;}
+    .page-title{font-family:'Amiri',serif;font-size:clamp(3rem,7vw,5rem);font-weight:700;color:var(--green);line-height:1;margin-bottom:1rem;}
+    .page-title span{color:var(--gold);}
+    .page-subtitle{font-family:'Amiri',serif;font-size:1.15rem;font-style:italic;color:var(--muted);max-width:50ch;}
+    section{padding:5rem 3rem;border-top:1px solid var(--border);}
+    .section-label{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--green-light);margin-bottom:.4rem;}
+    .section-title{font-family:'Amiri',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;color:var(--green);line-height:1.1;}
+    .divider{width:40px;height:2px;background:var(--gold);margin:.75rem 0 2rem;}
+    .coming-soon{display:inline-block;background:rgba(201,162,39,.1);border:1px dashed var(--gold);color:var(--gold);font-size:11px;padding:3px 10px;border-radius:10px;margin-top:.5rem;}
+    /* MAP */
+    #map{height:450px;border-radius:var(--radius);border:1px solid var(--border);margin-bottom:1.5rem;z-index:1;}
+    .map-note{font-size:13px;color:var(--muted);margin-bottom:1rem;}
+    /* COUNTRY PILLS */
+    .pill-row{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1rem;}
+    .pill{background:var(--white);border:1.5px solid var(--border);color:var(--ink);font-size:13px;font-weight:500;padding:6px 16px;border-radius:20px;transition:border-color .2s;}
+    .pill:hover{border-color:var(--green-light);}
+    .pill.placeholder{border-style:dashed;opacity:.5;}
+    /* LANDMARKS & COFFEE */
+    .list-style{display:flex;flex-direction:column;gap:.75rem;}
+    .list-item{display:flex;gap:1rem;align-items:flex-start;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem;transition:box-shadow .2s,transform .2s;}
+    .list-item:hover{box-shadow:0 8px 24px rgba(26,58,42,.08);transform:translateY(-2px);}
+    .list-item.placeholder{border-style:dashed;opacity:.55;}
+    .list-emoji{font-size:1.6rem;flex-shrink:0;}
+    .list-title{font-weight:600;font-size:14px;color:var(--green);margin-bottom:2px;}
+    .list-sub{font-size:12px;color:var(--muted);}
+    footer{border-top:1px solid var(--border);padding:2.5rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+    .footer-logo{font-family:'Amiri',serif;font-size:1.2rem;font-weight:700;color:var(--green);}
+    .footer-note{font-size:12px;color:var(--muted);}
+    .footer-links a{font-size:12px;color:var(--muted);text-decoration:none;margin-left:1rem;}
+    .footer-links a:hover{color:var(--green);}
+    .scroll-top{position:fixed;bottom:2rem;right:4rem;width:44px;height:44px;border-radius:50%;background:var(--green);color:var(--white);border:none;font-size:1.1rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:200;box-shadow:0 4px 16px rgba(26,58,42,.3);transition:transform .2s;}
+    .scroll-top:hover{transform:scale(1.1);}
+    .scroll-top.visible{display:flex;}
+    body.theme-retro{--green:#00ff41;--green-mid:#00cc33;--green-light:#00ff41;--gold:#00ff41;--cream:#0d0d0d;--white:#111111;--ink:#00ff41;--muted:#00aa22;--border:rgba(0,255,65,.2);font-family:'VT323',monospace;}
+    body.theme-retro nav{background:rgba(13,13,13,.95);}
+    body.theme-retro .nav-logo,body.theme-retro .page-title,body.theme-retro .section-title{font-family:'VT323',monospace;}
+    body.theme-retro .theme-btn{background:#111;color:#00ff41;}
+    body.theme-retro .theme-btn.active{background:#00ff41;color:#0d0d0d;}
+    body.theme-gold{--green:#78350f;--green-mid:#92400e;--green-light:#d97706;--gold:#1a3a2a;--cream:#fffbeb;}
+    @media(max-width:768px){.page-hero{padding:4rem 1.5rem 3rem;}section{padding:3rem 1.5rem;}nav{padding:.75rem 1.25rem;}.nav-links{gap:1rem;font-size:12px;}footer{padding:2rem 1.5rem;flex-direction:column;text-align:center;}.theme-float{display:none;}#map{height:300px;}}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div class="theme-float">
+    <div class="theme-float-label">Theme</div>
+    <button class="theme-btn active" id="theme-default">🌿<br>Default</button>
+    <button class="theme-btn" id="theme-retro">💻<br>Retro</button>
+    <button class="theme-btn" id="theme-gold">🏆<br>Gold</button>
+  </div>
+  <nav>
+    <a class="nav-logo" href="index.html">Sayed <span>Alawi</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="interests.html">Interests</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="travel.html" class="active">Travel</a></li>
+      <li><a href="links.html">Links</a></li>
+    </ul>
+  </nav>
+  <main id="main">
+    <div class="page-hero">
+      <div class="page-hero-inner">
+        <p class="page-eyebrow">Places & Journeys</p>
+        <h1 class="page-title">Travel <span>& Places</span></h1>
+        <p class="page-subtitle">Everywhere I have been — cities, landmarks, and the coffee shops in between.</p>
+      </div>
+    </div>
+
+    <!-- MAP -->
+    <section id="map-section">
+      <p class="section-label">Where I've been</p>
+      <h2 class="section-title">Map of Places</h2>
+      <div class="divider"></div>
+      <p class="map-note">An interactive map of places I have visited. Click a pin to see more. Add your locations by editing the JavaScript below.</p>
+      <div id="map"></div>
+      <p class="map-note" style="margin-top:.75rem;">📍 Add your visited cities in the JavaScript section of this file — search for "ADD YOUR LOCATIONS HERE"</p>
+      <div class="pill-row">
+        <span class="pill">🇧🇭 Bahrain</span>
+        <span class="pill placeholder">🌍 Country</span>
+        <span class="pill placeholder">🌍 Country</span>
+        <span class="pill placeholder">🌍 Country</span>
+        <span class="pill placeholder">🌍 Country</span>
+        <span class="pill placeholder">🌍 Country</span>
+      </div>
+    </section>
+
+    <!-- LANDMARKS -->
+    <section id="landmarks">
+      <p class="section-label">Sights</p>
+      <h2 class="section-title">Landmarks I've Visited</h2>
+      <div class="divider"></div>
+      <div class="list-style">
+        <div class="list-item placeholder"><div class="list-emoji">🏛️</div><div><div class="list-title">Landmark name here</div><div class="list-sub">City, Country · What you thought of it</div></div></div>
+        <div class="list-item placeholder"><div class="list-emoji">🕌</div><div><div class="list-title">Landmark name here</div><div class="list-sub">City, Country · What you thought of it</div></div></div>
+        <div class="list-item placeholder"><div class="list-emoji">🌉</div><div><div class="list-title">Landmark name here</div><div class="list-sub">City, Country · What you thought of it</div></div></div>
+        <div class="list-item placeholder"><div class="list-emoji">🏰</div><div><div class="list-title">Landmark name here</div><div class="list-sub">City, Country · What you thought of it</div></div></div>
+      </div>
+    </section>
+
+    <!-- COFFEE SHOPS -->
+    <section id="coffee">
+      <p class="section-label">Coffee</p>
+      <h2 class="section-title">Coffee Shops by City</h2>
+      <div class="divider"></div>
+      <div class="list-style">
+        <div class="list-item placeholder"><div class="list-emoji">☕</div><div><div class="list-title">Coffee shop name here</div><div class="list-sub">City · What you liked about it</div></div></div>
+        <div class="list-item placeholder"><div class="list-emoji">☕</div><div><div class="list-title">Coffee shop name here</div><div class="list-sub">City · What you liked about it</div></div></div>
+        <div class="list-item placeholder"><div class="list-emoji">☕</div><div><div class="list-title">Coffee shop name here</div><div class="list-sub">City · What you liked about it</div></div></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-logo">Sayed Alawi</div>
+    <p class="footer-note">© 2025 Sayed Alawi · Built with HTML, CSS & JavaScript</p>
+    <div class="footer-links"><a href="#">Privacy</a><a href="#">Accessibility</a></div>
+  </footer>
+  <button class="scroll-top" id="scroll-top" aria-label="Scroll to top">↑</button>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    // ── MAP ──
+    var map = L.map('map').setView([26.0, 50.5], 4);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    // ADD YOUR LOCATIONS HERE
+    // Format: [latitude, longitude, "City name", "Description"]
+    var locations = [
+      [26.2235, 50.5876, "Tubli, Bahrain", "Home 🏠"],
+      // Add more like this:
+      // [48.8566, 2.3522, "Paris, France", "Visited in 2024"],
+      // [25.2048, 55.2708, "Dubai, UAE", "Add your memory here"],
+    ];
+
+    locations.forEach(function(loc) {
+      L.marker([loc[0], loc[1]])
+        .addTo(map)
+        .bindPopup('<strong>' + loc[2] + '</strong><br>' + loc[3]);
+    });
+
+    // ── THEME SWITCHER ──
+    var themeBtns = document.querySelectorAll('.theme-btn');
+    function setTheme(t){document.body.classList.remove('theme-retro','theme-gold');if(t)document.body.classList.add(t);themeBtns.forEach(function(b){b.classList.remove('active');});}
+    document.getElementById('theme-default').addEventListener('click',function(){setTheme(null);this.classList.add('active');});
+    document.getElementById('theme-retro').addEventListener('click',function(){setTheme('theme-retro');this.classList.add('active');});
+    document.getElementById('theme-gold').addEventListener('click',function(){setTheme('theme-gold');this.classList.add('active');});
+
+    // ── SCROLL TO TOP ──
+    var scrollBtn = document.getElementById('scroll-top');
+    window.addEventListener('scroll',function(){scrollBtn.classList.toggle('visible',window.scrollY>400);});
+    scrollBtn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+  </script>
+</body>
+</html>
