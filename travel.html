@@ -67,7 +67,7 @@
     body.theme-retro .nav-logo,body.theme-retro .page-title,body.theme-retro .section-title{font-family:'VT323',monospace;}
     body.theme-retro .theme-btn{background:#111;color:#00ff41;}
     body.theme-retro .theme-btn.active{background:#00ff41;color:#0d0d0d;}
-    body.theme-gold{--green:#78350f;--green-mid:#92400e;--green-light:#d97706;--gold:#1a3a2a;--cream:#fffbeb;}
+    
     @media(max-width:768px){.page-hero{padding:4rem 1.5rem 3rem;}section{padding:3rem 1.5rem;}nav{padding:.75rem 1.25rem;}.nav-links{gap:1rem;font-size:12px;}footer{padding:2rem 1.5rem;flex-direction:column;text-align:center;}.theme-float{display:none;}#map{height:300px;}}
   </style>
 </head>
@@ -77,18 +77,15 @@
     <div class="theme-float-label">Theme</div>
     <button class="theme-btn active" id="theme-default">🌿<br>Default</button>
     <button class="theme-btn" id="theme-retro">💻<br>Retro</button>
-    <button class="theme-btn" id="theme-gold">🏆<br>Gold</button>
   </div>
   <nav>
     <a class="nav-logo" href="index.html">Sayed <span>Alawi</span></a>
-        <ul class="nav-links">
+            <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="blog.html">Blog</a></li>
       <li><a href="projects.html">Projects</a></li>
-      <li><a href="interests.html">Interests</a></li>
       <li><a href="gallery.html">Gallery</a></li>
-      <li><a href="travel.html" class="active">Travel</a></li>
       <li><a href="links.html">Links</a></li>
     </ul>
   </nav>
@@ -177,10 +174,9 @@
 
     // ── THEME SWITCHER ──
     var themeBtns = document.querySelectorAll('.theme-btn');
-    function setTheme(t){document.body.classList.remove('theme-retro','theme-gold');if(t)document.body.classList.add(t);themeBtns.forEach(function(b){b.classList.remove('active');});}
+    function setTheme(t){document.body.classList.remove('theme-retro');if(t)document.body.classList.add(t);themeBtns.forEach(function(b){b.classList.remove('active');});}
     document.getElementById('theme-default').addEventListener('click',function(){setTheme(null);this.classList.add('active');});
     document.getElementById('theme-retro').addEventListener('click',function(){setTheme('theme-retro');this.classList.add('active');});
-    document.getElementById('theme-gold').addEventListener('click',function(){setTheme('theme-gold');this.classList.add('active');});
 
     // ── SCROLL TO TOP ──
     var scrollBtn = document.getElementById('scroll-top');

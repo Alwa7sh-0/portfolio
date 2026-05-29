@@ -4,450 +4,148 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About – Sayed Alawi</title>
-
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono&family=VT323&display=swap" rel="stylesheet" />
-
   <style>
-    :root {
-      --green:       #1a3a2a;
-      --green-mid:   #2d6a4f;
-      --green-light: #52b788;
-      --gold:        #c9a227;
-      --gold-light:  #f0c84a;
-      --cream:       #fafaf7;
-      --white:       #ffffff;
-      --ink:         #1a1a1a;
-      --muted:       #6b7280;
-      --border:      rgba(26,58,42,0.12);
-      --radius:      14px;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--cream);
-      color: var(--ink);
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-
-    .skip-link {
-      position: absolute; top: -60px; left: 1rem;
-      background: var(--green); color: var(--white);
-      padding: 0.5rem 1rem; border-radius: 6px;
-      text-decoration: none; font-size: 13px;
-      z-index: 9999; transition: top 0.2s;
-    }
-    .skip-link:focus { top: 1rem; }
-
-    /* ── NAV ── */
-    nav {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(250,250,247,0.92);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
-      display: flex; justify-content: space-between;
-      align-items: center; padding: 1rem 3rem;
-    }
-    .nav-logo {
-      font-family: 'Amiri', serif; font-size: 1.5rem;
-      font-weight: 700; color: var(--green); text-decoration: none;
-    }
-    .nav-logo span { color: var(--gold); }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a {
-      text-decoration: none; color: var(--muted);
-      font-size: 13px; font-weight: 500;
-      letter-spacing: 0.04em; transition: color 0.2s;
-      position: relative;
-    }
-    .nav-links a::after {
-      content: ''; position: absolute;
-      left: 0; bottom: -3px; width: 0; height: 1.5px;
-      background: var(--green-light); transition: width 0.25s;
-    }
-    .nav-links a:hover { color: var(--green); }
-    .nav-links a:hover::after { width: 100%; }
-    .nav-links a.active { color: var(--green); }
-    .nav-links a.active::after { width: 100%; }
-
-    /* ── FLOATING THEME SWITCHER ── */
-    .theme-float {
-      position: fixed; right: 0; top: 50%;
-      transform: translateY(-50%); z-index: 200;
-      display: flex; flex-direction: column;
-      border-radius: 12px 0 0 12px; overflow: hidden;
-      box-shadow: -4px 0 20px rgba(0,0,0,0.1);
-    }
-    .theme-float-label {
-      background: var(--green); color: var(--white);
-      font-size: 10px; font-weight: 600;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 8px 10px; writing-mode: vertical-rl;
-      text-orientation: mixed; transform: rotate(180deg);
-      height: 80px; display: flex;
-      align-items: center; justify-content: center;
-    }
-    .theme-btn {
-      background: var(--white); border: none;
-      border-top: 1px solid var(--border);
-      padding: 10px 12px; font-size: 11px; font-weight: 500;
-      color: var(--ink); cursor: pointer;
-      transition: background 0.2s, color 0.2s;
-      text-align: center; font-family: 'DM Sans', sans-serif;
-      min-width: 52px; line-height: 1.4;
-    }
-    .theme-btn:hover { background: var(--green); color: var(--white); }
-    .theme-btn.active { background: var(--green); color: var(--white); }
-
-    /* ── PAGE HERO ── */
-    .page-hero {
-      padding: 6rem 3rem 4rem;
-      border-bottom: 1px solid var(--border);
-      position: relative;
-      overflow: hidden;
-    }
-    .page-hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse 60% 80% at 100% 50%, rgba(82,183,136,0.07) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .page-hero-inner { position: relative; z-index: 1; }
-    .page-eyebrow {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--green-light);
-      margin-bottom: 0.5rem;
-    }
-    .page-title {
-      font-family: 'Amiri', serif;
-      font-size: clamp(3rem, 7vw, 5rem);
-      font-weight: 700; color: var(--green);
-      line-height: 1; margin-bottom: 1rem;
-    }
-    .page-title span { color: var(--gold); }
-    .page-subtitle {
-      font-family: 'Amiri', serif;
-      font-size: 1.15rem; font-style: italic;
-      color: var(--muted); max-width: 50ch;
-    }
-    .page-meta {
-      display: flex; gap: 1.5rem; margin-top: 1.5rem;
-      flex-wrap: wrap;
-    }
-    .meta-pill {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      background: var(--white); border: 1px solid var(--border);
-      border-radius: 20px; padding: 6px 14px;
-      font-size: 13px; color: var(--ink);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-    }
-    .meta-pill span { color: var(--green-light); font-weight: 600; }
-
-    /* ── SECTIONS ── */
-    section { padding: 5rem 3rem; border-top: 1px solid var(--border); }
-    .section-label {
-      font-family: 'DM Mono', monospace; font-size: 11px;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--green-light); margin-bottom: 0.4rem;
-    }
-    .section-title {
-      font-family: 'Amiri', serif;
-      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-      font-weight: 700; color: var(--green); line-height: 1.1;
-    }
-    .divider { width: 40px; height: 2px; background: var(--gold); margin: 0.75rem 0 2rem; }
-
-    /* ── HOBBIES ── */
-    .hobbies-grid {
-      display: flex; flex-wrap: wrap; gap: 0.75rem;
-    }
-    .hobby-pill {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: var(--white); border: 1.5px solid var(--border);
-      border-radius: 10px; padding: 0.75rem 1.25rem;
-      font-size: 14px; font-weight: 500;
-      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
-      cursor: default;
-    }
-    .hobby-pill:hover {
-      border-color: var(--green-light);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(26,58,42,0.08);
-    }
-    .hobby-emoji { font-size: 1.2rem; }
-
-    /* ── PEOPLE CARDS ── */
-    .people-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.25rem;
-    }
-    .person-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      transition: box-shadow 0.2s, transform 0.2s;
-      position: relative;
-      overflow: hidden;
-    }
-    .person-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0;
-      height: 3px; background: var(--gold);
-    }
-    .person-card:hover {
-      box-shadow: 0 8px 24px rgba(26,58,42,0.08);
-      transform: translateY(-3px);
-    }
-    .person-name {
-      font-family: 'Amiri', serif;
-      font-size: 1.2rem; font-weight: 700;
-      color: var(--green); margin-bottom: 0.4rem;
-    }
-    .person-role {
-      font-size: 12px; color: var(--gold);
-      letter-spacing: 0.06em; text-transform: uppercase;
-      margin-bottom: 0.75rem;
-      font-family: 'DM Mono', monospace;
-    }
-    .person-why { font-size: 14px; color: var(--muted); line-height: 1.6; }
-    .coming-soon {
-      display: inline-block;
-      background: rgba(201,162,39,0.1);
-      border: 1px dashed var(--gold);
-      color: var(--gold);
-      font-size: 11px; padding: 3px 10px;
-      border-radius: 10px; margin-top: 0.5rem;
-    }
-
-    /* ── QUOTES ── */
-    .quotes-list { display: flex; flex-direction: column; gap: 1.5rem; }
-    .quote-card {
-      border-left: 3px solid var(--gold);
-      padding: 1rem 1.5rem;
-      background: rgba(201,162,39,0.04);
-      border-radius: 0 8px 8px 0;
-    }
-    .quote-text {
-      font-family: 'Amiri', serif; font-style: italic;
-      font-size: 1.1rem; color: var(--ink); margin-bottom: 0.4rem;
-    }
-    .quote-attr {
-      font-size: 12px; color: var(--gold);
-      letter-spacing: 0.08em; font-weight: 500;
-    }
-
-    /* ── THEORIES ── */
-    .theories-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.25rem;
-    }
-    .theory-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      transition: box-shadow 0.2s, transform 0.2s;
-    }
-    .theory-card:hover {
-      box-shadow: 0 8px 24px rgba(26,58,42,0.08);
-      transform: translateY(-3px);
-    }
-    .theory-num {
-      font-family: 'Amiri', serif;
-      font-size: 2rem; font-weight: 700;
-      color: rgba(201,162,39,0.3);
-      line-height: 1; margin-bottom: 0.5rem;
-    }
-    .theory-title {
-      font-weight: 600; font-size: 15px;
-      color: var(--green); margin-bottom: 0.4rem;
-    }
-    .theory-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
-
-    /* ── GLOSSARY ── */
-    .glossary-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-    }
-    .gloss-item {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 8px; padding: 1rem;
-    }
-    .gloss-term {
-      font-weight: 600; color: var(--green);
-      font-size: 15px; margin-bottom: 4px;
-    }
-    .gloss-def { font-size: 13px; color: var(--muted); line-height: 1.5; }
-
-    /* ── MANUAL OF ME ── */
-    .manual-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
-    }
-    .manual-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 1.5rem;
-      position: relative; overflow: hidden;
-      transition: box-shadow 0.2s, transform 0.2s;
-    }
-    .manual-card::before {
-      content: '';
-      position: absolute; left: 0; top: 0; bottom: 0;
-      width: 3px; background: var(--green-light);
-    }
-    .manual-card:hover {
-      box-shadow: 0 8px 24px rgba(26,58,42,0.08);
-      transform: translateY(-3px);
-    }
-    .manual-card h4 {
-      font-size: 11px; font-weight: 600;
-      color: var(--green); letter-spacing: 0.1em;
-      text-transform: uppercase; margin-bottom: 0.5rem;
-      font-family: 'DM Mono', monospace;
-    }
-    .manual-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
-
-    /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 2.5rem 3rem;
-      display: flex; justify-content: space-between;
-      align-items: center; flex-wrap: wrap; gap: 1rem;
-    }
-    .footer-logo { font-family: 'Amiri', serif; font-size: 1.2rem; font-weight: 700; color: var(--green); }
-    .footer-note { font-size: 12px; color: var(--muted); }
-    .footer-links a { font-size: 12px; color: var(--muted); text-decoration: none; margin-left: 1rem; }
-    .footer-links a:hover { color: var(--green); }
-
-    /* ── SCROLL TO TOP ── */
-    .scroll-top {
-      position: fixed; bottom: 2rem; right: 4rem;
-      width: 44px; height: 44px; border-radius: 50%;
-      background: var(--green); color: var(--white);
-      border: none; font-size: 1.1rem; cursor: pointer;
-      display: none; align-items: center; justify-content: center;
-      z-index: 200; box-shadow: 0 4px 16px rgba(26,58,42,0.3);
-      transition: transform 0.2s;
-    }
-    .scroll-top:hover { transform: scale(1.1); }
-    .scroll-top.visible { display: flex; }
-
-    /* ── RETRO THEME ── */
-    body.theme-retro {
-      --green: #00ff41; --green-mid: #00cc33;
-      --green-light: #00ff41; --gold: #00ff41;
-      --cream: #0d0d0d; --white: #111111;
-      --ink: #00ff41; --muted: #00aa22;
-      --border: rgba(0,255,65,0.2);
-      font-family: 'VT323', monospace;
-    }
-    body.theme-retro nav { background: rgba(13,13,13,0.95); }
-    body.theme-retro .nav-logo,
-    body.theme-retro .section-title,
-    body.theme-retro .page-title { font-family: 'VT323', monospace; }
-    body.theme-retro .person-card,
-    body.theme-retro .manual-card,
-    body.theme-retro .theory-card,
-    body.theme-retro .gloss-item,
-    body.theme-retro .hobby-pill { background: #111; }
-    body.theme-retro .theme-btn { background: #111; color: #00ff41; }
-    body.theme-retro .theme-btn.active { background: #00ff41; color: #0d0d0d; }
-
-    /* ── GOLD THEME ── */
-    body.theme-gold {
-      --green: #78350f; --green-mid: #92400e;
-      --green-light: #d97706; --gold: #1a3a2a;
-      --cream: #fffbeb;
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      .page-hero { padding: 4rem 1.5rem 3rem; }
-      section { padding: 3rem 1.5rem; }
-      nav { padding: 0.75rem 1.25rem; }
-      .nav-links { gap: 1rem; font-size: 12px; }
-      footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
-      .theme-float { display: none; }
-    }
+    :root{--green:#1a3a2a;--green-mid:#2d6a4f;--green-light:#52b788;--gold:#c9a227;--cream:#fafaf7;--white:#ffffff;--ink:#1a1a1a;--muted:#6b7280;--border:rgba(26,58,42,0.12);--radius:14px;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);line-height:1.7;overflow-x:hidden;}
+    .skip-link{position:absolute;top:-60px;left:1rem;background:var(--green);color:var(--white);padding:.5rem 1rem;border-radius:6px;text-decoration:none;font-size:13px;z-index:9999;transition:top .2s;}
+    .skip-link:focus{top:1rem;}
+    nav{position:sticky;top:0;z-index:100;background:rgba(250,250,247,0.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;padding:1rem 3rem;}
+    .nav-logo{font-family:'Amiri',serif;font-size:1.5rem;font-weight:700;color:var(--green);text-decoration:none;}
+    .nav-logo span{color:var(--gold);}
+    .nav-links{display:flex;gap:2rem;list-style:none;}
+    .nav-links a{text-decoration:none;color:var(--muted);font-size:13px;font-weight:500;letter-spacing:.04em;transition:color .2s;position:relative;}
+    .nav-links a::after{content:'';position:absolute;left:0;bottom:-3px;width:0;height:1.5px;background:var(--green-light);transition:width .25s;}
+    .nav-links a:hover{color:var(--green);}
+    .nav-links a:hover::after,.nav-links a.active::after{width:100%;}
+    .nav-links a.active{color:var(--green);}
+    .theme-float{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:200;display:flex;flex-direction:column;border-radius:12px 0 0 12px;overflow:hidden;box-shadow:-4px 0 20px rgba(0,0,0,.1);}
+    .theme-float-label{background:var(--green);color:var(--white);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:8px 10px;writing-mode:vertical-rl;transform:rotate(180deg);height:80px;display:flex;align-items:center;justify-content:center;}
+    .theme-btn{background:var(--white);border:none;border-top:1px solid var(--border);padding:10px 12px;font-size:11px;font-weight:500;color:var(--ink);cursor:pointer;transition:background .2s,color .2s;text-align:center;font-family:'DM Sans',sans-serif;min-width:52px;line-height:1.4;}
+    .theme-btn:hover,.theme-btn.active{background:var(--green);color:var(--white);}
+    .page-hero{padding:6rem 3rem 4rem;border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
+    .page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(82,183,136,.07) 0%,transparent 70%);pointer-events:none;}
+    .page-hero-inner{position:relative;z-index:1;}
+    .page-eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--green-light);margin-bottom:.5rem;}
+    .page-title{font-family:'Amiri',serif;font-size:clamp(3rem,7vw,5rem);font-weight:700;color:var(--green);line-height:1;margin-bottom:1rem;}
+    .page-title span{color:var(--gold);}
+    .page-subtitle{font-family:'Amiri',serif;font-size:1.15rem;font-style:italic;color:var(--muted);max-width:50ch;}
+    .page-meta{display:flex;gap:1.5rem;margin-top:1.5rem;flex-wrap:wrap;}
+    .meta-pill{display:inline-flex;align-items:center;gap:.4rem;background:var(--white);border:1px solid var(--border);border-radius:20px;padding:6px 14px;font-size:13px;color:var(--ink);box-shadow:0 2px 8px rgba(0,0,0,.04);}
+    .meta-pill span{color:var(--green-light);font-weight:600;}
+    section{padding:5rem 3rem;border-top:1px solid var(--border);}
+    .section-label{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--green-light);margin-bottom:.4rem;}
+    .section-title{font-family:'Amiri',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;color:var(--green);line-height:1.1;}
+    .divider{width:40px;height:2px;background:var(--gold);margin:.75rem 0 2rem;}
+    .coming-soon{display:inline-block;background:rgba(201,162,39,.1);border:1px dashed var(--gold);color:var(--gold);font-size:11px;padding:3px 10px;border-radius:10px;margin-top:.5rem;}
+    /* HOBBIES */
+    .hobbies-grid{display:flex;flex-wrap:wrap;gap:.75rem;}
+    .hobby-pill{display:inline-flex;align-items:center;gap:.5rem;background:var(--white);border:1.5px solid var(--border);border-radius:10px;padding:.75rem 1.25rem;font-size:14px;font-weight:500;transition:border-color .2s,transform .2s,box-shadow .2s;}
+    .hobby-pill:hover{border-color:var(--green-light);transform:translateY(-2px);box-shadow:0 4px 12px rgba(26,58,42,.08);}
+    /* PEOPLE CARDS WITH PHOTOS */
+    .people-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.25rem;}
+    .person-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:box-shadow .2s,transform .2s;}
+    .person-card:hover{box-shadow:0 12px 32px rgba(26,58,42,.1);transform:translateY(-4px);}
+    .person-photo{width:100%;height:160px;object-fit:cover;object-position:top;display:block;background:rgba(26,58,42,.06);}
+    .person-photo-placeholder{width:100%;height:160px;background:linear-gradient(135deg,rgba(26,58,42,.08),rgba(201,162,39,.08));display:flex;align-items:center;justify-content:center;font-size:3rem;}
+    .person-body{padding:1.25rem;}
+    .person-name{font-family:'Amiri',serif;font-size:1.1rem;font-weight:700;color:var(--green);margin-bottom:.2rem;}
+    .person-role{font-size:11px;color:var(--gold);letter-spacing:.06em;text-transform:uppercase;font-family:'DM Mono',monospace;margin-bottom:.6rem;}
+    .person-why{font-size:13px;color:var(--muted);line-height:1.6;}
+    /* THEORIES */
+    .theories-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem;}
+    .theory-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;transition:box-shadow .2s,transform .2s;border-left:3px solid var(--gold);}
+    .theory-card:hover{box-shadow:0 8px 24px rgba(26,58,42,.08);transform:translateY(-3px);}
+    .theory-num{font-family:'Amiri',serif;font-size:2rem;font-weight:700;color:rgba(201,162,39,.25);line-height:1;margin-bottom:.5rem;}
+    .theory-title{font-weight:700;font-size:15px;color:var(--green);margin-bottom:.5rem;}
+    .theory-desc{font-size:13px;color:var(--muted);line-height:1.7;}
+    /* GLOSSARY */
+    .glossary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;}
+    .gloss-item{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:1rem;}
+    .gloss-term{font-weight:700;color:var(--green);font-size:16px;margin-bottom:4px;font-family:'Amiri',serif;}
+    .gloss-def{font-size:13px;color:var(--muted);line-height:1.5;}
+    /* QUOTES */
+    .quotes-list{display:flex;flex-direction:column;gap:1.5rem;}
+    .quote-card{border-left:3px solid var(--gold);padding:1rem 1.5rem;background:rgba(201,162,39,.04);border-radius:0 8px 8px 0;}
+    .quote-text{font-family:'Amiri',serif;font-style:italic;font-size:1.1rem;color:var(--ink);margin-bottom:.4rem;}
+    .quote-attr{font-size:12px;color:var(--gold);letter-spacing:.08em;font-weight:500;}
+    /* MANUAL */
+    .manual-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem;}
+    .manual-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;position:relative;overflow:hidden;transition:box-shadow .2s,transform .2s;}
+    .manual-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--green-light);}
+    .manual-card:hover{box-shadow:0 8px 24px rgba(26,58,42,.08);transform:translateY(-3px);}
+    .manual-card h4{font-size:11px;font-weight:600;color:var(--green);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem;font-family:'DM Mono',monospace;}
+    .manual-card p{font-size:14px;color:var(--muted);line-height:1.6;}
+    footer{border-top:1px solid var(--border);padding:2.5rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+    .footer-logo{font-family:'Amiri',serif;font-size:1.2rem;font-weight:700;color:var(--green);}
+    .footer-note{font-size:12px;color:var(--muted);}
+    .footer-links a{font-size:12px;color:var(--muted);text-decoration:none;margin-left:1rem;}
+    .footer-links a:hover{color:var(--green);}
+    .scroll-top{position:fixed;bottom:2rem;right:4rem;width:44px;height:44px;border-radius:50%;background:var(--green);color:var(--white);border:none;font-size:1.1rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:200;box-shadow:0 4px 16px rgba(26,58,42,.3);transition:transform .2s;}
+    .scroll-top:hover{transform:scale(1.1);}
+    .scroll-top.visible{display:flex;}
+    body.theme-retro{--green:#00ff41;--green-mid:#00cc33;--green-light:#00ff41;--gold:#00ff41;--cream:#0d0d0d;--white:#111111;--ink:#00ff41;--muted:#00aa22;--border:rgba(0,255,65,.2);font-family:'VT323',monospace;}
+    body.theme-retro nav{background:rgba(13,13,13,.95);}
+    body.theme-retro .nav-logo,body.theme-retro .page-title,body.theme-retro .section-title{font-family:'VT323',monospace;}
+    body.theme-retro .theme-btn{background:#111;color:#00ff41;}
+    body.theme-retro .theme-btn.active{background:#00ff41;color:#0d0d0d;}
+    
+    @media(max-width:768px){.page-hero{padding:4rem 1.5rem 3rem;}section{padding:3rem 1.5rem;}nav{padding:.75rem 1.25rem;}.nav-links{gap:1rem;font-size:12px;}footer{padding:2rem 1.5rem;flex-direction:column;text-align:center;}.theme-float{display:none;}.people-grid{grid-template-columns:repeat(2,1fr);}}
   </style>
 </head>
 <body>
-
   <a class="skip-link" href="#main">Skip to main content</a>
-
-  <!-- ── FLOATING THEME SWITCHER ── -->
   <div class="theme-float">
     <div class="theme-float-label">Theme</div>
     <button class="theme-btn active" id="theme-default">🌿<br>Default</button>
     <button class="theme-btn" id="theme-retro">💻<br>Retro</button>
-    <button class="theme-btn" id="theme-gold">🏆<br>Gold</button>
   </div>
-
-  <!-- ── NAVIGATION ── -->
   <nav>
     <a class="nav-logo" href="index.html">Sayed <span>Alawi</span></a>
-        <ul class="nav-links">
+    <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html" class="active">About</a></li>
       <li><a href="blog.html">Blog</a></li>
       <li><a href="projects.html">Projects</a></li>
-      <li><a href="interests.html">Interests</a></li>
       <li><a href="gallery.html">Gallery</a></li>
-      <li><a href="travel.html">Travel</a></li>
       <li><a href="links.html">Links</a></li>
     </ul>
   </nav>
-
   <main id="main">
-
-    <!-- ── PAGE HERO ── -->
     <div class="page-hero">
       <div class="page-hero-inner">
         <p class="page-eyebrow">Get to know me</p>
         <h1 class="page-title">About <span>Me</span></h1>
-        <p class="page-subtitle">
-          A 21-year-old from Tubli, Bahrain — driven by faith, family, and the relentless pursuit of becoming better every single day.
-        </p>
+        <p class="page-subtitle">A 21-year-old from Tubli, Bahrain — driven by faith, family, and the relentless pursuit of becoming better every single day.</p>
         <div class="page-meta">
           <div class="meta-pill">📍 <span>Tubli, Bahrain</span></div>
           <div class="meta-pill">🎂 <span>21 years old</span></div>
-          <div class="meta-pill">🎓 <span>Cyber Security with Forensics</span></div>
+          <div class="meta-pill">🎓 <span>Cyber Security & Forensics</span></div>
           <div class="meta-pill">// <span>alwa7sh</span></div>
         </div>
       </div>
     </div>
 
-
-    <!-- ── HOBBIES ── -->
+    <!-- HOBBIES -->
     <section id="hobbies">
       <p class="section-label">What I love doing</p>
       <h2 class="section-title">Hobbies</h2>
       <div class="divider"></div>
       <div class="hobbies-grid">
-        <div class="hobby-pill"><span class="hobby-emoji">⚽</span> Football</div>
-        <div class="hobby-pill"><span class="hobby-emoji">🤾</span> Handball</div>
-        <div class="hobby-pill"><span class="hobby-emoji">🏀</span> Basketball</div>
-        <div class="hobby-pill"><span class="hobby-emoji">🏐</span> Dodgeball</div>
-        <div class="hobby-pill"><span class="hobby-emoji">🐴</span> Horse Riding</div>
-        <div class="hobby-pill"><span class="hobby-emoji">🏊</span> Swimming</div>
-        <div class="hobby-pill"><span class="hobby-emoji">🎣</span> Fishing</div>
-        <div class="hobby-pill"><span class="hobby-emoji">📖</span> Reading</div>
-        <!-- Add more hobbies here when you're ready -->
+        <div class="hobby-pill">⚽ Football</div>
+        <div class="hobby-pill">🤾 Handball</div>
+        <div class="hobby-pill">🏀 Basketball</div>
+        <div class="hobby-pill">🏐 Dodgeball</div>
+        <div class="hobby-pill">🐴 Horse Riding</div>
+        <div class="hobby-pill">🏊 Swimming</div>
+        <div class="hobby-pill">🎣 Fishing</div>
+        <div class="hobby-pill">📖 Reading</div>
       </div>
     </section>
 
-
-    <!-- ── PEOPLE I WISH I HAD MET ── -->
+    <!-- PEOPLE I WISH I HAD MET -->
     <section id="wish-met">
       <p class="section-label">Inspirations</p>
       <h2 class="section-title">People I Wish I Had Met</h2>
@@ -455,42 +153,87 @@
       <div class="people-grid">
 
         <div class="person-card">
-          <div class="person-name">Ahl Al Bayt</div>
-          <div class="person-role">The Prophet's Household</div>
-          <p class="person-why">
-            The family of the Prophet — their sacrifice, patience, and devotion are a guiding light. Meeting them would have been the greatest honour of any lifetime.
-          </p>
+          <img class="person-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Imam_Ali_Shrine_in_Najaf%2C_Iraq_-_panoramio_%281%29.jpg/800px-Imam_Ali_Shrine_in_Najaf%2C_Iraq_-_panoramio_%281%29.jpg" alt="Imam Ali" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+          <div class="person-photo-placeholder" style="display:none;">🕌</div>
+          <div class="person-body">
+            <div class="person-name">Imam Ali ibn Abi Talib</div>
+            <div class="person-role">The Gate of Knowledge</div>
+            <p class="person-why">The pinnacle of wisdom, justice, and courage. His words have guided me more than anyone else's.</p>
+          </div>
         </div>
 
         <div class="person-card">
-          <div class="person-name">Al Abbas ibn Ali</div>
-          <div class="person-role">Son of Imam Ali</div>
-          <p class="person-why">
-            A symbol of loyalty, courage and sacrifice. His story is one of the most powerful examples of standing by what you believe in no matter the cost.
-          </p>
+          <div class="person-photo-placeholder">🕌</div>
+          <div class="person-body">
+            <div class="person-name">Ahl Al Bayt</div>
+            <div class="person-role">The Prophet's Household</div>
+            <p class="person-why">Their sacrifice, patience, and devotion are a guiding light. Meeting them would have been the greatest honour of any lifetime.</p>
+          </div>
         </div>
 
         <div class="person-card">
-          <div class="person-name">Om Al Banin</div>
-          <div class="person-role">Mother of Al Abbas</div>
-          <p class="person-why">
-            A woman of extraordinary strength, patience and faith. Her love for Ahl Al Bayt and her sacrifice is something that moves me deeply.
-          </p>
+          <div class="person-photo-placeholder">🕌</div>
+          <div class="person-body">
+            <div class="person-name">Al Abbas ibn Ali</div>
+            <div class="person-role">Son of Imam Ali</div>
+            <p class="person-why">A symbol of loyalty and sacrifice. His story is one of the most powerful examples of standing by what you believe in no matter the cost.</p>
+          </div>
         </div>
 
-        <!-- Placeholder for more — fill in later -->
-        <div class="person-card" style="border-style: dashed; opacity: 0.6;">
-          <div class="person-name">More coming soon</div>
-          <div class="person-role">To be added</div>
-          <p class="person-why">You mentioned you have more people to add here — fill them in when you're ready.</p>
-          <span class="coming-soon">✏️ Coming soon</span>
+        <div class="person-card">
+          <img class="person-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Camponotus_flavomarginatus_ant.jpg/400px-Camponotus_flavomarginatus_ant.jpg" alt="Kobe Bryant" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+          <div class="person-photo-placeholder" style="display:none;">🏀</div>
+          <div class="person-body">
+            <div class="person-name">Kobe Bryant</div>
+            <div class="person-role">The Black Mamba · NBA Legend</div>
+            <p class="person-why">The embodiment of the Mamba Mentality — obsession, discipline, and the relentless pursuit of greatness. He shaped how I think about effort.</p>
+          </div>
+        </div>
+
+        <div class="person-card">
+          <img class="person-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Albert_Einstein_Head.jpg/800px-Albert_Einstein_Head.jpg" alt="Albert Einstein" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+          <div class="person-photo-placeholder" style="display:none;">🧠</div>
+          <div class="person-body">
+            <div class="person-name">Albert Einstein</div>
+            <div class="person-role">Theoretical Physicist</div>
+            <p class="person-why">A mind that redefined how humanity understands space, time, and reality. His curiosity and creativity are unmatched in history.</p>
+          </div>
+        </div>
+
+        <div class="person-card">
+          <img class="person-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Steve_Jobs_Headshot_2010-CROP_%28cropped_2%29.jpg/800px-Steve_Jobs_Headshot_2010-CROP_%28cropped_2%29.jpg" alt="Steve Jobs" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+          <div class="person-photo-placeholder" style="display:none;">💡</div>
+          <div class="person-body">
+            <div class="person-name">Steve Jobs</div>
+            <div class="person-role">Co-founder of Apple</div>
+            <p class="person-why">He proved that technology and art are not opposites. His obsession with excellence and user experience changed the world permanently.</p>
+          </div>
+        </div>
+
+        <div class="person-card">
+          <img class="person-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Charles_Darwin_by_Julia_Margaret_Cameron%2C_1868.jpg/800px-Charles_Darwin_by_Julia_Margaret_Cameron%2C_1868.jpg" alt="Charles Darwin" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+          <div class="person-photo-placeholder" style="display:none;">🧬</div>
+          <div class="person-body">
+            <div class="person-name">Charles Darwin</div>
+            <div class="person-role">Naturalist & Scientist</div>
+            <p class="person-why">His theory of evolution transformed how we understand life on earth. The courage it took to publish something that challenged everything is inspiring.</p>
+          </div>
+        </div>
+
+        <div class="person-card">
+          <img class="person-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Lemaitre.jpg/800px-Lemaitre.jpg" alt="Georges Lemaître" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+          <div class="person-photo-placeholder" style="display:none;">🌌</div>
+          <div class="person-body">
+            <div class="person-name">Georges Lemaître</div>
+            <div class="person-role">Father of the Big Bang Theory</div>
+            <p class="person-why">A priest and a scientist — he proposed that the universe began from a single point. A mind that bridged faith and science in a way few ever have.</p>
+          </div>
         </div>
 
       </div>
     </section>
 
-
-    <!-- ── PEOPLE I WANT TO MEET ── -->
+    <!-- PEOPLE I WANT TO MEET -->
     <section id="want-to-meet">
       <p class="section-label">On my list</p>
       <h2 class="section-title">People I Want to Meet</h2>
@@ -498,199 +241,204 @@
       <div class="people-grid">
 
         <div class="person-card">
-          <div class="person-name">Ali Al Sistani</div>
-          <div class="person-role">Grand Ayatollah</div>
-          <p class="person-why">
-            One of the most respected religious scholars in the world. His wisdom, humility and impact on millions of people makes him someone I deeply want to learn from in person.
-          </p>
+          <img class="person-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Elon_Musk_Royal_Society_%28crop2%29.jpg/800px-Elon_Musk_Royal_Society_%28crop2%29.jpg" alt="Elon Musk" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+          <div class="person-photo-placeholder" style="display:none;">🚀</div>
+          <div class="person-body">
+            <div class="person-name">Elon Musk</div>
+            <div class="person-role">CEO of Tesla & SpaceX</div>
+            <p class="person-why">A man who bets everything on the future. His ability to execute on seemingly impossible visions is something I study and admire.</p>
+          </div>
         </div>
 
-        <!-- Placeholder for more — fill in later -->
-        <div class="person-card" style="border-style: dashed; opacity: 0.6;">
-          <div class="person-name">More coming soon</div>
-          <div class="person-role">To be added</div>
-          <p class="person-why">Add more people you want to meet here when you're ready.</p>
-          <span class="coming-soon">✏️ Coming soon</span>
+        <div class="person-card">
+          <img class="person-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Bill_Gates_2018.jpg/800px-Bill_Gates_2018.jpg" alt="Bill Gates" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+          <div class="person-photo-placeholder" style="display:none;">💻</div>
+          <div class="person-body">
+            <div class="person-name">Bill Gates</div>
+            <div class="person-role">Co-founder of Microsoft</div>
+            <p class="person-why">Built the foundation of the personal computing era. His transition from tech to global philanthropy shows that impact has no single form.</p>
+          </div>
+        </div>
+
+        <div class="person-card">
+          <img class="person-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/LinuxCon_Europe_Linus_Torvalds_03_%28cropped%29.jpg/800px-LinuxCon_Europe_Linus_Torvalds_03_%28cropped%29.jpg" alt="Linus Torvalds" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+          <div class="person-photo-placeholder" style="display:none;">🐧</div>
+          <div class="person-body">
+            <div class="person-name">Linus Torvalds</div>
+            <div class="person-role">Creator of Linux</div>
+            <p class="person-why">Created Linux — one of the most important pieces of software in history. As a cyber security student, his work underpins almost everything I study.</p>
+          </div>
+        </div>
+
+        <div class="person-card">
+          <div class="person-photo-placeholder">🤾</div>
+          <div class="person-body">
+            <div class="person-name">Mikkel Hansen</div>
+            <div class="person-role">Handball Legend · Denmark</div>
+            <p class="person-why">The greatest handball player of all time. His leadership and dominance on court have influenced how I think about sport and excellence.</p>
+          </div>
+        </div>
+
+        <div class="person-card">
+          <div class="person-photo-placeholder">🤾</div>
+          <div class="person-body">
+            <div class="person-name">Nikola Karabatić</div>
+            <div class="person-role">Handball Legend · France</div>
+            <p class="person-why">Three-time world champion. One of the most decorated handball players in history and a masterclass in resilience and team leadership.</p>
+          </div>
+        </div>
+
+        <div class="person-card">
+          <div class="person-photo-placeholder">🤾</div>
+          <div class="person-body">
+            <div class="person-name">Ivano Balić</div>
+            <div class="person-role">Handball Legend · Croatia</div>
+            <p class="person-why">Widely regarded as one of the most gifted handball players ever. His creativity and reading of the game were unlike anyone else.</p>
+          </div>
+        </div>
+
+        <div class="person-card">
+          <img class="person-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Cristiano_Ronaldo_2018.jpg/800px-Cristiano_Ronaldo_2018.jpg" alt="Cristiano Ronaldo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+          <div class="person-photo-placeholder" style="display:none;">⚽</div>
+          <div class="person-body">
+            <div class="person-name">Cristiano Ronaldo</div>
+            <div class="person-role">Football Legend · CR7</div>
+            <p class="person-why">The greatest example of what hard work and self-belief can produce. He turned natural talent into something supernatural through sheer discipline.</p>
+          </div>
+        </div>
+
+        <div class="person-card">
+          <img class="person-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Messi_Argentina_2022.jpg/800px-Messi_Argentina_2022.jpg" alt="Lionel Messi" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+          <div class="person-photo-placeholder" style="display:none;">⚽</div>
+          <div class="person-body">
+            <div class="person-name">Lionel Messi</div>
+            <div class="person-role">Football Legend · La Pulga</div>
+            <p class="person-why">Pure genius. A quiet leader whose ability to perform under the highest pressure — and finally win the World Cup — makes his story one of the greatest ever told.</p>
+          </div>
+        </div>
+
+        <div class="person-card">
+          <div class="person-photo-placeholder">🕌</div>
+          <div class="person-body">
+            <div class="person-name">Ali Al Sistani</div>
+            <div class="person-role">Grand Ayatollah</div>
+            <p class="person-why">One of the most respected religious scholars in the world. His wisdom, humility and impact on millions makes him someone I deeply want to learn from.</p>
+          </div>
         </div>
 
       </div>
     </section>
 
-
-    <!-- ── MY THEORIES ── -->
+    <!-- THEORIES -->
     <section id="theories">
       <p class="section-label">How I see the world</p>
       <h2 class="section-title">My View on Worldwide Theories</h2>
       <div class="divider"></div>
       <div class="theories-grid">
 
-        <!-- Placeholder theories — replace with your real ones -->
         <div class="theory-card">
           <div class="theory-num">01</div>
-          <div class="theory-title">Your theory title here</div>
-          <p class="theory-desc">Replace this with one of your real views or theories about the world — something you believe that others might not.</p>
-          <span class="coming-soon">✏️ Coming soon</span>
+          <div class="theory-title">The Big Bang Theory</div>
+          <p class="theory-desc">The universe began approximately 13.8 billion years ago from an infinitely dense singularity. Everything we see — every star, planet, and galaxy — expanded from that single point. What fascinates me is that a Belgian priest, Georges Lemaître, was the one who first proposed it — proof that science and faith are not always opposites.</p>
         </div>
 
         <div class="theory-card">
           <div class="theory-num">02</div>
-          <div class="theory-title">Your theory title here</div>
-          <p class="theory-desc">Replace this with another one of your views. Could be about society, success, human nature — anything you feel strongly about.</p>
-          <span class="coming-soon">✏️ Coming soon</span>
+          <div class="theory-title">Darwin's Theory of Evolution</div>
+          <p class="theory-desc">All life on earth shares a common ancestor and has evolved through natural selection over billions of years. The species that survive are not the strongest or the smartest — they are the ones most adaptable to change. I think about this beyond biology — it applies to people, businesses, and ideas too. Adapt or become irrelevant.</p>
         </div>
 
         <div class="theory-card">
           <div class="theory-num">03</div>
-          <div class="theory-title">Your theory title here</div>
-          <p class="theory-desc">Add as many as you like. This is your space to share how you see the world.</p>
-          <span class="coming-soon">✏️ Coming soon</span>
+          <div class="theory-title">Your next theory here</div>
+          <p class="theory-desc">Add your own view on the world here — something you believe that others might not. Could be about society, technology, human nature, or anything you feel strongly about.</p>
+          <span class="coming-soon">✏️ Fill this in</span>
         </div>
 
       </div>
     </section>
 
+    <!-- GLOSSARY -->
+    <section id="glossary">
+      <p class="section-label">My language</p>
+      <h2 class="section-title">Words I Use a Lot</h2>
+      <div class="divider"></div>
+      <div class="glossary-grid">
+        <div class="gloss-item">
+          <div class="gloss-term">Habibi</div>
+          <div class="gloss-def">Arabic for "my love" or "my dear" — used with friends, family, anyone I'm close to.</div>
+        </div>
+        <div class="gloss-item">
+          <div class="gloss-term">La la</div>
+          <div class="gloss-def">Arabic for "no no" — my go-to when something is clearly wrong or I disagree strongly.</div>
+        </div>
+        <div class="gloss-item">
+          <div class="gloss-term">Bordoga</div>
+          <div class="gloss-def">Arabic slang — used to describe something or someone that's a mess, chaotic, or out of control.</div>
+        </div>
+        <div class="gloss-item" style="border-style:dashed;opacity:.5;">
+          <div class="gloss-term">Your word here</div>
+          <div class="gloss-def">Add more words or phrases you use all the time.</div>
+        </div>
+      </div>
+    </section>
 
-    <!-- ── FAVOURITE QUOTES ── -->
+    <!-- FAVOURITE QUOTES -->
     <section id="quotes">
       <p class="section-label">Words that move me</p>
       <h2 class="section-title">Favourite Quotes</h2>
       <div class="divider"></div>
       <div class="quotes-list">
-
-        <!-- Placeholder quotes — replace with your real ones -->
         <div class="quote-card">
-          <p class="quote-text">"Your favourite quote will go here."</p>
-          <span class="quote-attr">— Who said it</span>
+          <p class="quote-text">"The value of a person is according to what he excels in."</p>
+          <span class="quote-attr">— Ali ibn Abi Talib</span>
         </div>
-        <div class="quote-card">
+        <div class="quote-card" style="opacity:.5;border-style:dashed;">
           <p class="quote-text">"Your second favourite quote will go here."</p>
           <span class="quote-attr">— Who said it</span>
         </div>
-        <div class="quote-card">
+        <div class="quote-card" style="opacity:.5;border-style:dashed;">
           <p class="quote-text">"Your third favourite quote will go here."</p>
           <span class="quote-attr">— Who said it</span>
         </div>
-
       </div>
     </section>
 
-
-    <!-- ── FREQUENTLY USED WORDS ── -->
-    <section id="glossary">
-      <p class="section-label">My language</p>
-      <h2 class="section-title">Words I Use a Lot</h2>
-      <div class="divider"></div>
-      <p style="font-size:13px; color:var(--muted); margin-bottom:1.5rem;">
-        Words and phrases you'll hear me say all the time — fill these in when you're ready.
-      </p>
-      <div class="glossary-grid">
-
-        <!-- Placeholders — replace with your real words -->
-        <div class="gloss-item">
-          <div class="gloss-term">Word / Phrase</div>
-          <div class="gloss-def">What it means or how you use it.</div>
-        </div>
-        <div class="gloss-item">
-          <div class="gloss-term">Word / Phrase</div>
-          <div class="gloss-def">What it means or how you use it.</div>
-        </div>
-        <div class="gloss-item">
-          <div class="gloss-term">Word / Phrase</div>
-          <div class="gloss-def">What it means or how you use it.</div>
-        </div>
-        <div class="gloss-item">
-          <div class="gloss-term">Word / Phrase</div>
-          <div class="gloss-def">What it means or how you use it.</div>
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- ── MANUAL OF ME ── -->
+    <!-- MANUAL OF ME -->
     <section id="manual">
       <p class="section-label">Working with me</p>
       <h2 class="section-title">Manual of Me</h2>
       <div class="divider"></div>
-      <p style="font-size:13px; color:var(--muted); margin-bottom:2rem;">
-        How to work with me effectively — six things you should know.
-      </p>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:2rem;">How to work with me effectively — six things you should know.</p>
       <div class="manual-grid">
-
-        <div class="manual-card">
-          <h4>How to reach me</h4>
-          <p>Call or text — I respond best to direct communication. No need to overthink it, just reach out.</p>
-        </div>
-
-        <div class="manual-card">
-          <h4>Best time to reach me</h4>
-          <p>Anytime — I don't have a strict schedule for communication. If I'm busy I'll get back to you.</p>
-        </div>
-
-        <div class="manual-card">
-          <h4>How I give feedback</h4>
-          <p>Variable — depends on the situation. I adapt my approach based on what's needed.</p>
-        </div>
-
-        <div class="manual-card">
-          <h4>What drains me</h4>
-          <p>Unclear goals. When there's no direction or purpose, it's hard for me to stay motivated and focused.</p>
-        </div>
-
-        <div class="manual-card">
-          <h4>What energises me</h4>
-          <p>Stress and pressure. I perform best when the stakes are high — pressure brings out the best in me.</p>
-        </div>
-
-        <div class="manual-card">
-          <h4>My core value</h4>
-          <p>Calm under pressure. Whatever happens, staying composed and clear-headed is how I lead and how I live.</p>
-        </div>
-
+        <div class="manual-card"><h4>How to reach me</h4><p>Call or text — I respond best to direct communication. No need to overthink it, just reach out.</p></div>
+        <div class="manual-card"><h4>Best time to reach me</h4><p>Anytime — I don't have a strict schedule for communication. If I'm busy I'll get back to you.</p></div>
+        <div class="manual-card"><h4>How I give feedback</h4><p>Variable — depends on the situation. I adapt my approach based on what's needed in the moment.</p></div>
+        <div class="manual-card"><h4>What drains me</h4><p>Unclear goals. When there's no direction or purpose, it's hard for me to stay motivated and focused.</p></div>
+        <div class="manual-card"><h4>What energises me</h4><p>Stress and pressure. I perform best when the stakes are high — pressure brings out the best in me.</p></div>
+        <div class="manual-card"><h4>My core value</h4><p>Calm under pressure. Whatever happens, staying composed and clear-headed is how I lead and how I live.</p></div>
       </div>
     </section>
-
   </main>
 
-  <!-- ── FOOTER ── -->
   <footer>
     <div class="footer-logo">Sayed Alawi</div>
-    <p class="footer-note">© 2025 Sayed Alawi · Built with HTML, CSS & JavaScript</p>
+    <p class="footer-note">© 2025 Sayed Alawi · Cyber Security & Forensics Student</p>
     <div class="footer-links">
-      <a href="#">Privacy</a>
-      <a href="#">Accessibility</a>
+      <a href="meta.html">Privacy</a>
+      <a href="meta.html#accessibility">Accessibility</a>
+      <a href="https://www.linkedin.com/in/sayed-alawi-b77760295" target="_blank">LinkedIn</a>
     </div>
   </footer>
-
   <button class="scroll-top" id="scroll-top" aria-label="Scroll to top">↑</button>
-
   <script>
-    // ── THEME SWITCHER ──
-    var themeBtns = document.querySelectorAll('.theme-btn');
-    function setTheme(themeClass) {
-      document.body.classList.remove('theme-retro', 'theme-gold');
-      if (themeClass) document.body.classList.add(themeClass);
-      themeBtns.forEach(function(btn) { btn.classList.remove('active'); });
-    }
-    document.getElementById('theme-default').addEventListener('click', function () {
-      setTheme(null); this.classList.add('active');
-    });
-    document.getElementById('theme-retro').addEventListener('click', function () {
-      setTheme('theme-retro'); this.classList.add('active');
-    });
-    document.getElementById('theme-gold').addEventListener('click', function () {
-      setTheme('theme-gold'); this.classList.add('active');
-    });
-
-    // ── SCROLL TO TOP ──
-    var scrollBtn = document.getElementById('scroll-top');
-    window.addEventListener('scroll', function () {
-      scrollBtn.classList.toggle('visible', window.scrollY > 400);
-    });
-    scrollBtn.addEventListener('click', function () {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+    var tb=document.querySelectorAll('.theme-btn');
+    function setTheme(t){document.body.classList.remove('theme-retro');if(t)document.body.classList.add(t);tb.forEach(function(b){b.classList.remove('active');});}
+    document.getElementById('theme-default').addEventListener('click',function(){setTheme(null);this.classList.add('active');});
+    document.getElementById('theme-retro').addEventListener('click',function(){setTheme('theme-retro');this.classList.add('active');});
+    var sb=document.getElementById('scroll-top');
+    window.addEventListener('scroll',function(){sb.classList.toggle('visible',window.scrollY>400);});
+    sb.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
   </script>
-
 </body>
 </html>

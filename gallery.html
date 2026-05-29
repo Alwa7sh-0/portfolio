@@ -113,7 +113,7 @@
     body.theme-retro .gallery-placeholder{background:rgba(0,255,65,.03);}
 
     /* ── GOLD THEME ── */
-    body.theme-gold{--green:#78350f;--green-mid:#92400e;--green-light:#d97706;--gold:#1a3a2a;--cream:#fffbeb;}
+    
 
     /* ── RESPONSIVE ── */
     @media(max-width:768px){
@@ -137,20 +137,17 @@
     <div class="theme-float-label">Theme</div>
     <button class="theme-btn active" id="theme-default">🌿<br>Default</button>
     <button class="theme-btn" id="theme-retro">💻<br>Retro</button>
-    <button class="theme-btn" id="theme-gold">🏆<br>Gold</button>
   </div>
 
   <!-- ── NAV ── -->
   <nav>
     <a class="nav-logo" href="index.html">Sayed <span>Alawi</span></a>
-        <ul class="nav-links">
+            <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="blog.html">Blog</a></li>
       <li><a href="projects.html">Projects</a></li>
-      <li><a href="interests.html">Interests</a></li>
       <li><a href="gallery.html" class="active">Gallery</a></li>
-      <li><a href="travel.html">Travel</a></li>
       <li><a href="links.html">Links</a></li>
     </ul>
   </nav>
@@ -362,7 +359,7 @@
   <footer>
     <div class="footer-logo">Sayed Alawi</div>
     <p class="footer-note">© 2025 Sayed Alawi · Built with HTML, CSS & JavaScript</p>
-    <div class="footer-links"><a href="#">Privacy</a><a href="#">Accessibility</a></div>
+    <div class="footer-links"><a href="meta.html">Privacy</a><a href="#">Accessibility</a></div>
   </footer>
 
   <button class="scroll-top" id="scroll-top" aria-label="Scroll to top">↑</button>
@@ -434,7 +431,7 @@
     // ── THEME SWITCHER ──
     var themeBtns = document.querySelectorAll('.theme-btn');
     function setTheme(t) {
-      document.body.classList.remove('theme-retro','theme-gold');
+      document.body.classList.remove('theme-retro');
       if (t) document.body.classList.add(t);
       themeBtns.forEach(function(b) { b.classList.remove('active'); });
     }

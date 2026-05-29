@@ -71,7 +71,7 @@
     body.theme-retro .nav-logo,body.theme-retro .page-title,body.theme-retro .section-title{font-family:'VT323',monospace;}
     body.theme-retro .theme-btn{background:#111;color:#00ff41;}
     body.theme-retro .theme-btn.active{background:#00ff41;color:#0d0d0d;}
-    body.theme-gold{--green:#78350f;--green-mid:#92400e;--green-light:#d97706;--gold:#1a3a2a;--cream:#fffbeb;}
+    
     @media(max-width:768px){.page-hero{padding:4rem 1.5rem 3rem;}section{padding:3rem 1.5rem;}nav{padding:.75rem 1.25rem;}.nav-links{gap:.75rem;font-size:11px;}.contact-grid{grid-template-columns:1fr;}footer{padding:2rem 1.5rem;flex-direction:column;text-align:center;}.theme-float{display:none;}}
   </style>
 </head>
@@ -81,18 +81,15 @@
     <div class="theme-float-label">Theme</div>
     <button class="theme-btn active" id="theme-default">🌿<br>Default</button>
     <button class="theme-btn" id="theme-retro">💻<br>Retro</button>
-    <button class="theme-btn" id="theme-gold">🏆<br>Gold</button>
   </div>
   <nav>
     <a class="nav-logo" href="index.html">Sayed <span>Alawi</span></a>
-        <ul class="nav-links">
+            <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="blog.html">Blog</a></li>
       <li><a href="projects.html">Projects</a></li>
-      <li><a href="interests.html">Interests</a></li>
       <li><a href="gallery.html">Gallery</a></li>
-      <li><a href="travel.html">Travel</a></li>
       <li><a href="links.html" class="active">Links</a></li>
     </ul>
   </nav>
@@ -119,9 +116,9 @@
           <div class="link-icon">🐦</div>
           <div><div class="link-label">Twitter / X</div><div class="link-sub">@yourusername — add your handle</div></div>
         </a>
-        <a class="link-card placeholder" href="#">
+        <a class="link-card" href="https://www.linkedin.com/in/sayed-alawi-b77760295" target="_blank">
           <div class="link-icon">💼</div>
-          <div><div class="link-label">LinkedIn</div><div class="link-sub">Add your LinkedIn profile link</div></div>
+          <div><div class="link-label">LinkedIn — Sayed Alawi</div><div class="link-sub">Connect with me professionally</div></div>
         </a>
         <a class="link-card placeholder" href="#">
           <div class="link-icon">💻</div>
@@ -160,7 +157,7 @@
           </div>
           <div class="contact-item">
             <div class="contact-item-icon">📧</div>
-            <div><div class="contact-item-label">Email</div><div class="contact-item-value">Add your email here</div></div>
+            <div><div class="contact-item-label">Email</div><div class="contact-item-value"><a href="mailto:h.j.almusawi@gmail.com" style="color:var(--green);text-decoration:none;">h.j.almusawi@gmail.com</a></div></div>
           </div>
           <div class="contact-item">
             <div class="contact-item-icon">📞</div>
@@ -174,15 +171,14 @@
   <footer>
     <div class="footer-logo">Sayed Alawi</div>
     <p class="footer-note">© 2025 Sayed Alawi · Built with HTML, CSS & JavaScript</p>
-    <div class="footer-links"><a href="#">Privacy</a><a href="meta.html">Accessibility</a></div>
+    <div class="footer-links"><a href="meta.html">Privacy</a><a href="meta.html">Accessibility</a></div>
   </footer>
   <button class="scroll-top" id="scroll-top" aria-label="Scroll to top">↑</button>
   <script>
     var themeBtns=document.querySelectorAll('.theme-btn');
-    function setTheme(t){document.body.classList.remove('theme-retro','theme-gold');if(t)document.body.classList.add(t);themeBtns.forEach(function(b){b.classList.remove('active');});}
+    function setTheme(t){document.body.classList.remove('theme-retro');if(t)document.body.classList.add(t);themeBtns.forEach(function(b){b.classList.remove('active');});}
     document.getElementById('theme-default').addEventListener('click',function(){setTheme(null);this.classList.add('active');});
     document.getElementById('theme-retro').addEventListener('click',function(){setTheme('theme-retro');this.classList.add('active');});
-    document.getElementById('theme-gold').addEventListener('click',function(){setTheme('theme-gold');this.classList.add('active');});
     var scrollBtn=document.getElementById('scroll-top');
     window.addEventListener('scroll',function(){scrollBtn.classList.toggle('visible',window.scrollY>400);});
     scrollBtn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
