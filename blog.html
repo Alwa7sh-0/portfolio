@@ -362,24 +362,75 @@
     </div>
 
     <!-- ── BLOG POST LIST ── -->
-    <section id="posts" style="padding-top:3rem;padding-bottom:3rem;min-height:60vh;display:flex;align-items:center;justify-content:center;">
-      <div style="text-align:center;max-width:600px;margin:0 auto;">
-        <div style="font-size:4rem;margin-bottom:1.5rem;opacity:.6;">✦ ✦ ✦</div>
-        <h2 style="font-family:'Amiri',serif;font-size:clamp(2rem,4vw,3rem);color:var(--green);margin-bottom:1rem;line-height:1.2;">Something is being written.</h2>
-        <p style="font-family:'Amiri',serif;font-style:italic;font-size:1.1rem;color:var(--muted);line-height:1.8;margin-bottom:2rem;">Good writing takes time. The posts on this page are currently being crafted — stories, reflections, and ideas worth reading. Check back soon.</p>
-        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-          <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:1rem 1.5rem;font-size:13px;color:var(--muted);">📝 Reflections on life</div>
-          <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:1rem 1.5rem;font-size:13px;color:var(--muted);">🔐 Cyber security insights</div>
-          <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:1rem 1.5rem;font-size:13px;color:var(--muted);">🏀 Sport & mindset</div>
-          <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:1rem 1.5rem;font-size:13px;color:var(--muted);">🌙 Early morning thoughts</div>
+    <section id="posts" style="padding-top:3rem;padding-bottom:3rem;">
+      <div class="posts-list">
+
+        <!-- POST 1 — Favourite time of day -->
+        <div class="post-card" onclick="openPost('post-time')">
+          <div class="post-date-col">
+            <span class="post-month">May</span>
+            <span class="post-year">2025</span>
+          </div>
+          <div class="post-content">
+            <div class="post-category">Personal · Lifestyle</div>
+            <div class="post-title">Before the world wakes up — my favourite times of day</div>
+            <p class="post-excerpt">There are two moments in every day that belong only to me — before Fajr, when the world is completely silent, and midnight, when everyone else has given up. These are the hours I live for.</p>
+            <div class="post-meta-row">
+              <span class="post-read-time">5 min read</span>
+              <span class="post-audience">For: early risers & night owls</span>
+            </div>
+          </div>
         </div>
-        <div style="margin-top:2.5rem;padding:1.25rem 1.5rem;background:rgba(26,58,42,.04);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;text-align:left;">
-          <p style="font-family:'Amiri',serif;font-style:italic;font-size:1rem;color:var(--ink);">"Knowledge enlivens the soul."</p>
-          <span style="font-size:12px;color:var(--gold);font-weight:500;">— Ali ibn Abi Talib</span>
+
+        <!-- POST 2 — Morning routine -->
+        <div class="post-card" onclick="openPost('post-morning')">
+          <div class="post-date-col">
+            <span class="post-month">May</span>
+            <span class="post-year">2025</span>
+          </div>
+          <div class="post-content">
+            <div class="post-category">Personal · Routine</div>
+            <div class="post-title">My morning routine — how I build the day before the day builds me</div>
+            <p class="post-excerpt">Cardio. Food. Coffee and a book. Then work with Saleh Al Durazi playing in the background. It sounds simple — but the discipline behind it took years to build.</p>
+            <div class="post-meta-row">
+              <span class="post-read-time">4 min read</span>
+              <span class="post-audience">For: anyone building discipline</span>
+            </div>
+          </div>
         </div>
+
+        <!-- POST 3 — Favourite season -->
+        <div class="post-card" onclick="openPost('post-season')">
+          <div class="post-date-col">
+            <span class="post-month">Jun</span>
+            <span class="post-year">2025</span>
+          </div>
+          <div class="post-content">
+            <div class="post-category">Personal · Reflection</div>
+            <div class="post-title">Why I love summer — and what it does to me</div>
+            <p class="post-excerpt">Some people hide from the heat. I thrive in it. Summer in Bahrain is intense, relentless, and alive — and that energy matches something inside me that no other season reaches.</p>
+            <div class="post-meta-row">
+              <span class="post-read-time">4 min read</span>
+              <span class="post-audience">For: everyone</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- MORE COMING -->
+        <div style="padding:2rem 0;text-align:center;border-top:1px solid var(--border);margin-top:1rem;">
+          <p style="font-family:'Amiri',serif;font-style:italic;font-size:1.1rem;color:var(--muted);margin-bottom:.75rem;">More posts are on the way — check back soon.</p>
+          <div style="display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;">
+            <span style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:6px 14px;font-size:12px;color:var(--muted);">🔐 Cyber security</span>
+            <span style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:6px 14px;font-size:12px;color:var(--muted);">🏀 Sport & mindset</span>
+            <span style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:6px 14px;font-size:12px;color:var(--muted);">🎬 Movie reviews</span>
+            <span style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:6px 14px;font-size:12px;color:var(--muted);">💭 Interviews</span>
+          </div>
+        </div>
+
       </div>
     </section>
 
+    
     <!-- ============================================
          FULL BLOG POSTS — hidden until clicked
          ============================================ -->
