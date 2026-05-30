@@ -4,423 +4,136 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projects & Skills – Sayed Alawi</title>
-
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono&family=VT323&display=swap" rel="stylesheet" />
-
   <style>
-    :root {
-      --green:       #1a3a2a;
-      --green-mid:   #2d6a4f;
-      --green-light: #52b788;
-      --gold:        #c9a227;
-      --gold-light:  #f0c84a;
-      --cream:       #fafaf7;
-      --white:       #ffffff;
-      --ink:         #1a1a1a;
-      --muted:       #6b7280;
-      --border:      rgba(26,58,42,0.12);
-      --radius:      14px;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--cream);
-      color: var(--ink);
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-
-    .skip-link {
-      position: absolute; top: -60px; left: 1rem;
-      background: var(--green); color: var(--white);
-      padding: 0.5rem 1rem; border-radius: 6px;
-      text-decoration: none; font-size: 13px;
-      z-index: 9999; transition: top 0.2s;
-    }
-    .skip-link:focus { top: 1rem; }
-
-    /* ── NAV ── */
-    nav {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(250,250,247,0.92);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
-      display: flex; justify-content: space-between;
-      align-items: center; padding: 1rem 3rem;
-    }
-    .nav-logo {
-      font-family: 'Amiri', serif; font-size: 1.5rem;
-      font-weight: 700; color: var(--green); text-decoration: none;
-    }
-    .nav-logo span { color: var(--gold); }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a {
-      text-decoration: none; color: var(--muted);
-      font-size: 13px; font-weight: 500;
-      letter-spacing: 0.04em; transition: color 0.2s;
-      position: relative;
-    }
-    .nav-links a::after {
-      content: ''; position: absolute;
-      left: 0; bottom: -3px; width: 0; height: 1.5px;
-      background: var(--green-light); transition: width 0.25s;
-    }
-    .nav-links a:hover { color: var(--green); }
-    .nav-links a:hover::after { width: 100%; }
-    .nav-links a.active { color: var(--green); }
-    .nav-links a.active::after { width: 100%; }
-
-    /* ── FLOATING THEME SWITCHER ── */
-    .theme-float {
-      position: fixed; right: 0; top: 50%;
-      transform: translateY(-50%); z-index: 200;
-      display: flex; flex-direction: column;
-      border-radius: 12px 0 0 12px; overflow: hidden;
-      box-shadow: -4px 0 20px rgba(0,0,0,0.1);
-    }
-    .theme-float-label {
-      background: var(--green); color: var(--white);
-      font-size: 10px; font-weight: 600;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 8px 10px; writing-mode: vertical-rl;
-      text-orientation: mixed; transform: rotate(180deg);
-      height: 80px; display: flex;
-      align-items: center; justify-content: center;
-    }
-    .theme-btn {
-      background: var(--white); border: none;
-      border-top: 1px solid var(--border);
-      padding: 10px 12px; font-size: 11px; font-weight: 500;
-      color: var(--ink); cursor: pointer;
-      transition: background 0.2s, color 0.2s;
-      text-align: center; font-family: 'DM Sans', sans-serif;
-      min-width: 52px; line-height: 1.4;
-    }
-    .theme-btn:hover { background: var(--green); color: var(--white); }
-    .theme-btn.active { background: var(--green); color: var(--white); }
-
-    /* ── PAGE HERO ── */
-    .page-hero {
-      padding: 6rem 3rem 4rem;
-      border-bottom: 1px solid var(--border);
-      position: relative; overflow: hidden;
-    }
-    .page-hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse 60% 80% at 100% 50%, rgba(82,183,136,0.07) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .page-hero-inner { position: relative; z-index: 1; }
-    .page-eyebrow {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--green-light);
-      margin-bottom: 0.5rem;
-    }
-    .page-title {
-      font-family: 'Amiri', serif;
-      font-size: clamp(3rem, 7vw, 5rem);
-      font-weight: 700; color: var(--green);
-      line-height: 1; margin-bottom: 1rem;
-    }
-    .page-title span { color: var(--gold); }
-    .page-subtitle {
-      font-family: 'Amiri', serif;
-      font-size: 1.15rem; font-style: italic;
-      color: var(--muted); max-width: 50ch;
-    }
-
-    /* ── SECTIONS ── */
-    section { padding: 5rem 3rem; border-top: 1px solid var(--border); }
-    .section-label {
-      font-family: 'DM Mono', monospace; font-size: 11px;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--green-light); margin-bottom: 0.4rem;
-    }
-    .section-title {
-      font-family: 'Amiri', serif;
-      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-      font-weight: 700; color: var(--green); line-height: 1.1;
-    }
-    .divider { width: 40px; height: 2px; background: var(--gold); margin: 0.75rem 0 2rem; }
-
-    /* ── COMING SOON BADGE ── */
-    .coming-soon {
-      display: inline-block;
-      background: rgba(201,162,39,0.1);
-      border: 1px dashed var(--gold);
-      color: var(--gold);
-      font-size: 11px; padding: 3px 10px;
-      border-radius: 10px; margin-top: 0.5rem;
-    }
-
-    /* ── PROJECTS GRID ── */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.25rem;
-    }
-    .project-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      transition: box-shadow 0.2s, transform 0.2s;
-      position: relative; overflow: hidden;
-    }
-    .project-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0;
-      height: 3px; background: var(--green-light);
-    }
-    .project-card.placeholder {
-      border-style: dashed; opacity: 0.6;
-    }
-    .project-card.placeholder::before { background: var(--gold); }
-    .project-card:not(.placeholder):hover {
-      box-shadow: 0 8px 24px rgba(26,58,42,0.08);
-      transform: translateY(-3px);
-    }
-    .project-tag {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px; letter-spacing: 0.15em;
-      text-transform: uppercase; color: var(--green-light);
-      margin-bottom: 0.5rem;
-    }
-    .project-title {
-      font-family: 'Amiri', serif;
-      font-size: 1.15rem; font-weight: 700;
-      color: var(--green); margin-bottom: 0.4rem;
-    }
-    .project-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
-
-    /* ── SKILLS ── */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1rem;
-    }
-    .skill-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.25rem;
-      transition: box-shadow 0.2s, transform 0.2s;
-    }
-    .skill-card:hover {
-      box-shadow: 0 8px 24px rgba(26,58,42,0.08);
-      transform: translateY(-3px);
-    }
-    .skill-name {
-      font-weight: 600; font-size: 14px;
-      color: var(--green); margin-bottom: 0.5rem;
-      display: flex; justify-content: space-between;
-      align-items: center;
-    }
-    .skill-level {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px; color: var(--gold);
-      letter-spacing: 0.1em;
-    }
-    .skill-bar {
-      height: 4px; background: var(--border);
-      border-radius: 2px; overflow: hidden;
-    }
-    .skill-fill {
-      height: 100%; background: var(--green-light);
-      border-radius: 2px;
-      transition: width 1s ease;
-    }
-
-    /* ── CERTIFICATIONS ── */
-    .certs-list { display: flex; flex-direction: column; gap: 1rem; }
-    .cert-item {
-      display: flex; gap: 1.25rem; align-items: flex-start;
-      background: var(--white); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 1.25rem;
-      transition: box-shadow 0.2s, transform 0.2s;
-    }
-    .cert-item.placeholder { border-style: dashed; opacity: 0.6; }
-    .cert-item:not(.placeholder):hover {
-      box-shadow: 0 8px 24px rgba(26,58,42,0.08);
-      transform: translateY(-2px);
-    }
-    .cert-icon {
-      width: 44px; height: 44px; border-radius: 10px;
-      background: rgba(82,183,136,0.1);
-      display: flex; align-items: center;
-      justify-content: center; font-size: 1.4rem;
-      flex-shrink: 0;
-    }
-    .cert-name { font-weight: 600; font-size: 14px; color: var(--green); margin-bottom: 2px; }
-    .cert-issuer { font-size: 12px; color: var(--muted); }
-    .cert-date {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px; color: var(--gold); margin-top: 4px;
-    }
-
-    /* ── TIMELINE ── */
-    .timeline { position: relative; padding-left: 2rem; margin-top: 1rem; }
-    .timeline::before {
-      content: ''; position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 1.5px; background: var(--border);
-    }
-    .timeline-item {
-      position: relative; margin-bottom: 2.5rem; padding-left: 1.5rem;
-    }
-    .timeline-item::before {
-      content: ''; position: absolute;
-      left: -2.45rem; top: 6px;
-      width: 10px; height: 10px;
-      border-radius: 50%; background: var(--gold);
-      border: 2px solid var(--cream);
-    }
-    .timeline-item.placeholder::before { background: var(--border); }
-    .timeline-year {
-      font-family: 'Amiri', serif;
-      font-size: 1rem; font-weight: 700;
-      color: var(--gold); letter-spacing: 0.06em;
-    }
-    .timeline-event {
-      font-size: 15px; font-weight: 600;
-      color: var(--green); margin: 2px 0;
-    }
-    .timeline-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
-
-    /* ── IDEAS ── */
-    .ideas-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1rem;
-    }
-    .idea-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 1.5rem;
-      transition: box-shadow 0.2s, transform 0.2s;
-    }
-    .idea-card.placeholder { border-style: dashed; opacity: 0.6; }
-    .idea-card:not(.placeholder):hover {
-      box-shadow: 0 8px 24px rgba(26,58,42,0.08);
-      transform: translateY(-3px);
-    }
-    .idea-num {
-      font-family: 'Amiri', serif;
-      font-size: 2rem; font-weight: 700;
-      color: rgba(201,162,39,0.25); line-height: 1;
-      margin-bottom: 0.5rem;
-    }
-    .idea-title { font-weight: 600; font-size: 15px; color: var(--green); margin-bottom: 0.4rem; }
-    .idea-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
-
-    /* ── RESUME ── */
-    .resume-wrap { max-width: 680px; }
-    .resume-section { margin-bottom: 2.5rem; }
-    .resume-section h4 {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px; letter-spacing: 0.15em;
-      text-transform: uppercase; color: var(--green-light);
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 0.4rem; margin-bottom: 1rem;
-    }
-    .resume-row {
-      display: flex; justify-content: space-between;
-      align-items: baseline; margin-bottom: 0.25rem;
-    }
-    .resume-org { font-weight: 600; font-size: 15px; color: var(--green); }
-    .resume-years { font-size: 12px; color: var(--muted); font-family: 'DM Mono', monospace; }
-    .resume-role { font-size: 13px; color: var(--muted); margin-bottom: 1rem; }
-    .btn-gold {
-      display: inline-block;
-      background: var(--gold); color: var(--white);
-      border: none; padding: 0.75rem 1.75rem;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 14px; font-weight: 500;
-      border-radius: 8px; cursor: pointer;
-      text-decoration: none;
-      transition: background 0.2s, transform 0.15s;
-      margin-top: 1rem;
-    }
-    .btn-gold:hover { background: #b8911f; transform: translateY(-2px); }
-
-    /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 2.5rem 3rem;
-      display: flex; justify-content: space-between;
-      align-items: center; flex-wrap: wrap; gap: 1rem;
-    }
-    .footer-logo { font-family: 'Amiri', serif; font-size: 1.2rem; font-weight: 700; color: var(--green); }
-    .footer-note { font-size: 12px; color: var(--muted); }
-    .footer-links a { font-size: 12px; color: var(--muted); text-decoration: none; margin-left: 1rem; }
-    .footer-links a:hover { color: var(--green); }
-
-    /* ── SCROLL TO TOP ── */
-    .scroll-top {
-      position: fixed; bottom: 2rem; right: 4rem;
-      width: 44px; height: 44px; border-radius: 50%;
-      background: var(--green); color: var(--white);
-      border: none; font-size: 1.1rem; cursor: pointer;
-      display: none; align-items: center; justify-content: center;
-      z-index: 200; box-shadow: 0 4px 16px rgba(26,58,42,0.3);
-      transition: transform 0.2s;
-    }
-    .scroll-top:hover { transform: scale(1.1); }
-    .scroll-top.visible { display: flex; }
-
-    /* ── RETRO THEME ── */
-    body.theme-retro {
-      --green: #00ff41; --green-mid: #00cc33;
-      --green-light: #00ff41; --gold: #00ff41;
-      --cream: #0d0d0d; --white: #111111;
-      --ink: #00ff41; --muted: #00aa22;
-      --border: rgba(0,255,65,0.2);
-      font-family: 'VT323', monospace;
-    }
-    body.theme-retro nav { background: rgba(13,13,13,0.95); }
-    body.theme-retro .nav-logo,
-    body.theme-retro .page-title,
-    body.theme-retro .section-title { font-family: 'VT323', monospace; }
-    body.theme-retro .theme-btn { background: #111; color: #00ff41; }
-    body.theme-retro .theme-btn.active { background: #00ff41; color: #0d0d0d; }
-
-    /* ── GOLD THEME ── */
-    body.theme-gold {
-      --green: #78350f; --green-mid: #92400e;
-      --green-light: #d97706; --gold: #1a3a2a;
-      --cream: #fffbeb;
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      .page-hero { padding: 4rem 1.5rem 3rem; }
-      section { padding: 3rem 1.5rem; }
-      nav { padding: 0.75rem 1.25rem; }
-      .nav-links { gap: 1rem; font-size: 12px; }
-      footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
-      .theme-float { display: none; }
-    }
+    :root{--green:#1a3a2a;--green-mid:#2d6a4f;--green-light:#52b788;--gold:#c9a227;--cream:#fafaf7;--white:#ffffff;--ink:#1a1a1a;--muted:#6b7280;--border:rgba(26,58,42,0.12);--radius:14px;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);line-height:1.7;overflow-x:hidden;}
+    .skip-link{position:absolute;top:-60px;left:1rem;background:var(--green);color:var(--white);padding:.5rem 1rem;border-radius:6px;text-decoration:none;font-size:13px;z-index:9999;transition:top .2s;}
+    .skip-link:focus{top:1rem;}
+    nav{position:sticky;top:0;z-index:100;background:rgba(250,250,247,0.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;padding:1rem 3rem;}
+    .nav-logo{font-family:'Amiri',serif;font-size:1.5rem;font-weight:700;color:var(--green);text-decoration:none;}
+    .nav-logo span{color:var(--gold);}
+    .nav-links{display:flex;gap:2rem;list-style:none;}
+    .nav-links a{text-decoration:none;color:var(--muted);font-size:13px;font-weight:500;letter-spacing:.04em;transition:color .2s;position:relative;}
+    .nav-links a::after{content:'';position:absolute;left:0;bottom:-3px;width:0;height:1.5px;background:var(--green-light);transition:width .25s;}
+    .nav-links a:hover{color:var(--green);}
+    .nav-links a:hover::after,.nav-links a.active::after{width:100%;}
+    .nav-links a.active{color:var(--green);}
+    .theme-float{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:200;display:flex;flex-direction:column;border-radius:12px 0 0 12px;overflow:hidden;box-shadow:-4px 0 20px rgba(0,0,0,.1);}
+    .theme-float-label{background:var(--green);color:var(--white);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:8px 10px;writing-mode:vertical-rl;transform:rotate(180deg);height:80px;display:flex;align-items:center;justify-content:center;}
+    .theme-btn{background:var(--white);border:none;border-top:1px solid var(--border);padding:10px 12px;font-size:11px;font-weight:500;color:var(--ink);cursor:pointer;transition:background .2s,color .2s;text-align:center;font-family:'DM Sans',sans-serif;min-width:52px;line-height:1.4;}
+    .theme-btn:hover,.theme-btn.active{background:var(--green);color:var(--white);}
+    .page-hero{padding:6rem 3rem 4rem;border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
+    .page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(82,183,136,.07) 0%,transparent 70%);pointer-events:none;}
+    .page-hero-inner{position:relative;z-index:1;}
+    .page-eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--green-light);margin-bottom:.5rem;}
+    .page-title{font-family:'Amiri',serif;font-size:clamp(3rem,7vw,5rem);font-weight:700;color:var(--green);line-height:1;margin-bottom:1rem;}
+    .page-title span{color:var(--gold);}
+    .page-subtitle{font-family:'Amiri',serif;font-size:1.15rem;font-style:italic;color:var(--muted);max-width:55ch;margin-bottom:1.5rem;}
+    .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;}
+    section{padding:5rem 3rem;border-top:1px solid var(--border);}
+    .section-label{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--green-light);margin-bottom:.4rem;}
+    .section-title{font-family:'Amiri',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;color:var(--green);line-height:1.1;}
+    .divider{width:40px;height:2px;background:var(--gold);margin:.75rem 0 2rem;}
+    /* STATS ROW */
+    .stats-row{display:flex;gap:2rem;flex-wrap:wrap;margin-bottom:3rem;}
+    .stat{text-align:center;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem 2rem;}
+    .stat-num{font-family:'Amiri',serif;font-size:2.5rem;font-weight:700;color:var(--gold);display:block;line-height:1;}
+    .stat-label{font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;font-family:'DM Mono',monospace;}
+    /* PROJECT CARDS */
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.25rem;}
+    .project-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;transition:box-shadow .2s,transform .2s;position:relative;overflow:hidden;}
+    .project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+    .project-card.year3::before{background:var(--gold);}
+    .project-card.year2::before{background:var(--green-light);}
+    .project-card.year1::before{background:var(--green-mid);}
+    .project-card.personal::before{background:linear-gradient(90deg,var(--gold),var(--green-light));}
+    .project-card:hover{box-shadow:0 12px 32px rgba(26,58,42,.1);transform:translateY(-4px);}
+    .project-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.75rem;gap:1rem;}
+    .project-tag{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--green-light);margin-bottom:.3rem;}
+    .project-title{font-family:'Amiri',serif;font-size:1.1rem;font-weight:700;color:var(--green);line-height:1.3;}
+    .project-year{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);white-space:nowrap;padding:3px 8px;background:rgba(26,58,42,.06);border-radius:6px;}
+    .project-desc{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:1rem;}
+    .project-highlight{background:rgba(201,162,39,.08);border-left:2px solid var(--gold);padding:.5rem .75rem;border-radius:0 6px 6px 0;font-size:12px;color:var(--ink);margin-bottom:1rem;font-weight:500;}
+    .tag-row{display:flex;flex-wrap:wrap;gap:.4rem;}
+    .skill-tag{background:rgba(26,58,42,.07);color:var(--green);font-size:11px;padding:3px 9px;border-radius:6px;font-weight:500;}
+    /* SKILLS */
+    .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;}
+    .skill-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;transition:box-shadow .2s,transform .2s;}
+    .skill-card:hover{box-shadow:0 8px 24px rgba(26,58,42,.08);transform:translateY(-3px);}
+    .skill-name{font-weight:600;font-size:14px;color:var(--green);margin-bottom:.5rem;display:flex;justify-content:space-between;align-items:center;}
+    .skill-level{font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:.08em;}
+    .skill-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden;}
+    .skill-fill{height:100%;background:var(--green-light);border-radius:2px;}
+    /* EXPERIENCE */
+    .experience-list{display:flex;flex-direction:column;gap:1.5rem;}
+    .exp-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;transition:box-shadow .2s,transform .2s;}
+    .exp-card:hover{box-shadow:0 8px 24px rgba(26,58,42,.08);transform:translateY(-3px);}
+    .exp-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.75rem;flex-wrap:wrap;gap:.5rem;}
+    .exp-title{font-family:'Amiri',serif;font-size:1.1rem;font-weight:700;color:var(--green);}
+    .exp-company{font-size:13px;color:var(--gold);font-weight:500;margin-bottom:.25rem;}
+    .exp-date{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);background:rgba(26,58,42,.06);padding:3px 10px;border-radius:6px;}
+    .exp-bullets{list-style:none;display:flex;flex-direction:column;gap:.4rem;}
+    .exp-bullets li{font-size:13px;color:var(--muted);padding-left:1rem;position:relative;line-height:1.6;}
+    .exp-bullets li::before{content:'→';position:absolute;left:0;color:var(--green-light);font-size:11px;}
+    /* CERTIFICATIONS */
+    .certs-list{display:flex;flex-direction:column;gap:1rem;}
+    .cert-item{display:flex;gap:1.25rem;align-items:flex-start;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;transition:box-shadow .2s;}
+    .cert-item:hover{box-shadow:0 8px 24px rgba(26,58,42,.08);}
+    .cert-item.placeholder{border-style:dashed;opacity:.5;}
+    .cert-icon{width:44px;height:44px;border-radius:10px;background:rgba(82,183,136,.1);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;}
+    .cert-name{font-weight:600;font-size:14px;color:var(--green);margin-bottom:2px;}
+    .cert-issuer{font-size:12px;color:var(--muted);}
+    .cert-date{font-family:'DM Mono',monospace;font-size:11px;color:var(--gold);margin-top:4px;}
+    /* TIMELINE */
+    .timeline{position:relative;padding-left:2rem;margin-top:1rem;}
+    .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1.5px;background:var(--border);}
+    .timeline-item{position:relative;margin-bottom:2.5rem;padding-left:1.5rem;}
+    .timeline-item::before{content:'';position:absolute;left:-2.45rem;top:6px;width:10px;height:10px;border-radius:50%;background:var(--gold);border:2px solid var(--cream);}
+    .timeline-item.learning::before{background:var(--green-light);}
+    .timeline-year{font-family:'Amiri',serif;font-size:1rem;font-weight:700;color:var(--gold);letter-spacing:.06em;}
+    .timeline-event{font-size:15px;font-weight:600;color:var(--green);margin:2px 0;}
+    .timeline-desc{font-size:13px;color:var(--muted);line-height:1.6;}
+    /* RESUME */
+    .resume-wrap{max-width:680px;}
+    .resume-section{margin-bottom:2.5rem;}
+    .resume-section h4{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--green-light);border-bottom:1px solid var(--border);padding-bottom:.4rem;margin-bottom:1rem;}
+    .resume-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.25rem;flex-wrap:wrap;gap:.5rem;}
+    .resume-org{font-weight:600;font-size:15px;color:var(--green);}
+    .resume-years{font-size:12px;color:var(--muted);font-family:'DM Mono',monospace;}
+    .resume-role{font-size:13px;color:var(--muted);margin-bottom:1rem;}
+    .btn-primary{background:var(--green);color:var(--white);border:none;padding:.75rem 1.75rem;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;border-radius:8px;cursor:pointer;text-decoration:none;display:inline-block;transition:background .2s,transform .15s;}
+    .btn-primary:hover{background:var(--green-mid);transform:translateY(-2px);}
+    .btn-gold{background:var(--gold);color:var(--white);border:none;padding:.75rem 1.75rem;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;border-radius:8px;cursor:pointer;text-decoration:none;display:inline-block;transition:background .2s,transform .15s;}
+    .btn-gold:hover{background:#b8911f;transform:translateY(-2px);}
+    footer{border-top:1px solid var(--border);padding:2.5rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+    .footer-logo{font-family:'Amiri',serif;font-size:1.2rem;font-weight:700;color:var(--green);}
+    .footer-note{font-size:12px;color:var(--muted);}
+    .footer-links a{font-size:12px;color:var(--muted);text-decoration:none;margin-left:1rem;}
+    .footer-links a:hover{color:var(--green);}
+    .scroll-top{position:fixed;bottom:2rem;right:4rem;width:44px;height:44px;border-radius:50%;background:var(--green);color:var(--white);border:none;font-size:1.1rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:200;box-shadow:0 4px 16px rgba(26,58,42,.3);transition:transform .2s;}
+    .scroll-top:hover{transform:scale(1.1);}
+    .scroll-top.visible{display:flex;}
+    body.theme-retro{--green:#00ff41;--green-mid:#00cc33;--green-light:#00ff41;--gold:#00ff41;--cream:#0d0d0d;--white:#111111;--ink:#00ff41;--muted:#00aa22;--border:rgba(0,255,65,.2);font-family:'VT323',monospace;}
+    body.theme-retro nav{background:rgba(13,13,13,.95);}
+    body.theme-retro .nav-logo,body.theme-retro .page-title,body.theme-retro .section-title,body.theme-retro .project-title,body.theme-retro .exp-title{font-family:'VT323',monospace;}
+    body.theme-retro .theme-btn{background:#111;color:#00ff41;}
+    body.theme-retro .theme-btn.active{background:#00ff41;color:#0d0d0d;}
+    @media(max-width:768px){.page-hero{padding:4rem 1.5rem 3rem;}section{padding:3rem 1.5rem;}nav{padding:.75rem 1.25rem;}.nav-links{gap:1rem;font-size:12px;}footer{padding:2rem 1.5rem;flex-direction:column;text-align:center;}.theme-float{display:none;}.stats-row{gap:1rem;}.stat{padding:1rem 1.25rem;}}
   </style>
 </head>
 <body>
-
   <a class="skip-link" href="#main">Skip to main content</a>
-
-  <!-- ── FLOATING THEME SWITCHER ── -->
   <div class="theme-float">
     <div class="theme-float-label">Theme</div>
     <button class="theme-btn active" id="theme-default">🌿<br>Default</button>
     <button class="theme-btn" id="theme-retro">💻<br>Retro</button>
   </div>
-
-  <!-- ── NAVIGATION ── -->
   <nav>
     <a class="nav-logo" href="index.html">Sayed <span>Alawi</span></a>
-            <ul class="nav-links">
+    <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="blog.html">Blog</a></li>
@@ -429,342 +142,487 @@
       <li><a href="links.html">Links</a></li>
     </ul>
   </nav>
-
   <main id="main">
-
-    <!-- ── PAGE HERO ── -->
     <div class="page-hero">
       <div class="page-hero-inner">
-        <p class="page-eyebrow">What I build</p>
-        <h1 class="page-title">Projects <span>&</span> Skills</h1>
-        <p class="page-subtitle">
-          Things I have built, skills I have developed, and ideas I am working towards.
-        </p>
+        <p class="page-eyebrow">What I build & what I know</p>
+        <h1 class="page-title">Projects <span>& Skills</span></h1>
+        <p class="page-subtitle">A final-year Cyber Security & Forensics student with hands-on experience in penetration testing, digital forensics, secure systems, and real-world client delivery. Every project here is real work, not hypothetical.</p>
+        <div class="hero-actions">
+          <a href="Sayed_Alawi_CV.docx" download class="btn-gold">⬇️ Download CV</a>
+          <a href="#resume" class="btn-primary">View Résumé</a>
+          <a href="https://www.linkedin.com/in/sayed-alawi-b77760295" target="_blank" class="btn-primary">LinkedIn →</a>
+        </div>
       </div>
     </div>
 
+    <!-- STATS -->
+    <section id="stats" style="padding-top:3rem;padding-bottom:2rem;">
+      <div class="stats-row">
+        <div class="stat"><span class="stat-num">10+</span><span class="stat-label">Projects Completed</span></div>
+        <div class="stat"><span class="stat-num">36</span><span class="stat-label">Research Runs</span></div>
+        <div class="stat"><span class="stat-num">39%</span><span class="stat-label">Workload Reduction</span></div>
+        <div class="stat"><span class="stat-num">40%</span><span class="stat-label">Fewer Command Errors</span></div>
+        <div class="stat"><span class="stat-num">3</span><span class="stat-label">Years of Study</span></div>
+        <div class="stat"><span class="stat-num">6</span><span class="stat-label">Years Work Experience</span></div>
+      </div>
+    </section>
 
-    <!-- ── PROJECTS ── -->
-    <section id="projects">
-      <p class="section-label">What I've built</p>
-      <h2 class="section-title">Projects</h2>
+    <!-- YEAR 3 PROJECTS -->
+    <section id="projects-y3">
+      <p class="section-label">2025 – 2026</p>
+      <h2 class="section-title">Year 3 Projects</h2>
       <div class="divider"></div>
       <div class="projects-grid">
 
-        <!-- Placeholder 1 -->
-        <div class="project-card placeholder">
-          <div class="project-tag">Project Type</div>
-          <div class="project-title">Project Name</div>
-          <p class="project-desc">Describe what this project is, what you built, and why you built it.</p>
-          <span class="coming-soon">✏️ Fill this in</span>
+        <div class="project-card year3">
+          <div class="project-header">
+            <div>
+              <div class="project-tag">Dissertation · AI & Pentesting · Research</div>
+              <div class="project-title">AI-Assisted Security Assessment Research</div>
+            </div>
+            <span class="project-year">2025–2026</span>
+          </div>
+          <p class="project-desc">Designed and executed a controlled empirical study evaluating Google's Gemini CLI as an AI command-line assistant against manual security workflows. Completed 36 structured runs using industry-standard tools on Kali Linux against a Metasploitable 3 target. Measured five performance metrics: task completion time, command errors, accuracy, perceived workload (NASA-TLX), and AI refusal rate.</p>
+          <div class="project-highlight">✦ 39% reduction in cognitive workload · 40% fewer command errors</div>
+          <div class="tag-row">
+            <span class="skill-tag">Kali Linux</span><span class="skill-tag">Gemini CLI</span><span class="skill-tag">NASA-TLX</span><span class="skill-tag">Metasploitable 3</span><span class="skill-tag">Research</span>
+          </div>
         </div>
 
-        <!-- Placeholder 2 -->
-        <div class="project-card placeholder">
-          <div class="project-tag">Project Type</div>
-          <div class="project-title">Project Name</div>
-          <p class="project-desc">Describe what this project is, what you built, and why you built it.</p>
-          <span class="coming-soon">✏️ Fill this in</span>
+        <div class="project-card year3">
+          <div class="project-header">
+            <div>
+              <div class="project-tag">Forensics · Blue Team</div>
+              <div class="project-title">Mobile & Network Forensics Investigation</div>
+            </div>
+            <span class="project-year">2025–2026</span>
+          </div>
+          <p class="project-desc">Conducted a thorough digital forensics investigation into a simulated criminal case involving evidence from three seized mobile devices. Used EnCase to analyse artefacts, recover deleted data, and produce a structured Expert Witness Report suitable for court presentation. Also performed network forensics analysis of a malware-infected packet capture file.</p>
+          <div class="tag-row">
+            <span class="skill-tag">EnCase</span><span class="skill-tag">Mobile Forensics</span><span class="skill-tag">Network Forensics</span><span class="skill-tag">Expert Witness</span>
+          </div>
         </div>
 
-        <!-- Placeholder 3 -->
-        <div class="project-card placeholder">
-          <div class="project-tag">Project Type</div>
-          <div class="project-title">Project Name</div>
-          <p class="project-desc">Describe what this project is, what you built, and why you built it.</p>
-          <span class="coming-soon">✏️ Fill this in</span>
+        <div class="project-card year3">
+          <div class="project-header">
+            <div>
+              <div class="project-tag">Forensics · Communication · Legal</div>
+              <div class="project-title">Expert Witness Presentation</div>
+            </div>
+            <span class="project-year">2025–2026</span>
+          </div>
+          <p class="project-desc">Delivered a confident 20-minute individual Expert Witness presentation communicating complex forensics findings to a non-technical legal audience — covering the complete forensics investigation process from crime scene to courtroom.</p>
+          <div class="project-highlight">✦ Commended for clarity, confidence, and professional delivery</div>
+          <div class="tag-row">
+            <span class="skill-tag">Expert Witness</span><span class="skill-tag">Presentation</span><span class="skill-tag">Legal Communication</span>
+          </div>
         </div>
 
-        <!-- This website — already real! -->
-        <div class="project-card">
-          <div class="project-tag">Website</div>
-          <div class="project-title">This Personal Website</div>
-          <p class="project-desc">Built from scratch using HTML, CSS and JavaScript. Designed and written together with Claude, committed to GitHub at every step.</p>
+        <div class="project-card year3">
+          <div class="project-header">
+            <div>
+              <div class="project-tag">Pentesting · Offensive Security</div>
+              <div class="project-title">HackTheBox Penetration Testing</div>
+            </div>
+            <span class="project-year">2025–2026</span>
+          </div>
+          <p class="project-desc">Performed a comprehensive penetration test on a HackTheBox machine following industry-standard methodology. Applied strong problem-solving skills throughout reconnaissance, enumeration, vulnerability exploitation, privilege escalation, and remediation. Produced a professional report with clear recommendations for a non-technical audience.</p>
+          <div class="tag-row">
+            <span class="skill-tag">HackTheBox</span><span class="skill-tag">Metasploit</span><span class="skill-tag">Enumeration</span><span class="skill-tag">Privilege Escalation</span><span class="skill-tag">Report Writing</span>
+          </div>
+        </div>
+
+        <div class="project-card year3">
+          <div class="project-header">
+            <div>
+              <div class="project-tag">GRC · Compliance · Management</div>
+              <div class="project-title">ISMS Risk Assessment</div>
+            </div>
+            <span class="project-year">2025–2026</span>
+          </div>
+          <p class="project-desc">Independently developed a rigorous, standards-based Information Security Management System for a multinational insurance company. Produced a comprehensive risk register, asset register, and ISO 27001-aligned security recommendations tailored to a complex business environment.</p>
+          <div class="tag-row">
+            <span class="skill-tag">ISO 27001</span><span class="skill-tag">Risk Assessment</span><span class="skill-tag">GRC</span><span class="skill-tag">Compliance</span>
+          </div>
         </div>
 
       </div>
     </section>
 
+    <!-- YEAR 2 PROJECTS -->
+    <section id="projects-y2">
+      <p class="section-label">2024 – 2025</p>
+      <h2 class="section-title">Year 2 Projects</h2>
+      <div class="divider"></div>
+      <div class="projects-grid">
 
-    <!-- ── SKILLS ── -->
+        <div class="project-card year2">
+          <div class="project-header">
+            <div>
+              <div class="project-tag">Forensics · Legal · Blue Team</div>
+              <div class="project-title">DFIR — Forensics Investigation</div>
+            </div>
+            <span class="project-year">2024–2025</span>
+          </div>
+          <p class="project-desc">Conducted a thorough individual digital forensics investigation following strict legal and ethical evidence-gathering procedures. Applied industry-standard tools to investigate a simulated security attack. Produced a formal forensics report formatted for legal experts.</p>
+          <div class="tag-row">
+            <span class="skill-tag">DFIR</span><span class="skill-tag">Evidence Handling</span><span class="skill-tag">Forensics Tools</span><span class="skill-tag">Legal Reporting</span>
+          </div>
+        </div>
+
+        <div class="project-card year2">
+          <div class="project-header">
+            <div>
+              <div class="project-tag">Forensics · Blue Team · SOC</div>
+              <div class="project-title">Network Intrusion Detection</div>
+            </div>
+            <span class="project-year">2024–2025</span>
+          </div>
+          <p class="project-desc">Investigated suspicious network traffic captured across multiple sensors for a simulated managed security services provider. Used Security Onion to examine malware-infected packet capture files, identify attack patterns, declare incidents, and produce a comprehensive DFIR report.</p>
+          <div class="tag-row">
+            <span class="skill-tag">Security Onion</span><span class="skill-tag">Wireshark</span><span class="skill-tag">PCAP Analysis</span><span class="skill-tag">SOC</span><span class="skill-tag">Incident Response</span>
+          </div>
+        </div>
+
+        <div class="project-card year2">
+          <div class="project-header">
+            <div>
+              <div class="project-tag">Networking · Development · Security Engineering</div>
+              <div class="project-title">Secure Reporting System</div>
+            </div>
+            <span class="project-year">2024–2025</span>
+          </div>
+          <p class="project-desc">Designed and built a resilient Python client-server reporting system using hybrid encryption (AES-256 and RSA-2048) with SHA-512 integrity verification. Configured a fault-tolerant network with OSPF dynamic routing, VLAN segmentation, and access control lists. Validated security through penetration testing against MitM, DoS, and unauthorised access.</p>
+          <div class="project-highlight">✦ AES-256 · RSA-2048 · SHA-512 · OSPF · VLAN</div>
+          <div class="tag-row">
+            <span class="skill-tag">Python</span><span class="skill-tag">AES-256</span><span class="skill-tag">RSA-2048</span><span class="skill-tag">OSPF</span><span class="skill-tag">Penetration Testing</span>
+          </div>
+        </div>
+
+        <div class="project-card year2">
+          <div class="project-header">
+            <div>
+              <div class="project-tag">Client Work · Professional Skills</div>
+              <div class="project-title">CyberFirst Client Project — GCHQ Initiative</div>
+            </div>
+            <span class="project-year">2024–2025</span>
+          </div>
+          <p class="project-desc">Delivered a real-world project for CyberFirst, a UK government cybersecurity initiative backed by GCHQ. Independently managed client communication, agreed requirements, and produced a high-quality deliverable after group members withdrew — demonstrating leadership and professionalism under pressure.</p>
+          <div class="project-highlight">✦ Real client · GCHQ-backed initiative · Solo delivery</div>
+          <div class="tag-row">
+            <span class="skill-tag">Client Management</span><span class="skill-tag">Leadership</span><span class="skill-tag">GCHQ</span><span class="skill-tag">Professional Delivery</span>
+          </div>
+        </div>
+
+        <div class="project-card year2">
+          <div class="project-header">
+            <div>
+              <div class="project-tag">Database · Cloud · SQL</div>
+              <div class="project-title">Sheffield Cycles — Database System</div>
+            </div>
+            <span class="project-year">2024–2025</span>
+          </div>
+          <p class="project-desc">Designed, developed, and secured a relational database for a simulated cycling business using Microsoft SQL Server. Implemented comprehensive security controls, wrote SQL and T-SQL queries, deployed to Microsoft Azure, and used Docker for containerisation.</p>
+          <div class="tag-row">
+            <span class="skill-tag">SQL Server</span><span class="skill-tag">Azure</span><span class="skill-tag">Docker</span><span class="skill-tag">T-SQL</span><span class="skill-tag">Database Security</span>
+          </div>
+        </div>
+
+        <div class="project-card year2">
+          <div class="project-header">
+            <div>
+              <div class="project-tag">Networking · Sysadmin</div>
+              <div class="project-title">Systems Administration — Linux & Windows</div>
+            </div>
+            <span class="project-year">2024–2025</span>
+          </div>
+          <p class="project-desc">Implemented and managed network and system services for a simulated SME using Linux and Windows Server in a virtualised environment. Configured DNS, DHCP, Active Directory, and group policies.</p>
+          <div class="tag-row">
+            <span class="skill-tag">Linux</span><span class="skill-tag">Windows Server</span><span class="skill-tag">Active Directory</span><span class="skill-tag">DNS</span><span class="skill-tag">DHCP</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- YEAR 1 PROJECTS -->
+    <section id="projects-y1">
+      <p class="section-label">2023 – 2024</p>
+      <h2 class="section-title">Year 1 Projects</h2>
+      <div class="divider"></div>
+      <div class="projects-grid">
+
+        <div class="project-card year1">
+          <div class="project-header">
+            <div>
+              <div class="project-tag">Cyber Security · Cryptography</div>
+              <div class="project-title">Security Analysis & Cryptography</div>
+            </div>
+            <span class="project-year">2023–2024</span>
+          </div>
+          <p class="project-desc">Covered core concepts of data confidentiality, integrity, and availability. Evaluated and applied cryptographic methods including symmetric and asymmetric encryption, and documented fundamental cybersecurity principles and threat mitigation techniques.</p>
+          <div class="tag-row">
+            <span class="skill-tag">Cryptography</span><span class="skill-tag">CIA Triad</span><span class="skill-tag">Threat Mitigation</span>
+          </div>
+        </div>
+
+        <div class="project-card year1">
+          <div class="project-header">
+            <div>
+              <div class="project-tag">Python · Development</div>
+              <div class="project-title">Module & Student Management System</div>
+            </div>
+            <span class="project-year">2023–2024</span>
+          </div>
+          <p class="project-desc">Designed and built a console-based management system in Python with user authentication, account lockout, role-based access control, Vigenere Cipher password encryption, and unit testing. Also conducted Big-O algorithm complexity analysis.</p>
+          <div class="tag-row">
+            <span class="skill-tag">Python</span><span class="skill-tag">RBAC</span><span class="skill-tag">Vigenere Cipher</span><span class="skill-tag">Unit Testing</span><span class="skill-tag">Big-O</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PERSONAL PROJECTS -->
+    <section id="personal">
+      <p class="section-label">Personal</p>
+      <h2 class="section-title">Personal Projects</h2>
+      <div class="divider"></div>
+      <div class="projects-grid">
+
+        <div class="project-card personal">
+          <div class="project-header">
+            <div>
+              <div class="project-tag">Python · Automation · Finance</div>
+              <div class="project-title">Algorithmic Trading Agent</div>
+            </div>
+            <span class="project-year">2026 – Present</span>
+          </div>
+          <p class="project-desc">Currently developing an automated trading agent in Python that proactively scans markets for trading opportunities in real time. The system notifies the user via call when additional funds are required — combining intelligent automation with responsible human oversight.</p>
+          <div class="project-highlight">✦ Self-directed · Shows initiative, Python skills, and real-world problem solving</div>
+          <div class="tag-row">
+            <span class="skill-tag">Python</span><span class="skill-tag">Automation</span><span class="skill-tag">Finance</span><span class="skill-tag">API Integration</span>
+          </div>
+        </div>
+
+        <div class="project-card personal">
+          <div class="project-header">
+            <div>
+              <div class="project-tag">HTML · CSS · JavaScript</div>
+              <div class="project-title">This Personal Website</div>
+            </div>
+            <span class="project-year">2025 – Present</span>
+          </div>
+          <p class="project-desc">Built from scratch using pure HTML, CSS, and JavaScript — no frameworks. Designed with a recruiter-first mindset, version controlled with Git, and deployed on GitHub Pages. Every section written and iterated collaboratively.</p>
+          <div class="tag-row">
+            <span class="skill-tag">HTML</span><span class="skill-tag">CSS</span><span class="skill-tag">JavaScript</span><span class="skill-tag">Git</span><span class="skill-tag">GitHub Pages</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SKILLS -->
     <section id="skills">
-      <p class="section-label">What I can do</p>
+      <p class="section-label">Technical proficiency</p>
       <h2 class="section-title">Skills</h2>
       <div class="divider"></div>
       <div class="skills-grid">
+        <div class="skill-card"><div class="skill-name">Kali Linux / Metasploit<span class="skill-level">Advanced</span></div><div class="skill-bar"><div class="skill-fill" style="width:85%;"></div></div></div>
+        <div class="skill-card"><div class="skill-name">Digital Forensics (EnCase)<span class="skill-level">Advanced</span></div><div class="skill-bar"><div class="skill-fill" style="width:85%;"></div></div></div>
+        <div class="skill-card"><div class="skill-name">Wireshark / PCAP Analysis<span class="skill-level">Advanced</span></div><div class="skill-bar"><div class="skill-fill" style="width:80%;"></div></div></div>
+        <div class="skill-card"><div class="skill-name">Python<span class="skill-level">Intermediate</span></div><div class="skill-bar"><div class="skill-fill" style="width:70%;"></div></div></div>
+        <div class="skill-card"><div class="skill-name">SQL / Database Security<span class="skill-level">Intermediate</span></div><div class="skill-bar"><div class="skill-fill" style="width:65%;"></div></div></div>
+        <div class="skill-card"><div class="skill-name">Network Security & Config<span class="skill-level">Intermediate</span></div><div class="skill-bar"><div class="skill-fill" style="width:70%;"></div></div></div>
+        <div class="skill-card"><div class="skill-name">HTML / CSS / JavaScript<span class="skill-level">Intermediate</span></div><div class="skill-bar"><div class="skill-fill" style="width:60%;"></div></div></div>
+        <div class="skill-card"><div class="skill-name">GRC / ISO 27001<span class="skill-level">Intermediate</span></div><div class="skill-bar"><div class="skill-fill" style="width:65%;"></div></div></div>
+        <div class="skill-card"><div class="skill-name">Arabic (Native)<span class="skill-level">Native</span></div><div class="skill-bar"><div class="skill-fill" style="width:100%;"></div></div></div>
+        <div class="skill-card"><div class="skill-name">English<span class="skill-level">Fluent</span></div><div class="skill-bar"><div class="skill-fill" style="width:95%;"></div></div></div>
+      </div>
+    </section>
 
-        <!-- Placeholder skills — replace with your real ones -->
-        <div class="skill-card">
-          <div class="skill-name">Skill Name <span class="skill-level">Beginner</span></div>
-          <div class="skill-bar"><div class="skill-fill" style="width:25%;"></div></div>
+    <!-- WORK EXPERIENCE -->
+    <section id="experience">
+      <p class="section-label">Work experience</p>
+      <h2 class="section-title">Experience</h2>
+      <div class="divider"></div>
+      <div class="experience-list">
+
+        <div class="exp-card">
+          <div class="exp-header">
+            <div>
+              <div class="exp-title">Front of House, Server & Cashier</div>
+              <div class="exp-company">Alrozana Restaurant, Bahrain</div>
+            </div>
+            <span class="exp-date">2016 – 2022</span>
+          </div>
+          <ul class="exp-bullets">
+            <li>Delivered attentive customer service across breakfast, lunch, and dinner shifts over six years — greeting guests, taking orders, and serving food in a busy restaurant environment</li>
+            <li>Handled cash and card payments accurately, operating the till during peak hours with full responsibility for end-of-shift reconciliation</li>
+            <li>Trained and guided new staff members, sharing product knowledge and service standards — demonstrating early leadership</li>
+            <li>Adapted flexibly between morning, afternoon, and evening shifts including weekends and holidays, while maintaining a 3.77 GPA and competing in handball</li>
+            <li>Took on delivery driving and emergency stock collection once qualified — trusted with added responsibility</li>
+          </ul>
         </div>
 
-        <div class="skill-card">
-          <div class="skill-name">Skill Name <span class="skill-level">Intermediate</span></div>
-          <div class="skill-bar"><div class="skill-fill" style="width:50%;"></div></div>
+        <div class="exp-card">
+          <div class="exp-header">
+            <div>
+              <div class="exp-title">IT Infrastructure Support Intern</div>
+              <div class="exp-company">GARMCO, Bahrain · 900+ employees · $450M turnover</div>
+            </div>
+            <span class="exp-date">Aug – Sep 2024</span>
+          </div>
+          <ul class="exp-bullets">
+            <li>Proactively diagnosed a network outage affecting an entire department, identified faulty hardware as root cause, and collaborated with a specialist engineer to resolve it</li>
+            <li>Configured and managed a large-scale switch infrastructure across multiple departments</li>
+            <li>Provided bilingual (Arabic/English) communication support between technical and non-technical teams</li>
+          </ul>
         </div>
 
-        <div class="skill-card">
-          <div class="skill-name">Skill Name <span class="skill-level">Advanced</span></div>
-          <div class="skill-bar"><div class="skill-fill" style="width:80%;"></div></div>
+        <div class="exp-card">
+          <div class="exp-header">
+            <div>
+              <div class="exp-title">Playmaker</div>
+              <div class="exp-company">Sheffield Handball Club · England Handball Premier League</div>
+            </div>
+            <span class="exp-date">Jan 2022 – Present</span>
+          </div>
+          <ul class="exp-bullets">
+            <li>Qualified for England Handball Premier League 2025 — awarded both Offensive MVP and Season MVP</li>
+            <li>Led attacking play and directed team strategy as primary playmaker under competitive pressure</li>
+            <li>Demonstrated consistent commitment, resilience, and high performance across competitive seasons</li>
+          </ul>
         </div>
 
-        <div class="skill-card">
-          <div class="skill-name">HTML & CSS <span class="skill-level">Learning</span></div>
-          <div class="skill-bar"><div class="skill-fill" style="width:30%;"></div></div>
-        </div>
-
-        <div class="skill-card">
-          <div class="skill-name">Skill Name <span class="skill-level">Beginner</span></div>
-          <div class="skill-bar"><div class="skill-fill" style="width:20%;"></div></div>
-        </div>
-
-        <div class="skill-card">
-          <div class="skill-name">Skill Name <span class="skill-level">Intermediate</span></div>
-          <div class="skill-bar"><div class="skill-fill" style="width:55%;"></div></div>
+        <div class="exp-card">
+          <div class="exp-header">
+            <div>
+              <div class="exp-title">Handball Player</div>
+              <div class="exp-company">Tubli Club, Bahrain</div>
+            </div>
+            <span class="exp-date">2013 – 2022</span>
+          </div>
+          <ul class="exp-bullets">
+            <li>Played competitively from age 12, winning the league title at age 14</li>
+            <li>Suffered ACL surgery at age 16 — recovered and returned to active competitive sport, demonstrating exceptional resilience and determination</li>
+            <li>Nine years of consistent commitment to high-level competitive handball in Bahrain</li>
+          </ul>
         </div>
 
       </div>
     </section>
 
-
-    <!-- ── CERTIFICATIONS ── -->
+    <!-- CERTIFICATIONS -->
     <section id="certifications">
       <p class="section-label">Credentials</p>
       <h2 class="section-title">Certifications</h2>
       <div class="divider"></div>
       <div class="certs-list">
-
-        <div class="cert-item placeholder">
-          <div class="cert-icon">🏅</div>
-          <div>
-            <div class="cert-name">Certification Name</div>
-            <div class="cert-issuer">Issued by — Organisation Name</div>
-            <div class="cert-date">Month Year</div>
-          </div>
-        </div>
-
-        <div class="cert-item placeholder">
-          <div class="cert-icon">🏅</div>
-          <div>
-            <div class="cert-name">Certification Name</div>
-            <div class="cert-issuer">Issued by — Organisation Name</div>
-            <div class="cert-date">Month Year</div>
-          </div>
-        </div>
-
-        <div class="cert-item placeholder">
-          <div class="cert-icon">🏅</div>
-          <div>
-            <div class="cert-name">Certification Name</div>
-            <div class="cert-issuer">Issued by — Organisation Name</div>
-            <div class="cert-date">Month Year</div>
-          </div>
-        </div>
-
+        <div class="cert-item placeholder"><div class="cert-icon">🏅</div><div><div class="cert-name">Certification Name</div><div class="cert-issuer">Issued by — Organisation</div><div class="cert-date">Month Year</div></div></div>
+        <div class="cert-item placeholder"><div class="cert-icon">🏅</div><div><div class="cert-name">Certification Name</div><div class="cert-issuer">Issued by — Organisation</div><div class="cert-date">Month Year</div></div></div>
       </div>
     </section>
 
-
-    <!-- ── CAREER TIMELINE ── -->
+    <!-- CAREER TIMELINE -->
     <section id="career">
-      <p class="section-label">My journey</p>
+      <p class="section-label">Journey</p>
       <h2 class="section-title">Career Timeline</h2>
       <div class="divider"></div>
       <div class="timeline">
-
-        <div class="timeline-item placeholder">
-          <div class="timeline-year">Year</div>
-          <div class="timeline-event">Milestone or job title here</div>
-          <p class="timeline-desc">Describe what happened — a job, an achievement, a turning point.</p>
-        </div>
-
-        <div class="timeline-item placeholder">
-          <div class="timeline-year">Year</div>
-          <div class="timeline-event">Milestone or job title here</div>
-          <p class="timeline-desc">Describe what happened — a job, an achievement, a turning point.</p>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-year">2023</div>
-          <div class="timeline-event">Started Cyber Security with Forensics</div>
-          <p class="timeline-desc">Began studying at Sheffield Hallam University — building a foundation in cyber security, forensics, and technology.</p>
-        </div>
-
-        <div class="timeline-item placeholder">
-          <div class="timeline-year">Coming</div>
-          <div class="timeline-event">Your next milestone</div>
-          <p class="timeline-desc">This is where your next big step will go.</p>
-        </div>
-
+        <div class="timeline-item"><div class="timeline-year">2013</div><div class="timeline-event">Joined Tubli Handball Club, Bahrain</div><p class="timeline-desc">Started playing competitive handball at age 12. Won the league title at age 14. Suffered ACL surgery at 16 and fought back to full fitness — a defining moment in building resilience.</p></div>
+        <div class="timeline-item"><div class="timeline-year">2016</div><div class="timeline-event">Front of House & Cashier — Alrozana Restaurant</div><p class="timeline-desc">Started working at a busy restaurant at age 13. Over six years handled cash, served hundreds of customers, trained new staff, and balanced work with school and competitive sport — all while maintaining a 3.77 GPA.</p></div>
+        <div class="timeline-item"><div class="timeline-year">2020</div><div class="timeline-event">American Diploma — Modern Knowledge School</div><p class="timeline-desc">Graduated with a GPA of 3.77 (97%). A strong academic foundation that set the tone for everything after.</p></div>
+        <div class="timeline-item"><div class="timeline-year">2022</div><div class="timeline-event">International Foundation Programme — Sheffield Hallam University</div><p class="timeline-desc">Moved to Sheffield, UK. Completed the foundation programme and prepared for the BSc degree.</p></div>
+        <div class="timeline-item"><div class="timeline-year">Jan 2022</div><div class="timeline-event">Joined Sheffield Handball Club</div><p class="timeline-desc">Started playing competitively. Would go on to win Offensive MVP and Season MVP and qualify for the Premier League.</p></div>
+        <div class="timeline-item"><div class="timeline-year">2023</div><div class="timeline-event">Started BSc Cyber Security with Forensics</div><p class="timeline-desc">Began the degree at Sheffield Hallam University — building a foundation in cyber security, forensics, and technology.</p></div>
+        <div class="timeline-item"><div class="timeline-year">Aug 2024</div><div class="timeline-event">IT Infrastructure Support Intern — GARMCO</div><p class="timeline-desc">First professional IT role. Diagnosed real network outages, managed switch infrastructure, and supported bilingual teams.</p></div>
+        <div class="timeline-item"><div class="timeline-year">2025</div><div class="timeline-event">Premier League Qualification + MVP Awards</div><p class="timeline-desc">Qualified for the England Handball Premier League and received Offensive MVP and Season MVP in the same season.</p></div>
+        <div class="timeline-item"><div class="timeline-year">2026</div><div class="timeline-event">Final Year Dissertation + Graduation (Expected)</div><p class="timeline-desc">Completing the dissertation on AI-assisted security workflows, and seeking a graduate role in cybersecurity.</p></div>
       </div>
     </section>
 
-
-    <!-- ── LEARNING MILESTONE TIMELINE ── -->
-    <section id="learning">
-      <p class="section-label">Growth</p>
-      <h2 class="section-title">Learning a New Skill — Milestones</h2>
+    <!-- EXTRACURRICULAR -->
+    <section id="extra">
+      <p class="section-label">Beyond the degree</p>
+      <h2 class="section-title">Extracurricular</h2>
       <div class="divider"></div>
-      <p style="font-size:13px; color:var(--muted); margin-bottom:2rem;">
-        Documenting progress as I learn HTML, CSS and JavaScript — building this website from scratch.
-      </p>
-      <div class="timeline">
-
-        <div class="timeline-item">
-          <div class="timeline-year">May 2025</div>
-          <div class="timeline-event">Day 1 — First lines of HTML</div>
-          <p class="timeline-desc">Wrote my first DOCTYPE declaration and body tag. Set up Git and pushed to GitHub for the first time.</p>
+      <div class="projects-grid">
+        <div class="project-card year2">
+          <div class="project-tag">Community</div>
+          <div class="project-title" style="font-family:'Amiri',serif;font-size:1.1rem;font-weight:700;color:var(--green);margin-bottom:.5rem;">Community Volunteering</div>
+          <p class="project-desc">Regularly volunteer in the local community, helping people and building meaningful connections across diverse groups. Demonstrates communication, empathy, and commitment to giving back.</p>
         </div>
-
-        <div class="timeline-item">
-          <div class="timeline-year">May 2025</div>
-          <div class="timeline-event">Built the navigation bar</div>
-          <p class="timeline-desc">Learned about nav, ul, li and anchor tags. Understood the difference between structure and style.</p>
+        <div class="project-card year2">
+          <div class="project-tag">Industry</div>
+          <div class="project-title" style="font-family:'Amiri',serif;font-size:1.1rem;font-weight:700;color:var(--green);margin-bottom:.5rem;">Cybersecurity Events</div>
+          <p class="project-desc">Proactively attend industry cybersecurity events to stay connected with the field and keep up to date with the latest trends, tools, and threats. Shows initiative and genuine passion for the industry.</p>
         </div>
-
-        <div class="timeline-item">
-          <div class="timeline-year">May 2025</div>
-          <div class="timeline-event">Built the hero section</div>
-          <p class="timeline-desc">Added a profile image, greeting, name, tagline, hashtags and buttons. First time using CSS variables.</p>
+        <div class="project-card year3">
+          <div class="project-tag">Practice</div>
+          <div class="project-title" style="font-family:'Amiri',serif;font-size:1.1rem;font-weight:700;color:var(--green);margin-bottom:.5rem;">HackTheBox — Active Profile</div>
+          <p class="project-desc">Maintain an active HackTheBox profile, regularly completing real-world inspired security challenges to develop and sharpen practical offensive security skills independently.</p>
         </div>
-
-        <div class="timeline-item placeholder">
-          <div class="timeline-year">Soon</div>
-          <div class="timeline-event">Next milestone — add yours here</div>
-          <p class="timeline-desc">Every time you learn something new, add it here as a record of your growth.</p>
-        </div>
-
       </div>
     </section>
 
-
-    <!-- ── IDEAS ── -->
-    <section id="ideas">
-      <p class="section-label">The future</p>
-      <h2 class="section-title">Ideas I Want to Work On</h2>
-      <div class="divider"></div>
-      <div class="ideas-grid">
-
-        <div class="idea-card placeholder">
-          <div class="idea-num">01</div>
-          <div class="idea-title">Idea title here</div>
-          <p class="idea-desc">Describe the idea — what is it, why do you want to build it, what problem does it solve?</p>
-          <span class="coming-soon">✏️ Fill this in</span>
-        </div>
-
-        <div class="idea-card placeholder">
-          <div class="idea-num">02</div>
-          <div class="idea-title">Idea title here</div>
-          <p class="idea-desc">Describe the idea — what is it, why do you want to build it, what problem does it solve?</p>
-          <span class="coming-soon">✏️ Fill this in</span>
-        </div>
-
-        <div class="idea-card placeholder">
-          <div class="idea-num">03</div>
-          <div class="idea-title">Idea title here</div>
-          <p class="idea-desc">Describe the idea — what is it, why do you want to build it, what problem does it solve?</p>
-          <span class="coming-soon">✏️ Fill this in</span>
-        </div>
-
-        <div class="idea-card">
-          <div class="idea-num">04</div>
-          <div class="idea-title">Trading project</div>
-          <p class="idea-desc">Currently working on a project related to trading — building tools and systems around financial markets.</p>
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- ── RESUME ── -->
+    <!-- RESUME -->
     <section id="resume">
       <p class="section-label">Career</p>
       <h2 class="section-title">Résumé</h2>
       <div class="divider"></div>
       <div class="resume-wrap">
-
         <div class="resume-section">
           <h4>Education</h4>
-          <div class="resume-row">
-            <span class="resume-org">Sheffield Hallam University</span>
-            <span class="resume-years">2023 – Present</span>
-          </div>
-          <div class="resume-role">BSc Cyber Security with Forensics</div>
-
-          <div class="resume-row" style="opacity:0.5;">
-            <span class="resume-org">Previous education — fill in</span>
-            <span class="resume-years">Year – Year</span>
-          </div>
-          <div class="resume-role" style="opacity:0.5;">School or college name here</div>
+          <div class="resume-row"><span class="resume-org">Sheffield Hallam University</span><span class="resume-years">2023 – 2026 (Expected)</span></div>
+          <div class="resume-role">BSc (Hons) Cyber Security with Forensics · Dissertation: AI-Assisted Security Assessment Research</div>
+          <div class="resume-row"><span class="resume-org">Sheffield Hallam University</span><span class="resume-years">2022 – 2023</span></div>
+          <div class="resume-role">International Foundation Programme</div>
+          <div class="resume-row"><span class="resume-org">Modern Knowledge School, Bahrain</span><span class="resume-years">2020 – 2022</span></div>
+          <div class="resume-role">American Diploma · GPA 3.77 (97%)</div>
         </div>
-
         <div class="resume-section">
-          <h4>Experience</h4>
-          <div class="resume-row" style="opacity:0.5;">
-            <span class="resume-org">Job or internship — fill in</span>
-            <span class="resume-years">Year – Year</span>
-          </div>
-          <div class="resume-role" style="opacity:0.5;">Role description here</div>
-
-          <div class="resume-row" style="opacity:0.5;">
-            <span class="resume-org">Job or internship — fill in</span>
-            <span class="resume-years">Year – Year</span>
-          </div>
-          <div class="resume-role" style="opacity:0.5;">Role description here</div>
+          <h4>Work Experience</h4>
+          <div class="resume-row"><span class="resume-org">GARMCO, Bahrain</span><span class="resume-years">Aug – Sep 2024</span></div>
+          <div class="resume-role">IT Infrastructure Support Intern</div>
+          <div class="resume-row"><span class="resume-org">Alrozana Restaurant, Bahrain</span><span class="resume-years">2016 – 2022</span></div>
+          <div class="resume-role">Front of House, Server & Cashier · 6 years · Cash handling · Staff training</div>
+          <div class="resume-row"><span class="resume-org">Sheffield Handball Club</span><span class="resume-years">Jan 2022 – Present</span></div>
+          <div class="resume-role">Playmaker · Offensive MVP · Season MVP · Premier League 2025</div>
+          <div class="resume-row"><span class="resume-org">Tubli Handball Club, Bahrain</span><span class="resume-years">2013 – 2022</span></div>
+          <div class="resume-role">Competitive Handball Player · League Winner · ACL recovery</div>
         </div>
-
         <div class="resume-section">
-          <h4>Skills</h4>
-          <p style="font-size:13px; color:var(--muted); opacity:0.6;">Fill your skills in above and they will be reflected here.</p>
+          <h4>Key Skills</h4>
+          <p style="font-size:13px;color:var(--muted);line-height:1.8;">Kali Linux · Metasploit · EnCase · Wireshark · Python · SQL · Azure · Docker · ISO 27001 · Active Directory · Arabic (Native) · English (Fluent)</p>
         </div>
-
-        <a href="#" class="btn-gold">📄 Download PDF Résumé</a>
-
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1rem;">
+          <a href="Sayed_Alawi_CV.docx" download class="btn-gold">⬇️ Download Full CV</a>
+          <a href="https://www.linkedin.com/in/sayed-alawi-b77760295" target="_blank" class="btn-primary">LinkedIn Profile →</a>
+        </div>
       </div>
     </section>
-
   </main>
 
-  <!-- ── FOOTER ── -->
   <footer>
     <div class="footer-logo">Sayed Alawi</div>
-    <p class="footer-note">© 2025 Sayed Alawi · Built with HTML, CSS & JavaScript</p>
+    <p class="footer-note">© 2025 Sayed Alawi · Cyber Security & Forensics Student</p>
     <div class="footer-links">
       <a href="meta.html">Privacy</a>
-      <a href="#">Accessibility</a>
+      <a href="meta.html#accessibility">Accessibility</a>
+      <a href="https://www.linkedin.com/in/sayed-alawi-b77760295" target="_blank">LinkedIn</a>
     </div>
   </footer>
-
   <button class="scroll-top" id="scroll-top" aria-label="Scroll to top">↑</button>
-
   <script>
-    // ── THEME SWITCHER ──
-    var themeBtns = document.querySelectorAll('.theme-btn');
-    function setTheme(themeClass) {
-      document.body.classList.remove('theme-retro', 'theme-gold');
-      if (themeClass) document.body.classList.add(themeClass);
-      themeBtns.forEach(function(btn) { btn.classList.remove('active'); });
-    }
-    document.getElementById('theme-default').addEventListener('click', function () {
-      setTheme(null); this.classList.add('active');
-    });
-    document.getElementById('theme-retro').addEventListener('click', function () {
-      setTheme('theme-retro'); this.classList.add('active');
-    });
-    document.getElementById('theme-gold').addEventListener('click', function () {
-      setTheme('theme-gold'); this.classList.add('active');
-    });
-
-    // ── SCROLL TO TOP ──
-    var scrollBtn = document.getElementById('scroll-top');
-    window.addEventListener('scroll', function () {
-      scrollBtn.classList.toggle('visible', window.scrollY > 400);
-    });
-    scrollBtn.addEventListener('click', function () {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+    var tb=document.querySelectorAll('.theme-btn');
+    function setTheme(t){document.body.classList.remove('theme-retro');if(t)document.body.classList.add(t);tb.forEach(function(b){b.classList.remove('active');});}
+    document.getElementById('theme-default').addEventListener('click',function(){setTheme(null);this.classList.add('active');});
+    document.getElementById('theme-retro').addEventListener('click',function(){setTheme('theme-retro');this.classList.add('active');});
+    var sb=document.getElementById('scroll-top');
+    window.addEventListener('scroll',function(){sb.classList.toggle('visible',window.scrollY>400);});
+    sb.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
   </script>
-
 </body>
 </html>
