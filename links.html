@@ -84,11 +84,11 @@
   </div>
   <nav>
     <a class="nav-logo" href="index.html">Sayed <span>Alawi</span></a>
-            <ul class="nav-links">
+                <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
-      <li><a href="blog.html">Blog</a></li>
       <li><a href="projects.html">Projects</a></li>
+      <li><a href="blog.html">Blog</a></li>
       <li><a href="gallery.html">Gallery</a></li>
       <li><a href="links.html" class="active">Links</a></li>
     </ul>
@@ -108,48 +108,57 @@
       <h2 class="section-title">My Links</h2>
       <div class="divider"></div>
       <div class="linktree">
-        <a class="link-card placeholder" href="#">
-          <div class="link-icon">📸</div>
-          <div><div class="link-label">Instagram</div><div class="link-sub">@yourusername — add your handle</div></div>
-        </a>
-        <a class="link-card placeholder" href="#">
-          <div class="link-icon">🐦</div>
-          <div><div class="link-label">Twitter / X</div><div class="link-sub">@yourusername — add your handle</div></div>
-        </a>
         <a class="link-card" href="https://www.linkedin.com/in/sayed-alawi-b77760295" target="_blank">
           <div class="link-icon">💼</div>
           <div><div class="link-label">LinkedIn — Sayed Alawi</div><div class="link-sub">Connect with me professionally</div></div>
         </a>
         <a class="link-card placeholder" href="#">
           <div class="link-icon">💻</div>
-          <div><div class="link-label">GitHub</div><div class="link-sub">Add your GitHub profile link</div></div>
+          <div><div class="link-label">GitHub</div><div class="link-sub">Add your GitHub profile link here</div></div>
         </a>
-        <a class="link-card placeholder" href="#">
+        <a class="link-card" href="mailto:h.j.almusawi@gmail.com">
+          <div class="link-icon">📧</div>
+          <div><div class="link-label">h.j.almusawi@gmail.com</div><div class="link-sub">Email me directly</div></div>
+        </a>
+        <a class="link-card" href="tel:+447403271779">
+          <div class="link-icon">📞</div>
+          <div><div class="link-label">+44 7403271779</div><div class="link-sub">UK number — call or text anytime</div></div>
+        </a>
+        <a class="link-card" href="tel:+97334357500">
           <div class="link-icon">📱</div>
-          <div><div class="link-label">Snapchat</div><div class="link-sub">Add your Snapchat handle</div></div>
+          <div><div class="link-label">+973 34357500</div><div class="link-sub">Bahrain number</div></div>
         </a>
       </div>
     </section>
 
-    <!-- CONTACT -->
+        <!-- CONTACT -->
     <section id="contact">
       <p class="section-label">Get in touch</p>
       <h2 class="section-title">Contact</h2>
       <div class="divider"></div>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:2rem;">Messages sent here go directly to my email inbox. I usually respond within 24 hours.</p>
       <div class="contact-grid">
         <div class="form-group">
-          <label class="form-label">Your name</label>
-          <input class="form-input" type="text" placeholder="Enter your name" />
-          <label class="form-label">Your email</label>
-          <input class="form-input" type="email" placeholder="Enter your email" />
-          <label class="form-label">Message</label>
-          <textarea class="form-input" rows="5" placeholder="Write your message here..."></textarea>
-          <button class="btn-primary">Send Message →</button>
+          <!-- Formspree handles sending — replace YOUR_FORM_ID with your Formspree form ID -->
+          <!-- Go to formspree.io, sign up free, create a form, and paste your form ID below -->
+          <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <label class="form-label">Your name</label>
+            <input class="form-input" type="text" name="name" placeholder="Enter your name" required style="margin-bottom:.75rem;" />
+            <label class="form-label">Your email</label>
+            <input class="form-input" type="email" name="email" placeholder="Enter your email" required style="margin-bottom:.75rem;" />
+            <label class="form-label">Message</label>
+            <textarea class="form-input" name="message" rows="5" placeholder="Write your message here..." required style="margin-bottom:.75rem;"></textarea>
+            <button type="submit" class="btn-primary" style="border:none;cursor:pointer;">✉️ Send Message</button>
+          </form>
         </div>
         <div class="contact-info">
           <div class="contact-item">
             <div class="contact-item-icon">📍</div>
-            <div><div class="contact-item-label">Location</div><div class="contact-item-value">Tubli, Bahrain</div></div>
+            <div><div class="contact-item-label">Location</div><div class="contact-item-value">Sheffield, UK</div></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">🇧🇭</div>
+            <div><div class="contact-item-label">Home</div><div class="contact-item-value">Tubli, Bahrain</div></div>
           </div>
           <div class="contact-item">
             <div class="contact-item-icon">🎓</div>
@@ -161,11 +170,16 @@
           </div>
           <div class="contact-item">
             <div class="contact-item-icon">📞</div>
-            <div><div class="contact-item-label">Best way to reach me</div><div class="contact-item-value"><a href="tel:+447403271779" style="color:var(--green);text-decoration:none;">+44 7403271779</a> · Call or text anytime</div></div>
+            <div><div class="contact-item-label">Phone (UK)</div><div class="contact-item-value"><a href="tel:+447403271779" style="color:var(--green);text-decoration:none;">+44 7403271779</a></div></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">📱</div>
+            <div><div class="contact-item-label">Phone (Bahrain)</div><div class="contact-item-value"><a href="tel:+97334357500" style="color:var(--green);text-decoration:none;">+973 34357500</a></div></div>
           </div>
         </div>
       </div>
     </section>
+
   </main>
 
   <footer>

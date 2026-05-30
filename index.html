@@ -38,22 +38,22 @@
     .tag-row{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem;}
     .tag{background:transparent;border:1.5px solid var(--green-mid);color:var(--green-mid);font-size:12px;font-weight:500;padding:5px 14px;border-radius:20px;letter-spacing:.03em;transition:background .2s,color .2s;}
     .tag:hover{background:var(--green-mid);color:var(--white);}
-    .hero-buttons{display:flex;gap:1rem;flex-wrap:wrap;}
-    .btn-primary{background:var(--green);color:var(--white);border:none;padding:.75rem 1.75rem;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;border-radius:8px;cursor:pointer;text-decoration:none;display:inline-block;transition:background .2s,transform .15s;}
+    .hero-buttons{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem;}
+    .btn-primary{background:var(--green);color:var(--white);border:none;padding:.75rem 1.75rem;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;border-radius:8px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;transition:background .2s,transform .15s;}
     .btn-primary:hover{background:var(--green-mid);transform:translateY(-2px);}
-    .btn-gold{background:var(--gold);color:var(--white);border:none;padding:.75rem 1.75rem;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;border-radius:8px;cursor:pointer;text-decoration:none;display:inline-block;transition:background .2s,transform .15s;}
+    .btn-gold{background:var(--gold);color:var(--white);border:none;padding:.75rem 1.75rem;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;border-radius:8px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;transition:background .2s,transform .15s;}
     .btn-gold:hover{background:#b8911f;transform:translateY(-2px);}
-    .btn-ghost{background:transparent;color:var(--green);border:1.5px solid var(--green);padding:.75rem 1.75rem;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;border-radius:8px;cursor:pointer;text-decoration:none;display:inline-block;transition:background .2s,color .2s;}
-    .btn-ghost:hover{background:var(--green);color:var(--white);}
-    /* RECRUITER BADGES */
-    .recruiter-badges{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.5rem;}
+    .btn-teal{background:linear-gradient(135deg,#0d7377,#14a085);color:var(--white);border:none;padding:.75rem 1.75rem;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;border-radius:8px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;transition:opacity .2s,transform .15s;}
+    .btn-teal:hover{opacity:.9;transform:translateY(-2px);}
+    .btn-purple{background:linear-gradient(135deg,#6c3483,#9b59b6);color:var(--white);border:none;padding:.75rem 1.75rem;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;border-radius:8px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;transition:opacity .2s,transform .15s;}
+    .btn-purple:hover{opacity:.9;transform:translateY(-2px);}
+    .recruiter-badges{display:flex;gap:.75rem;flex-wrap:wrap;}
     .badge{display:inline-flex;align-items:center;gap:.4rem;background:var(--white);border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-size:12px;font-weight:500;color:var(--ink);box-shadow:0 2px 8px rgba(0,0,0,.04);}
-    .badge-dot{width:7px;height:7px;border-radius:50%;background:var(--green-light);}
-    /* QUOTE */
+    .badge-dot{width:7px;height:7px;border-radius:50%;background:var(--green-light);animation:pulse 2s infinite;}
+    @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
     .hero-quote{margin-top:2.5rem;padding:1.25rem 1.5rem;background:rgba(26,58,42,.04);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;max-width:46ch;}
     .hero-quote p{font-family:'Amiri',serif;font-style:italic;font-size:1.1rem;color:var(--ink);margin-bottom:.4rem;line-height:1.6;}
     .hero-quote cite{font-size:12px;color:var(--gold);letter-spacing:.08em;font-style:normal;font-weight:500;}
-    /* PROFILE */
     .hero-right{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:1rem;}
     .profile-frame{width:340px;height:340px;border-radius:50%;overflow:hidden;border:4px solid var(--green-light);box-shadow:0 0 0 8px rgba(82,183,136,.1),0 20px 60px rgba(26,58,42,.15);position:relative;}
     .profile-frame img{width:100%;height:100%;object-fit:cover;}
@@ -69,15 +69,15 @@
     .now-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1rem;}
     .now-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;transition:box-shadow .2s,transform .2s;}
     .now-card:hover{box-shadow:0 8px 24px rgba(26,58,42,.08);transform:translateY(-3px);}
-    .now-card h4{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--green-light);margin-bottom:.5rem;}
+    .now-card-header{display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem;}
+    .now-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+    .now-card h4{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--green-light);}
     .now-card p{font-size:14px;color:var(--ink);line-height:1.6;}
-    .now-emoji{font-size:1.5rem;margin-bottom:.75rem;display:block;}
     /* PALETTE */
     .palette-row{display:flex;border-radius:12px;overflow:hidden;height:90px;margin-bottom:1.5rem;box-shadow:0 4px 16px rgba(0,0,0,.08);}
     .swatch{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:10px;font-size:10px;font-family:'DM Mono',monospace;font-weight:600;transition:flex .3s;letter-spacing:.04em;}
     .swatch:hover{flex:2.5;}
     .swatch-hex{font-size:9px;opacity:.8;margin-top:2px;}
-    /* FOOTER */
     footer{border-top:1px solid var(--border);padding:2.5rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
     .footer-logo{font-family:'Amiri',serif;font-size:1.2rem;font-weight:700;color:var(--green);}
     .footer-note{font-size:12px;color:var(--muted);}
@@ -91,7 +91,7 @@
     body.theme-retro .nav-logo,body.theme-retro .hero-name,body.theme-retro .section-title{font-family:'VT323',monospace;}
     body.theme-retro .theme-btn{background:#111;color:#00ff41;}
     body.theme-retro .theme-btn.active{background:#00ff41;color:#0d0d0d;}
-    
+    body.theme-retro .now-card,.body.theme-retro .badge{background:#111;}
     @media(max-width:768px){#hero{grid-template-columns:1fr;padding:3rem 1.5rem;text-align:center;}.hero-right{order:-1;}.profile-frame{width:220px;height:220px;}.tag-row,.hero-buttons,.recruiter-badges{justify-content:center;}.hero-tagline{border-left:none;padding-left:0;}section{padding:3rem 1.5rem;}nav{padding:.75rem 1.25rem;}.nav-links{gap:1rem;font-size:12px;}footer{padding:2rem 1.5rem;flex-direction:column;text-align:center;}.theme-float{display:none;}.section-header{flex-direction:column;align-items:flex-start;}}
   </style>
 </head>
@@ -107,8 +107,8 @@
     <ul class="nav-links">
       <li><a href="index.html" class="active">Home</a></li>
       <li><a href="about.html">About</a></li>
-      <li><a href="blog.html">Blog</a></li>
       <li><a href="projects.html">Projects</a></li>
+      <li><a href="blog.html">Blog</a></li>
       <li><a href="gallery.html">Gallery</a></li>
       <li><a href="links.html">Links</a></li>
     </ul>
@@ -129,18 +129,17 @@
           <span class="tag">#TheChosenOne</span>
         </div>
         <div class="hero-buttons">
-          <a href="#now" class="btn-primary">What I'm doing now</a>
+          <a href="#now" class="btn-primary">📋 What I'm doing now</a>
           <a href="projects.html#resume" class="btn-gold">📄 View Résumé</a>
-          <a href="links.html#contact" class="btn-ghost">Get in touch</a>
-          <button class="btn-ghost" id="random-btn">🎲 Random</button>
+          <a href="links.html#contact" class="btn-teal">✉️ Get in touch</a>
+          <button class="btn-purple" id="random-btn">🎲 Random</button>
         </div>
-        <!-- RECRUITER BADGES -->
         <div class="recruiter-badges">
           <div class="badge"><div class="badge-dot"></div>Open to opportunities</div>
           <div class="badge">🎓 BSc Cyber Security & Forensics</div>
-          <div class="badge">📍 Bahrain / Sheffield, UK</div>
-          <div class="badge">📞 <a href="tel:+447403271779" style="color:inherit;text-decoration:none;">+44 7403271779</a></div>
+          <div class="badge">📍 Sheffield, UK</div>
           <div class="badge">💼 <a href="https://www.linkedin.com/in/sayed-alawi-b77760295" target="_blank" style="color:inherit;text-decoration:none;">LinkedIn</a></div>
+          <div class="badge">📞 <a href="tel:+447403271779" style="color:inherit;text-decoration:none;">+44 7403271779</a></div>
         </div>
         <blockquote class="hero-quote">
           <p>"The value of a person is according to what he excels in."</p>
@@ -164,12 +163,62 @@
         <a href="projects.html#resume" class="btn-gold">📄 View Résumé</a>
       </div>
       <div class="now-grid">
-        <div class="now-card"><span class="now-emoji">🎓</span><h4>Studying</h4><p>Cyber Security with Forensics — Sheffield Hallam University</p></div>
-        <div class="now-card"><span class="now-emoji">📖</span><h4>Reading</h4><p>Surrounded by Idiots — Thomas Erikson</p></div>
-        <div class="now-card"><span class="now-emoji">📺</span><h4>Watching</h4><p>Al Hayba — directed by Samer Al Barkawi</p></div>
-        <div class="now-card"><span class="now-emoji">🎧</span><h4>Listening to</h4><p>Saleh Al Durazi</p></div>
-        <div class="now-card"><span class="now-emoji">💻</span><h4>Working on</h4><p>A trading project & this personal website</p></div>
-        <div class="now-card"><span class="now-emoji">🎯</span><h4>Focused on</h4><p>Constant self-improvement through discipline, learning, and awareness — aiming to positively influence myself and my environment.</p></div>
+        <div class="now-card">
+          <div class="now-card-header">
+            <div class="now-icon" style="background:rgba(26,58,42,.08);">🎓</div>
+            <h4>Studying</h4>
+          </div>
+          <p>Cyber Security with Forensics — Sheffield Hallam University</p>
+        </div>
+        <div class="now-card">
+          <div class="now-card-header">
+            <div class="now-icon" style="background:rgba(201,162,39,.08);">📖</div>
+            <h4>Reading</h4>
+          </div>
+          <p>Surrounded by Idiots — Thomas Erikson</p>
+        </div>
+        <div class="now-card">
+          <div class="now-card-header">
+            <div class="now-icon" style="background:rgba(82,183,136,.08);">☪️</div>
+            <h4>Studying Quran</h4>
+          </div>
+          <p>Dedicating time daily to studying and reflecting on the Quran — a constant source of clarity and grounding.</p>
+        </div>
+        <div class="now-card">
+          <div class="now-card-header">
+            <div class="now-icon" style="background:rgba(108,52,131,.08);">📺</div>
+            <h4>Watching</h4>
+          </div>
+          <p>Al Hayba — directed by Samer Al Barkawi</p>
+        </div>
+        <div class="now-card">
+          <div class="now-card-header">
+            <div class="now-icon" style="background:rgba(26,58,42,.08);">🎧</div>
+            <h4>Listening to</h4>
+          </div>
+          <p>Saleh Al Durazi</p>
+        </div>
+        <div class="now-card">
+          <div class="now-card-header">
+            <div class="now-icon" style="background:rgba(14,115,119,.08);">📈</div>
+            <h4>Trading</h4>
+          </div>
+          <p>Developing my algorithmic trading agent and studying financial markets — combining Python automation with real-world decision making.</p>
+        </div>
+        <div class="now-card">
+          <div class="now-card-header">
+            <div class="now-icon" style="background:rgba(201,162,39,.08);">💻</div>
+            <h4>Working on</h4>
+          </div>
+          <p>This personal website & trading project</p>
+        </div>
+        <div class="now-card">
+          <div class="now-card-header">
+            <div class="now-icon" style="background:rgba(82,183,136,.08);">🎯</div>
+            <h4>Focused on</h4>
+          </div>
+          <p>Constant self-improvement through discipline, learning, and awareness — aiming to positively influence myself and my environment.</p>
+        </div>
       </div>
     </section>
 
@@ -188,7 +237,6 @@
       </div>
     </section>
   </main>
-
   <footer>
     <div class="footer-logo">Sayed Alawi</div>
     <p class="footer-note">© 2025 Sayed Alawi · Cyber Security & Forensics Student</p>
@@ -205,7 +253,7 @@
     else if(hour>=12&&hour<17){g.textContent='☀️ Good afternoon';tb.textContent='☀️ Afternoon';pi.src='images/afternoon.jpg';}
     else if(hour>=17&&hour<21){g.textContent='🌆 Good evening';tb.textContent='🌆 Evening';pi.src='images/evening.jpg';}
     else{g.textContent='🌙 Good night';tb.textContent='🌙 Night';pi.src='images/night.jpg';}
-    var pages=['#now','#palette','about.html','blog.html','projects.html','gallery.html','links.html'];
+    var pages=['#now','#palette','about.html','projects.html','blog.html','gallery.html','links.html'];
     document.getElementById('random-btn').addEventListener('click',function(){var p=pages[Math.floor(Math.random()*pages.length)];if(p.startsWith('#'))window.location.hash=p;else window.location.href=p;});
     var tb2=document.querySelectorAll('.theme-btn');
     function setTheme(t){document.body.classList.remove('theme-retro');if(t)document.body.classList.add(t);tb2.forEach(function(b){b.classList.remove('active');});}

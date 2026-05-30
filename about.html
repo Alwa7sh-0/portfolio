@@ -25,51 +25,66 @@
     .theme-float-label{background:var(--green);color:var(--white);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:8px 10px;writing-mode:vertical-rl;transform:rotate(180deg);height:80px;display:flex;align-items:center;justify-content:center;}
     .theme-btn{background:var(--white);border:none;border-top:1px solid var(--border);padding:10px 12px;font-size:11px;font-weight:500;color:var(--ink);cursor:pointer;transition:background .2s,color .2s;text-align:center;font-family:'DM Sans',sans-serif;min-width:52px;line-height:1.4;}
     .theme-btn:hover,.theme-btn.active{background:var(--green);color:var(--white);}
+    /* PAGE HERO */
     .page-hero{padding:6rem 3rem 4rem;border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
     .page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(82,183,136,.07) 0%,transparent 70%);pointer-events:none;}
     .page-hero-inner{position:relative;z-index:1;}
     .page-eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--green-light);margin-bottom:.5rem;}
-    .page-title{font-family:'Amiri',serif;font-size:clamp(3rem,7vw,5rem);font-weight:700;color:var(--green);line-height:1;margin-bottom:1rem;}
+    .page-title{font-family:'Amiri',serif;font-size:clamp(3rem,7vw,5rem);font-weight:700;color:var(--green);line-height:1;margin-bottom:1.5rem;}
     .page-title span{color:var(--gold);}
-    .page-subtitle{font-family:'Amiri',serif;font-size:1.15rem;font-style:italic;color:var(--muted);max-width:50ch;}
-    .page-meta{display:flex;gap:1.5rem;margin-top:1.5rem;flex-wrap:wrap;}
+    /* INTRO STORY */
+    .intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+    .intro-text p{font-size:15px;color:var(--ink);line-height:1.9;margin-bottom:1rem;}
+    .intro-quote{background:rgba(26,58,42,.04);border-left:3px solid var(--gold);border-radius:0 12px 12px 0;padding:1.5rem;}
+    .intro-quote p{font-family:'Amiri',serif;font-style:italic;font-size:1.05rem;color:var(--ink);line-height:1.8;margin-bottom:.5rem;}
+    .intro-quote cite{font-size:12px;color:var(--gold);font-weight:500;letter-spacing:.06em;}
+    .page-meta{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem;}
     .meta-pill{display:inline-flex;align-items:center;gap:.4rem;background:var(--white);border:1px solid var(--border);border-radius:20px;padding:6px 14px;font-size:13px;color:var(--ink);box-shadow:0 2px 8px rgba(0,0,0,.04);}
     .meta-pill span{color:var(--green-light);font-weight:600;}
+    /* SECTIONS */
     section{padding:5rem 3rem;border-top:1px solid var(--border);}
     .section-label{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--green-light);margin-bottom:.4rem;}
     .section-title{font-family:'Amiri',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;color:var(--green);line-height:1.1;}
     .divider{width:40px;height:2px;background:var(--gold);margin:.75rem 0 2rem;}
     .coming-soon{display:inline-block;background:rgba(201,162,39,.1);border:1px dashed var(--gold);color:var(--gold);font-size:11px;padding:3px 10px;border-radius:10px;margin-top:.5rem;}
     /* HOBBIES */
-    .hobbies-grid{display:flex;flex-wrap:wrap;gap:.75rem;}
-    .hobby-pill{display:inline-flex;align-items:center;gap:.5rem;background:var(--white);border:1.5px solid var(--border);border-radius:10px;padding:.75rem 1.25rem;font-size:14px;font-weight:500;transition:border-color .2s,transform .2s,box-shadow .2s;}
+    .hobbies-section{display:flex;flex-direction:column;gap:1.5rem;}
+    .hobby-group{}
+    .hobby-group-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--green-light);margin-bottom:.75rem;}
+    .hobby-pills{display:flex;flex-wrap:wrap;gap:.6rem;}
+    .hobby-pill{display:inline-flex;align-items:center;gap:.5rem;background:var(--white);border:1.5px solid var(--border);border-radius:10px;padding:.6rem 1.1rem;font-size:13px;font-weight:500;transition:border-color .2s,transform .2s,box-shadow .2s;}
     .hobby-pill:hover{border-color:var(--green-light);transform:translateY(-2px);box-shadow:0 4px 12px rgba(26,58,42,.08);}
-    /* PEOPLE CARDS WITH PHOTOS */
-    .people-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.25rem;}
+    /* PEOPLE CARDS */
+    .people-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1.25rem;}
     .person-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:box-shadow .2s,transform .2s;}
     .person-card:hover{box-shadow:0 12px 32px rgba(26,58,42,.1);transform:translateY(-4px);}
-    .person-photo{width:100%;height:160px;object-fit:cover;object-position:top;display:block;background:rgba(26,58,42,.06);}
+    .person-photo{width:100%;height:160px;object-fit:cover;object-position:top center;display:block;background:rgba(26,58,42,.06);}
     .person-photo-placeholder{width:100%;height:160px;background:linear-gradient(135deg,rgba(26,58,42,.08),rgba(201,162,39,.08));display:flex;align-items:center;justify-content:center;font-size:3rem;}
-    .person-body{padding:1.25rem;}
-    .person-name{font-family:'Amiri',serif;font-size:1.1rem;font-weight:700;color:var(--green);margin-bottom:.2rem;}
-    .person-role{font-size:11px;color:var(--gold);letter-spacing:.06em;text-transform:uppercase;font-family:'DM Mono',monospace;margin-bottom:.6rem;}
-    .person-why{font-size:13px;color:var(--muted);line-height:1.6;}
+    .person-body{padding:1.1rem;}
+    .person-name{font-family:'Amiri',serif;font-size:1rem;font-weight:700;color:var(--green);margin-bottom:.15rem;line-height:1.3;}
+    .person-role{font-size:10px;color:var(--gold);letter-spacing:.06em;text-transform:uppercase;font-family:'DM Mono',monospace;margin-bottom:.5rem;}
+    .person-why{font-size:12px;color:var(--muted);line-height:1.6;}
     /* THEORIES */
     .theories-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem;}
     .theory-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;transition:box-shadow .2s,transform .2s;border-left:3px solid var(--gold);}
     .theory-card:hover{box-shadow:0 8px 24px rgba(26,58,42,.08);transform:translateY(-3px);}
+    .theory-card.upcoming{border-left-color:var(--green-light);background:linear-gradient(135deg,rgba(82,183,136,.03),rgba(26,58,42,.03));border-style:dashed;}
     .theory-num{font-family:'Amiri',serif;font-size:2rem;font-weight:700;color:rgba(201,162,39,.25);line-height:1;margin-bottom:.5rem;}
+    .theory-card.upcoming .theory-num{color:rgba(82,183,136,.3);}
     .theory-title{font-weight:700;font-size:15px;color:var(--green);margin-bottom:.5rem;}
     .theory-desc{font-size:13px;color:var(--muted);line-height:1.7;}
+    .theory-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(82,183,136,.1);border:1px solid rgba(82,183,136,.3);color:var(--green-light);font-size:11px;padding:4px 10px;border-radius:20px;margin-top:.75rem;font-family:'DM Mono',monospace;letter-spacing:.05em;}
     /* GLOSSARY */
-    .glossary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;}
-    .gloss-item{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:1rem;}
-    .gloss-term{font-weight:700;color:var(--green);font-size:16px;margin-bottom:4px;font-family:'Amiri',serif;}
+    .glossary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;}
+    .gloss-item{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:1.1rem;}
+    .gloss-term{font-weight:700;color:var(--green);font-size:17px;margin-bottom:4px;font-family:'Amiri',serif;}
+    .gloss-phonetic{font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:.06em;margin-bottom:.4rem;}
     .gloss-def{font-size:13px;color:var(--muted);line-height:1.5;}
+    .gloss-example{font-size:12px;color:var(--green-light);margin-top:.4rem;font-style:italic;}
     /* QUOTES */
     .quotes-list{display:flex;flex-direction:column;gap:1.5rem;}
     .quote-card{border-left:3px solid var(--gold);padding:1rem 1.5rem;background:rgba(201,162,39,.04);border-radius:0 8px 8px 0;}
-    .quote-text{font-family:'Amiri',serif;font-style:italic;font-size:1.1rem;color:var(--ink);margin-bottom:.4rem;}
+    .quote-text{font-family:'Amiri',serif;font-style:italic;font-size:1.1rem;color:var(--ink);margin-bottom:.4rem;line-height:1.7;}
     .quote-attr{font-size:12px;color:var(--gold);letter-spacing:.08em;font-weight:500;}
     /* MANUAL */
     .manual-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem;}
@@ -91,8 +106,7 @@
     body.theme-retro .nav-logo,body.theme-retro .page-title,body.theme-retro .section-title{font-family:'VT323',monospace;}
     body.theme-retro .theme-btn{background:#111;color:#00ff41;}
     body.theme-retro .theme-btn.active{background:#00ff41;color:#0d0d0d;}
-    
-    @media(max-width:768px){.page-hero{padding:4rem 1.5rem 3rem;}section{padding:3rem 1.5rem;}nav{padding:.75rem 1.25rem;}.nav-links{gap:1rem;font-size:12px;}footer{padding:2rem 1.5rem;flex-direction:column;text-align:center;}.theme-float{display:none;}.people-grid{grid-template-columns:repeat(2,1fr);}}
+    @media(max-width:768px){.page-hero{padding:4rem 1.5rem 3rem;}.intro-grid{grid-template-columns:1fr;}section{padding:3rem 1.5rem;}nav{padding:.75rem 1.25rem;}.nav-links{gap:1rem;font-size:12px;}footer{padding:2rem 1.5rem;flex-direction:column;text-align:center;}.theme-float{display:none;}.people-grid{grid-template-columns:repeat(2,1fr);}}
   </style>
 </head>
 <body>
@@ -107,8 +121,8 @@
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html" class="active">About</a></li>
-      <li><a href="blog.html">Blog</a></li>
       <li><a href="projects.html">Projects</a></li>
+      <li><a href="blog.html">Blog</a></li>
       <li><a href="gallery.html">Gallery</a></li>
       <li><a href="links.html">Links</a></li>
     </ul>
@@ -118,12 +132,22 @@
       <div class="page-hero-inner">
         <p class="page-eyebrow">Get to know me</p>
         <h1 class="page-title">About <span>Me</span></h1>
-        <p class="page-subtitle">A 21-year-old from Tubli, Bahrain — driven by faith, family, and the relentless pursuit of becoming better every single day.</p>
-        <div class="page-meta">
-          <div class="meta-pill">📍 <span>Tubli, Bahrain</span></div>
-          <div class="meta-pill">🎂 <span>21 years old</span></div>
-          <div class="meta-pill">🎓 <span>Cyber Security & Forensics</span></div>
-          <div class="meta-pill">// <span>alwa7sh</span></div>
+        <div class="intro-grid">
+          <div class="intro-text">
+            <p>I never planned to work in cybersecurity. I wanted to be a vet, but my dad pushed me towards tech, and for a while, I resisted — until something clicked. About a year into my degree, I found myself drawn to the challenge of breaking down systems, solving problems under pressure, and spotting what others miss. What started as frustration quickly turned into something I genuinely enjoy, and now I can't imagine doing anything else.</p>
+            <p>At 18, I moved from Bahrain to Sheffield alone, and since then I've delivered eight cybersecurity projects and conducted original research, running 36 experiments on AI-assisted penetration testing. Alongside that, I competed in the England Handball Premier League, earning two MVP awards.</p>
+            <p>Before university, I spent six years balancing school, competitive sport, and working in a restaurant while graduating with a 3.77 GPA, and I also came back from an ACL injury that required surgery — an experience that built discipline and resilience early on. I learn fast, perform under pressure, and I'm ready to take on my next challenge anywhere in the world.</p>
+            <div class="page-meta">
+              <div class="meta-pill">📍 <span>Sheffield, UK</span></div>
+              <div class="meta-pill">🎂 <span>21 years old</span></div>
+              <div class="meta-pill">🎓 <span>Cyber Security & Forensics</span></div>
+              <div class="meta-pill"><a href="about.html#glossary" style="color:inherit;text-decoration:none;">🔍 <span>GetToKnowMe</span></a></div>
+            </div>
+          </div>
+          <div class="intro-quote">
+            <p>"Do not let your difficulties fill you with anxiety; after all, it is only in the darkest nights that the stars shine more brightly."</p>
+            <cite>— Ali ibn Abi Talib</cite>
+          </div>
         </div>
       </div>
     </div>
@@ -133,15 +157,30 @@
       <p class="section-label">What I love doing</p>
       <h2 class="section-title">Hobbies</h2>
       <div class="divider"></div>
-      <div class="hobbies-grid">
-        <div class="hobby-pill">⚽ Football</div>
-        <div class="hobby-pill">🤾 Handball</div>
-        <div class="hobby-pill">🏀 Basketball</div>
-        <div class="hobby-pill">🏐 Dodgeball</div>
-        <div class="hobby-pill">🐴 Horse Riding</div>
-        <div class="hobby-pill">🏊 Swimming</div>
-        <div class="hobby-pill">🎣 Fishing</div>
-        <div class="hobby-pill">📖 Reading</div>
+      <div class="hobbies-section">
+        <div class="hobby-group">
+          <div class="hobby-group-label">⚽ Active Sports</div>
+          <div class="hobby-pills">
+            <div class="hobby-pill">⚽ Football</div>
+            <div class="hobby-pill">🤾 Handball</div>
+            <div class="hobby-pill">🏀 Basketball</div>
+            <div class="hobby-pill">🏐 Dodgeball</div>
+            <div class="hobby-pill">🐴 Horse Riding</div>
+            <div class="hobby-pill">🏊 Swimming</div>
+          </div>
+        </div>
+        <div class="hobby-group">
+          <div class="hobby-group-label">🎯 Leisure & Lifestyle</div>
+          <div class="hobby-pills">
+            <div class="hobby-pill">🎣 Fishing</div>
+            <div class="hobby-pill">🎱 8 Ball Pool</div>
+            <div class="hobby-pill">🍳 Cooking</div>
+            <div class="hobby-pill">🏺 Clay Pottery</div>
+            <div class="hobby-pill">🎮 Gaming</div>
+            <div class="hobby-pill">💻 Coding</div>
+            <div class="hobby-pill">📖 Reading</div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -150,11 +189,11 @@
       <p class="section-label">Inspirations</p>
       <h2 class="section-title">People I Wish I Had Met</h2>
       <div class="divider"></div>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:1.5rem;">These are people whose lives, ideas, and courage have shaped the way I think — people I would give anything to have had a conversation with.</p>
       <div class="people-grid">
 
         <div class="person-card">
-          <img class="person-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Imam_Ali_Shrine_in_Najaf%2C_Iraq_-_panoramio_%281%29.jpg/800px-Imam_Ali_Shrine_in_Najaf%2C_Iraq_-_panoramio_%281%29.jpg" alt="Imam Ali" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
-          <div class="person-photo-placeholder" style="display:none;">🕌</div>
+          <div class="person-photo-placeholder">🕌</div>
           <div class="person-body">
             <div class="person-name">Imam Ali ibn Abi Talib</div>
             <div class="person-role">The Gate of Knowledge</div>
@@ -167,7 +206,7 @@
           <div class="person-body">
             <div class="person-name">Ahl Al Bayt</div>
             <div class="person-role">The Prophet's Household</div>
-            <p class="person-why">Their sacrifice, patience, and devotion are a guiding light. Meeting them would have been the greatest honour of any lifetime.</p>
+            <p class="person-why">Their sacrifice, patience, and devotion are a guiding light. The greatest honour of any lifetime.</p>
           </div>
         </div>
 
@@ -176,17 +215,17 @@
           <div class="person-body">
             <div class="person-name">Al Abbas ibn Ali</div>
             <div class="person-role">Son of Imam Ali</div>
-            <p class="person-why">A symbol of loyalty and sacrifice. His story is one of the most powerful examples of standing by what you believe in no matter the cost.</p>
+            <p class="person-why">A symbol of loyalty and sacrifice. His story is one of the most powerful examples of standing firm no matter the cost.</p>
           </div>
         </div>
 
         <div class="person-card">
-          <img class="person-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Camponotus_flavomarginatus_ant.jpg/400px-Camponotus_flavomarginatus_ant.jpg" alt="Kobe Bryant" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+          <img class="person-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/White_shark.jpg/1200px-White_shark.jpg" alt="Kobe Bryant" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
           <div class="person-photo-placeholder" style="display:none;">🏀</div>
           <div class="person-body">
             <div class="person-name">Kobe Bryant</div>
             <div class="person-role">The Black Mamba · NBA Legend</div>
-            <p class="person-why">The embodiment of the Mamba Mentality — obsession, discipline, and the relentless pursuit of greatness. He shaped how I think about effort.</p>
+            <p class="person-why">The Mamba Mentality — obsession, discipline, and the relentless pursuit of greatness — shaped how I think about effort.</p>
           </div>
         </div>
 
@@ -196,7 +235,7 @@
           <div class="person-body">
             <div class="person-name">Albert Einstein</div>
             <div class="person-role">Theoretical Physicist</div>
-            <p class="person-why">A mind that redefined how humanity understands space, time, and reality. His curiosity and creativity are unmatched in history.</p>
+            <p class="person-why">A mind that redefined how humanity understands space, time, and reality. Curiosity and creativity at their absolute peak.</p>
           </div>
         </div>
 
@@ -206,7 +245,7 @@
           <div class="person-body">
             <div class="person-name">Steve Jobs</div>
             <div class="person-role">Co-founder of Apple</div>
-            <p class="person-why">He proved that technology and art are not opposites. His obsession with excellence and user experience changed the world permanently.</p>
+            <p class="person-why">He proved that technology and art are not opposites. His obsession with excellence changed the world permanently.</p>
           </div>
         </div>
 
@@ -216,7 +255,7 @@
           <div class="person-body">
             <div class="person-name">Charles Darwin</div>
             <div class="person-role">Naturalist & Scientist</div>
-            <p class="person-why">His theory of evolution transformed how we understand life on earth. The courage it took to publish something that challenged everything is inspiring.</p>
+            <p class="person-why">His theory of evolution transformed how we understand life. The courage it took to publish something that challenged everything is inspiring.</p>
           </div>
         </div>
 
@@ -226,7 +265,7 @@
           <div class="person-body">
             <div class="person-name">Georges Lemaître</div>
             <div class="person-role">Father of the Big Bang Theory</div>
-            <p class="person-why">A priest and a scientist — he proposed that the universe began from a single point. A mind that bridged faith and science in a way few ever have.</p>
+            <p class="person-why">A priest and a scientist who proposed that the universe began from a single point — bridging faith and science like no one else.</p>
           </div>
         </div>
 
@@ -246,7 +285,7 @@
           <div class="person-body">
             <div class="person-name">Elon Musk</div>
             <div class="person-role">CEO of Tesla & SpaceX</div>
-            <p class="person-why">A man who bets everything on the future. His ability to execute on seemingly impossible visions is something I study and admire.</p>
+            <p class="person-why">Bets everything on the future. His ability to execute on seemingly impossible visions is something I study and admire.</p>
           </div>
         </div>
 
@@ -256,7 +295,7 @@
           <div class="person-body">
             <div class="person-name">Bill Gates</div>
             <div class="person-role">Co-founder of Microsoft</div>
-            <p class="person-why">Built the foundation of the personal computing era. His transition from tech to global philanthropy shows that impact has no single form.</p>
+            <p class="person-why">Built the foundation of the personal computing era. His transition from tech to global philanthropy shows impact has no single form.</p>
           </div>
         </div>
 
@@ -266,7 +305,7 @@
           <div class="person-body">
             <div class="person-name">Linus Torvalds</div>
             <div class="person-role">Creator of Linux</div>
-            <p class="person-why">Created Linux — one of the most important pieces of software in history. As a cyber security student, his work underpins almost everything I study.</p>
+            <p class="person-why">Created Linux — one of the most important pieces of software in history. His work underpins almost everything I study in cyber security.</p>
           </div>
         </div>
 
@@ -275,7 +314,7 @@
           <div class="person-body">
             <div class="person-name">Mikkel Hansen</div>
             <div class="person-role">Handball Legend · Denmark</div>
-            <p class="person-why">The greatest handball player of all time. His leadership and dominance on court have influenced how I think about sport and excellence.</p>
+            <p class="person-why">The greatest handball player of all time. His leadership and dominance on court shaped how I think about sport and excellence.</p>
           </div>
         </div>
 
@@ -284,7 +323,7 @@
           <div class="person-body">
             <div class="person-name">Nikola Karabatić</div>
             <div class="person-role">Handball Legend · France</div>
-            <p class="person-why">Three-time world champion. One of the most decorated handball players in history and a masterclass in resilience and team leadership.</p>
+            <p class="person-why">Three-time world champion. A masterclass in resilience and team leadership under the highest pressure.</p>
           </div>
         </div>
 
@@ -303,7 +342,7 @@
           <div class="person-body">
             <div class="person-name">Cristiano Ronaldo</div>
             <div class="person-role">Football Legend · CR7</div>
-            <p class="person-why">The greatest example of what hard work and self-belief can produce. He turned natural talent into something supernatural through sheer discipline.</p>
+            <p class="person-why">The greatest example of what hard work and self-belief can produce. He turned natural talent into something supernatural through discipline.</p>
           </div>
         </div>
 
@@ -313,7 +352,27 @@
           <div class="person-body">
             <div class="person-name">Lionel Messi</div>
             <div class="person-role">Football Legend · La Pulga</div>
-            <p class="person-why">Pure genius. A quiet leader whose ability to perform under the highest pressure — and finally win the World Cup — makes his story one of the greatest ever told.</p>
+            <p class="person-why">Pure genius. Quiet leadership, impossible pressure, and the greatest comeback story ever told — winning the World Cup after everything.</p>
+          </div>
+        </div>
+
+        <div class="person-card">
+          <img class="person-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Derrick_Rose_2011.jpg/800px-Derrick_Rose_2011.jpg" alt="Derrick Rose" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+          <div class="person-photo-placeholder" style="display:none;">🏀</div>
+          <div class="person-body">
+            <div class="person-name">Derrick Rose</div>
+            <div class="person-role">NBA Player · Chicago Bulls</div>
+            <p class="person-why">The youngest MVP in NBA history. His comeback from multiple career-threatening injuries is one of the most human stories in sport.</p>
+          </div>
+        </div>
+
+        <div class="person-card">
+          <img class="person-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/LeBron_James_2014.jpg/800px-LeBron_James_2014.jpg" alt="LeBron James" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+          <div class="person-photo-placeholder" style="display:none;">🏀</div>
+          <div class="person-body">
+            <div class="person-name">LeBron James</div>
+            <div class="person-role">The King · NBA Legend</div>
+            <p class="person-why">Four championships, the scoring record, and an empire built beyond basketball. A leader who never stopped evolving — on and off the court.</p>
           </div>
         </div>
 
@@ -322,7 +381,7 @@
           <div class="person-body">
             <div class="person-name">Ali Al Sistani</div>
             <div class="person-role">Grand Ayatollah</div>
-            <p class="person-why">One of the most respected religious scholars in the world. His wisdom, humility and impact on millions makes him someone I deeply want to learn from.</p>
+            <p class="person-why">One of the most respected religious scholars in the world. His wisdom, humility, and impact on millions makes him someone I deeply want to learn from.</p>
           </div>
         </div>
 
@@ -335,26 +394,22 @@
       <h2 class="section-title">My View on Worldwide Theories</h2>
       <div class="divider"></div>
       <div class="theories-grid">
-
         <div class="theory-card">
           <div class="theory-num">01</div>
           <div class="theory-title">The Big Bang Theory</div>
-          <p class="theory-desc">The universe began approximately 13.8 billion years ago from an infinitely dense singularity. Everything we see — every star, planet, and galaxy — expanded from that single point. What fascinates me is that a Belgian priest, Georges Lemaître, was the one who first proposed it — proof that science and faith are not always opposites.</p>
+          <p class="theory-desc">The universe began approximately 13.8 billion years ago from an infinitely dense singularity. What fascinates me is that a Belgian priest, Georges Lemaître, first proposed it — proof that science and faith are not always opposites.</p>
         </div>
-
         <div class="theory-card">
           <div class="theory-num">02</div>
           <div class="theory-title">Darwin's Theory of Evolution</div>
-          <p class="theory-desc">All life on earth shares a common ancestor and has evolved through natural selection over billions of years. The species that survive are not the strongest or the smartest — they are the ones most adaptable to change. I think about this beyond biology — it applies to people, businesses, and ideas too. Adapt or become irrelevant.</p>
+          <p class="theory-desc">All life on earth shares a common ancestor and evolved through natural selection. The species that survive are not the strongest — they are the most adaptable. I think about this beyond biology — it applies to people, businesses, and ideas too.</p>
         </div>
-
-        <div class="theory-card">
+        <div class="theory-card upcoming">
           <div class="theory-num">03</div>
-          <div class="theory-title">Your next theory here</div>
-          <p class="theory-desc">Add your own view on the world here — something you believe that others might not. Could be about society, technology, human nature, or anything you feel strongly about.</p>
-          <span class="coming-soon">✏️ Fill this in</span>
+          <div class="theory-title">Currently Observing...</div>
+          <p class="theory-desc">There is something I have been watching closely — a pattern in how systems, people, and technologies interact that I am not yet ready to put into words. This space is reserved for when the thinking is complete.</p>
+          <div class="theory-badge">🔭 In progress · Check back soon</div>
         </div>
-
       </div>
     </section>
 
@@ -363,22 +418,29 @@
       <p class="section-label">My language</p>
       <h2 class="section-title">Words I Use a Lot</h2>
       <div class="divider"></div>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:1.5rem;">Some of these are Onomatopoeia — words that sound exactly like what they mean.</p>
       <div class="glossary-grid">
         <div class="gloss-item">
           <div class="gloss-term">Habibi</div>
+          <div class="gloss-phonetic">/ ha-bee-bee /</div>
           <div class="gloss-def">Arabic for "my love" or "my dear" — used with friends, family, anyone I'm close to.</div>
         </div>
         <div class="gloss-item">
           <div class="gloss-term">La la</div>
-          <div class="gloss-def">Arabic for "no no" — my go-to when something is clearly wrong or I disagree strongly.</div>
+          <div class="gloss-phonetic">/ la la /</div>
+          <div class="gloss-def">Arabic for "no no" — my instinctive reaction when something is clearly wrong or I disagree.</div>
         </div>
         <div class="gloss-item">
           <div class="gloss-term">Bordoga</div>
-          <div class="gloss-def">Arabic slang — used to describe something or someone that's a mess, chaotic, or out of control.</div>
+          <div class="gloss-phonetic">/ bor-do-ga / · Onomatopoeia</div>
+          <div class="gloss-def">What I say when I finally fix something — a bug, a problem, anything that was broken. The sound of relief and satisfaction.</div>
+          <div class="gloss-example">e.g. after squashing a bug: "Bordoga — done."</div>
         </div>
-        <div class="gloss-item" style="border-style:dashed;opacity:.5;">
-          <div class="gloss-term">Your word here</div>
-          <div class="gloss-def">Add more words or phrases you use all the time.</div>
+        <div class="gloss-item">
+          <div class="gloss-term">Bal</div>
+          <div class="gloss-phonetic">/ bal / · Onomatopoeia</div>
+          <div class="gloss-def">Pure chaos energy. The sound of disbelief when something absurd or overwhelming is described.</div>
+          <div class="gloss-example">e.g. "5 people jumped him" → "BAL."</div>
         </div>
       </div>
     </section>
@@ -393,13 +455,17 @@
           <p class="quote-text">"The value of a person is according to what he excels in."</p>
           <span class="quote-attr">— Ali ibn Abi Talib</span>
         </div>
-        <div class="quote-card" style="opacity:.5;border-style:dashed;">
-          <p class="quote-text">"Your second favourite quote will go here."</p>
-          <span class="quote-attr">— Who said it</span>
+        <div class="quote-card">
+          <p class="quote-text">"Do you think you are just a small body? While within you lies the greater universe."</p>
+          <span class="quote-attr">— Ali ibn Abi Talib</span>
         </div>
-        <div class="quote-card" style="opacity:.5;border-style:dashed;">
-          <p class="quote-text">"Your third favourite quote will go here."</p>
-          <span class="quote-attr">— Who said it</span>
+        <div class="quote-card">
+          <p class="quote-text">"Knowledge raises a house without pillars, and ignorance destroys honor and dignity."</p>
+          <span class="quote-attr">— Ali ibn Abi Talib</span>
+        </div>
+        <div class="quote-card">
+          <p class="quote-text">"Do not let your difficulties fill you with anxiety; after all, it is only in the darkest nights that the stars shine more brightly."</p>
+          <span class="quote-attr">— Ali ibn Abi Talib</span>
         </div>
       </div>
     </section>
@@ -420,7 +486,6 @@
       </div>
     </section>
   </main>
-
   <footer>
     <div class="footer-logo">Sayed Alawi</div>
     <p class="footer-note">© 2025 Sayed Alawi · Cyber Security & Forensics Student</p>
