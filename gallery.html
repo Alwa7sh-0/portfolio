@@ -102,15 +102,15 @@
   </style>
 </head>
 <body>
-
+ 
   <a class="skip-link" href="#main">Skip to main content</a>
-
+ 
   <div class="theme-float">
     <div class="theme-float-label">Theme</div>
     <button class="theme-btn active" id="theme-default">🌿<br>Default</button>
     <button class="theme-btn" id="theme-retro">💻<br>Retro</button>
   </div>
-
+ 
   <nav>
     <a class="nav-logo" href="index.html">Sayed <span>Alawi</span></a>
     <ul class="nav-links">
@@ -122,9 +122,9 @@
       <li><a href="links.html">Links</a></li>
     </ul>
   </nav>
-
+ 
   <main id="main">
-
+ 
     <div class="page-hero">
       <div class="page-hero-inner">
         <p class="page-eyebrow">Moments & Memories</p>
@@ -132,60 +132,60 @@
         <p class="page-subtitle">A visual record of my life — photos, memories, and moments worth keeping.</p>
       </div>
     </div>
-
+ 
     <!-- ── FAVOURITE PHOTOS GALLERY ── -->
     <section id="gallery">
       <p class="section-label">Favourite photos</p>
       <h2 class="section-title">Photo Gallery</h2>
       <div class="divider"></div>
       <p style="font-size:13px;color:var(--muted);margin-bottom:1.5rem;">Click any photo to expand it. Hover to see the caption.</p>
-
+ 
       <div class="filter-row">
         <button class="filter-btn active" onclick="filterGallery('all', this)">All</button>
         <button class="filter-btn" onclick="filterGallery('sport', this)">Sport</button>
         <button class="filter-btn" onclick="filterGallery('random', this)">Random</button>
         <button class="filter-btn" onclick="filterGallery('family', this)">Family</button>
       </div>
-
+ 
       <div class="gallery-grid" id="galleryGrid">
-
+ 
         <div class="gallery-item" data-category="random" data-caption="A moment worth keeping" onclick="openLightbox(this)">
           <img src="images/IMG_1686.jpg" alt="Sayed — a moment worth keeping" />
           <div class="gallery-caption">A moment worth keeping</div>
         </div>
-
+ 
         <div class="gallery-item" data-category="random" data-caption="A moment worth keeping" onclick="openLightbox(this)">
           <img src="images/IMG_1943.jpg" alt="Sayed — a moment worth keeping" />
           <div class="gallery-caption">A moment worth keeping</div>
         </div>
-
+ 
         <div class="gallery-item" data-category="random" data-caption="A moment worth keeping" onclick="openLightbox(this)">
           <img src="images/IMG_1685.jpg" alt="Sayed — a moment worth keeping" />
           <div class="gallery-caption">A moment worth keeping</div>
         </div>
-
+ 
         <div class="gallery-item" data-category="random" data-caption="A moment worth keeping" onclick="openLightbox(this)">
           <img src="images/IMG_0360.jpg" alt="Sayed — a moment worth keeping" />
           <div class="gallery-caption">A moment worth keeping</div>
         </div>
-
+ 
         <div class="gallery-item" data-category="random" data-caption="A moment worth keeping" onclick="openLightbox(this)">
-          <img src="images/aec62165-cee4-4f5e-a5cd-6c97206b9b7c.jpg" alt="Sayed — a moment worth keeping" />
+          <img src="images/aec62165.jpg" alt="Sayed — a moment worth keeping" />
           <div class="gallery-caption">A moment worth keeping</div>
         </div>
-
+ 
       </div>
     </section>
-
+ 
     <!-- ── PHOTOS TIMELINE ── -->
     <section id="timeline">
       <p class="section-label">My story</p>
       <h2 class="section-title">Photos Timeline</h2>
       <div class="divider"></div>
       <p style="font-size:13px;color:var(--muted);margin-bottom:2rem;">A visual journey through the years — from where I started to where I am now.</p>
-
+ 
       <div class="photo-timeline">
-
+ 
         <div class="photo-timeline-item">
           <div class="photo-timeline-year">2005</div>
           <div class="photo-timeline-content">
@@ -196,7 +196,7 @@
             </div>
           </div>
         </div>
-
+ 
         <div class="photo-timeline-item">
           <div class="photo-timeline-year">2010</div>
           <div class="photo-timeline-content">
@@ -207,7 +207,7 @@
             </div>
           </div>
         </div>
-
+ 
         <div class="photo-timeline-item">
           <div class="photo-timeline-year">2015</div>
           <div class="photo-timeline-content">
@@ -218,7 +218,7 @@
             </div>
           </div>
         </div>
-
+ 
         <div class="photo-timeline-item">
           <div class="photo-timeline-year">2020</div>
           <div class="photo-timeline-content">
@@ -229,7 +229,7 @@
             </div>
           </div>
         </div>
-
+ 
         <div class="photo-timeline-item">
           <div class="photo-timeline-year">2025</div>
           <div class="photo-timeline-content">
@@ -240,12 +240,12 @@
             </div>
           </div>
         </div>
-
+ 
       </div>
     </section>
-
+ 
   </main>
-
+ 
   <!-- ── LIGHTBOX ── -->
   <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
     <div class="lightbox-inner">
@@ -258,15 +258,15 @@
       </div>
     </div>
   </div>
-
+ 
   <footer>
     <div class="footer-logo">Sayed Alawi</div>
     <p class="footer-note">© 2025 Sayed Alawi · Built with HTML, CSS & JavaScript</p>
     <div class="footer-links"><a href="meta.html">Privacy</a><a href="meta.html#accessibility">Accessibility</a></div>
   </footer>
-
+ 
   <button class="scroll-top" id="scroll-top" aria-label="Scroll to top">↑</button>
-
+ 
   <script>
     function filterGallery(category, btn) {
       var items = document.querySelectorAll('.gallery-item');
@@ -280,17 +280,17 @@
       document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
       btn.classList.add('active');
     }
-
+ 
     var currentIndex = 0;
     var galleryItems = [];
-
+ 
     function openLightbox(el) {
       galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
       currentIndex = galleryItems.indexOf(el);
       showLightboxItem(currentIndex);
       document.getElementById('lightbox').classList.add('open');
     }
-
+ 
     function showLightboxItem(index) {
       var item = galleryItems[index];
       var img = item.querySelector('img');
@@ -305,29 +305,29 @@
       }
       document.getElementById('lightbox-caption').textContent = caption;
     }
-
+ 
     function closeLightbox(e) {
       if (!e || e.target === document.getElementById('lightbox') || e.target.classList.contains('lightbox-close')) {
         document.getElementById('lightbox').classList.remove('open');
       }
     }
-
+ 
     function lightboxNext() {
       currentIndex = (currentIndex + 1) % galleryItems.length;
       showLightboxItem(currentIndex);
     }
-
+ 
     function lightboxPrev() {
       currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
       showLightboxItem(currentIndex);
     }
-
+ 
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') { document.getElementById('lightbox').classList.remove('open'); }
       if (e.key === 'ArrowRight') { lightboxNext(); }
       if (e.key === 'ArrowLeft') { lightboxPrev(); }
     });
-
+ 
     var themeBtns = document.querySelectorAll('.theme-btn');
     function setTheme(t) {
       document.body.classList.remove('theme-retro');
@@ -336,11 +336,11 @@
     }
     document.getElementById('theme-default').addEventListener('click', function() { setTheme(null); this.classList.add('active'); });
     document.getElementById('theme-retro').addEventListener('click', function() { setTheme('theme-retro'); this.classList.add('active'); });
-
+ 
     var scrollBtn = document.getElementById('scroll-top');
     window.addEventListener('scroll', function() { scrollBtn.classList.toggle('visible', window.scrollY > 400); });
     scrollBtn.addEventListener('click', function() { window.scrollTo({top:0,behavior:'smooth'}); });
   </script>
-
+ 
 </body>
 </html>
