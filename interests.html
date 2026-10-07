@@ -124,12 +124,15 @@
   </style>
 </head>
 <body>
+<script>
+(function(){var t=localStorage.getItem('portfolio-theme');if(t)document.body.classList.add(t);})();
+</script>
 
   <a class="skip-link" href="#main">Skip to main content</a>
 
   <div class="theme-float">
     <div class="theme-float-label">Theme</div>
-    <button class="theme-btn active" id="theme-default">🌿<br>Default</button>
+    <button class="theme-btn" id="theme-default">🌿<br>Default</button>
     <button class="theme-btn" id="theme-retro">💻<br>Retro</button>
   </div>
 
@@ -449,12 +452,15 @@
   <script>
     var themeBtns = document.querySelectorAll('.theme-btn');
     function setTheme(themeClass) {
+      if(themeClass){localStorage.setItem('portfolio-theme',themeClass);}else{localStorage.removeItem('portfolio-theme');}
       document.body.classList.remove('theme-retro', 'theme-gold');
       if (themeClass) document.body.classList.add(themeClass);
       themeBtns.forEach(function(btn) { btn.classList.remove('active'); });
     }
     document.getElementById('theme-default').addEventListener('click', function () { setTheme(null); this.classList.add('active'); });
     document.getElementById('theme-retro').addEventListener('click', function () { setTheme('theme-retro'); this.classList.add('active'); });
+    // Restore active button from saved theme
+    (function(){var saved=localStorage.getItem('portfolio-theme');if(saved){var btn=document.getElementById(saved);if(btn)btn.classList.add('active');}else{var def=document.getElementById('theme-default');if(def)def.classList.add('active');}})();
     document.getElementById('theme-gold').addEventListener('click', function () { setTheme('theme-gold'); this.classList.add('active'); });
 
     var scrollBtn = document.getElementById('scroll-top');

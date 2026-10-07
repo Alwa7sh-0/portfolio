@@ -126,10 +126,13 @@
   ::selection{background:var(--gold);color:var(--white);}::-moz-selection{background:var(--gold);color:var(--white);}body.theme-retro{cursor:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><rect x="8" y="0" width="4" height="20" fill="%2300ff41" opacity="0.8"/><rect x="0" y="8" width="20" height="4" fill="%2300ff41" opacity="0.8"/></svg>') 10 10, crosshair;}body.theme-retro ::selection{background:#00ff41;color:#0d0d0d;}body.theme-retro ::-moz-selection{background:#00ff41;color:#0d0d0d;}</style>
 </head>
 <body>
+<script>
+(function(){var t=localStorage.getItem('portfolio-theme');if(t)document.body.classList.add(t);})();
+</script>
   <a class="skip-link" href="#main">Skip to main content</a>
   <div class="theme-float">
     <div class="theme-float-label">Theme</div>
-    <button class="theme-btn active" id="theme-default">🌿<br>Default</button>
+    <button class="theme-btn" id="theme-default">🌿<br>Default</button>
     <button class="theme-btn" id="theme-retro">💻<br>Retro</button>
   </div>
   <nav>
@@ -625,9 +628,11 @@
   <button class="scroll-top" id="scroll-top" aria-label="Scroll to top">↑</button>
   <script>
     var tb=document.querySelectorAll('.theme-btn');
-    function setTheme(t){document.body.classList.remove('theme-retro');if(t)document.body.classList.add(t);tb.forEach(function(b){b.classList.remove('active');});}
+    function setTheme(t){document.body.classList.remove('theme-retro');if(t){document.body.classList.add(t);localStorage.setItem('portfolio-theme',t);}else{localStorage.removeItem('portfolio-theme');}tb.forEach(function(b){b.classList.remove('active');});}
     document.getElementById('theme-default').addEventListener('click',function(){setTheme(null);this.classList.add('active');});
     document.getElementById('theme-retro').addEventListener('click',function(){setTheme('theme-retro');this.classList.add('active');});
+    // Restore active button from saved theme
+    (function(){var saved=localStorage.getItem('portfolio-theme');if(saved){var btn=document.getElementById(saved);if(btn)btn.classList.add('active');}else{var def=document.getElementById('theme-default');if(def)def.classList.add('active');}})();
     var sb=document.getElementById('scroll-top');
     window.addEventListener('scroll',function(){sb.classList.toggle('visible',window.scrollY>400);});
     sb.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
